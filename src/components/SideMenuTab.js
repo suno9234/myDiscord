@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RoomInfoTab from './RoomInfoTab';
 import FriendsListTab from './FriendsListTab';
 import BottomProfile from './BottomProfile';
+
 const SideMenuTab = () => {
   const [isRoom] = useState(false);
   return (

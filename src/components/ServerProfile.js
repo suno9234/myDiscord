@@ -1,11 +1,11 @@
 import React from 'react';
-import  Profile from './Profile';
+import Profile from './Profile';
 
-const ServerProfile = ({btnStyle}) => {
+const ServerProfile = ({ btnStyle }) => {
   return (
     <div style={{
-      marginTop:'5px',
-      marginBottom:'5px',
+      marginTop: '5px',
+      marginBottom: '5px',
     }}>
       <Profile
         btnStyle={btnStyle}

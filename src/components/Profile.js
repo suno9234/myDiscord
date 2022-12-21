@@ -3,7 +3,6 @@ import { Button } from 'antd';
 
 const Profile = ({ innerText, btnStyle }) => {
   return (
-
     <Button
       shape='circle'
       size='large'

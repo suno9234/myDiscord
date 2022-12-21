@@ -26,7 +26,7 @@ const serverStyle = {
 
 const LeftMenu = () => {
   return (
-    <>
+    <div>
       <div style={{
         backgroundColor: '#202225',
         height: '100%',
@@ -40,7 +40,7 @@ const LeftMenu = () => {
         <ServerProfile btnStyle={serverStyle} />
         <ServerProfile btnStyle={serverStyle}/>
       </div>
-    </>
+    </div>
   );
 }
 

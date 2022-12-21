@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { RemoveScroll } from 'react-remove-scroll';
 import LeftMenu from './LeftMenu';
 import SideMenuTab from './SideMenuTab';
-import { RemoveScroll } from 'react-remove-scroll';
 
 const AppLayout = ({ children }) => {
   return (
