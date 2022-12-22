@@ -15,6 +15,9 @@ const homeStyle = {
   height : '44px',
   marginTop:'2px',
   marginBottom : '2px',
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center',
 }
 
 const serverStyle = {

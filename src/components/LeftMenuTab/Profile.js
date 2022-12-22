@@ -1,13 +1,16 @@
 import React from 'react';
 import { Button } from 'antd';
 
-const Profile = ({ innerText, btnStyle }) => {
+const Profile = ({ innerText, btnStyle ,iconImg }) => {
   return (
     <Button
       shape='circle'
       size='large'
       style={btnStyle}
-    >{innerText ? innerText : null}</Button>
+      onClick
+      icon={iconImg ? iconImg: null}
+    >
+      {innerText ? innerText : null}</Button>
 
   );
 }

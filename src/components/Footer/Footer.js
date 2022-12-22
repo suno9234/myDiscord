@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import MinniProfile from './MinniProfile';
+import MiniProfile from './MiniProfile';
 import PlayingGame from './PlayingGame';
-import CallingMenu from './CallingMenu';
+import CallingMenu from '../CallingMenu';
 const BottomProfile = () => {
   const [isCalling] = useState(false);
   return (
@@ -9,10 +9,11 @@ const BottomProfile = () => {
       marginTop: 'auto',
       height: '100px',
       backgroundColor: '#202225',
+      flex: '0 0 auto',
     }}>
       <PlayingGame />
-      {isCalling ? <CallingMenu/> : null}
-      <MinniProfile />
+      {isCalling ? <CallingMenu /> : null}
+      <MiniProfile />
     </div>
   )
 }

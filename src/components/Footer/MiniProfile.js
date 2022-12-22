@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MinniProfile = () => {
+const MiniProfile = () => {
   return (
     <div style={{
       height:'49%',
@@ -10,4 +10,4 @@ const MinniProfile = () => {
   )
 }
 
-export default MinniProfile;
+export default MiniProfile;
