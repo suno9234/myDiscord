@@ -4,6 +4,7 @@ import PlayingGame from './PlayingGame';
 import CallingMenu from '../CallingMenu';
 const BottomProfile = () => {
   const [isCalling] = useState(false);
+  const [isPlaying] = useState(false);
   return (
     <div style={{
       marginTop: 'auto',
@@ -11,7 +12,7 @@ const BottomProfile = () => {
       backgroundColor: '#202225',
       flex: '0 0 auto',
     }}>
-      <PlayingGame />
+      {isPlaying ? <PlayingGame /> : null}
       {isCalling ? <CallingMenu /> : null}
       <MiniProfile />
     </div>
