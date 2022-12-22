@@ -4,7 +4,7 @@ import RoomInfoTab from './RoomInfoTab';
 import FriendsListTab from './FriendsListTab';
 
 const SideMenuTab = () => {
-  const { isRoom } = useSelector((state) => state.user);
+  const { isServer } = useSelector((state) => state.user);
   return (
     <div style={{
       display: 'flex',
@@ -14,7 +14,7 @@ const SideMenuTab = () => {
       height:'100%',
     }}>
       SideMenuTab
-      {isRoom ? <RoomInfoTab /> : <FriendsListTab />}
+      {isServer ? <RoomInfoTab /> : <FriendsListTab />}
     </div>
 
   );

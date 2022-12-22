@@ -1,19 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { faker } from '@faker-js/faker';
+import shortId from 'shortid';
 
 const initialState = {
-  isRoom: false,
-  roomCode: null,
+  id: 1,
+  nickname: 'Suno',
+  Servers: [],
+  Friends: [],
+  isServer: false,
 }
+
+initialState.Servers = initialState.Servers.concat(
+  Array(20).fill().map((v, i) => ({
+    name: shortId.generate(),
+    profileImage: faker.image.avatar(),
+  }))
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    enterRoom: (state, action) => {
-      console.log(state,action);
-      state = action.payload
+    enterServer: (state, action) => {
+      console.log(state, action);
+      state.isServer = true;
     },
+    enterHome : (state,action)=>{
+      console.log(state,action);
+      state.isServer = false;
+    }
   }
 })
 
-export const { enterRoom } = userSlice.actions;
+export const { enterServer , enterHome} = userSlice.actions;
 export default userSlice.reducer;

@@ -1,20 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Profile from './Profile';
+import { enterServer } from '../../redux/reducers/user';
 
-const ServerProfile = ({ btnStyle }) => {
-  const iconImg = null;
+const ServerProfile = ({ btnStyle, name, imgSrc }) => {
+  const dispatch = useDispatch();
+  const onClickServerIcon = () => dispatch(enterServer({ name: "dummyServer" }));
+
   return (
-    <div style={{
-      marginTop: '5px',
-      marginBottom: '5px',
-    }}>
-      <Profile 
-        btnStyle={btnStyle}
-        onClick
-        iconImg={iconImg}
-        
+    <div style={{ marginBottom: '3px', marginTop: '3px' }}>
+      <Profile
+        imgSrc={imgSrc}
+        onClickMethod={onClickServerIcon}
       />
     </div>
+
   );
 }
 

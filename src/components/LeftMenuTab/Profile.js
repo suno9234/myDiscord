@@ -1,16 +1,31 @@
-import React from 'react';
-import { Button } from 'antd';
+import React, { useState } from 'react';
 
-const Profile = ({ innerText, btnStyle ,iconImg }) => {
+const Profile = ({ innerText, imgSrc ,onClickMethod}) => {
+
+  const [border, setBorder] = useState('50%');
+  const onMouseEnter = () => {
+    setBorder('30%');
+  }
+  const onMouseLeave = () => {
+    setBorder('50%');
+  }
+
+  const iconImg = (
+    <img src={imgSrc} alt='hsico' style={{
+      width: '46px',
+      height: '46px',
+      transition: 'border-radius 100ms',
+      borderRadius: border,
+    }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave} 
+      onClick={onClickMethod}/>
+  );
+
   return (
-    <Button
-      shape='circle'
-      size='large'
-      style={btnStyle}
-      onClick
-      icon={iconImg ? iconImg: null}
-    >
-      {innerText ? innerText : null}</Button>
+    <div>
+      {iconImg ? iconImg : innerText}
+    </div>
 
   );
 }
