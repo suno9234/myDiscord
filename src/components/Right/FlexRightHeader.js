@@ -1,45 +1,27 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  display: flex;
-  margin-left : 10px;
-  margin-top : 2px;
-  margin-bottom : 2px;
-  justify-content : left;
-  align-items : center;
-  background-color : blue;
-  flex : 1 0 ;
-  height : 40px ;
+  position:relateive;
+  min-width: 0;
+  padding-left : 10px;
+  display:flex;
+  width: 100%;
+  height : 100%;
+  align-items: center;
+  flex : 1 1;
+  background-color : #36393f;
   overflow : hidden;
 `;
 
 const FlexRightHeader = () => {
 
-  const A = <div style={{
-    margin:'0 10px 0',
-    height:'20px',
-    backgroundColor:'white',
-    flex:'0 0 20px',
-  }}>A</div>
 
   return (
     <Wrapper>
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
-      {A}    
+      <div style={{flexShrink:'0',width: '20px', height: '20px', boxSizing: 'border-box', backgroundColor: 'white' }}>1</div>
+      <div style={{flexShrink:'0',width: '20px', height: '20px', boxSizing: 'border-box', backgroundColor: 'white' }}>2</div>
+      <div style={{flexShrink:'0',width: '20px', height: '20px', boxSizing: 'border-box', backgroundColor: 'white' }}>3</div>
+      
     </Wrapper>
   )
 }

@@ -3,9 +3,9 @@
 const FixedRightHeader = () => {
   return (
     <div style={{
-      minWidth:'200px',
-      flex: '0 0 200px',
-      backgroundColor: 'yellow',
+      flex: '0 0 100px',
+      backgroundColor: '#36393f',
+      height:'100%',
       marginLeft :'0',
     }}>
       Fixed

@@ -6,9 +6,7 @@ const RightHeader = ()=>{
   return(
     <div style={{
       display : 'flex',
-      flex:'1 0 50px',
       height:'50px',
-      width: '100%',
       backgroundColor:'red',
       justifyContent:'center',
       alignItems:'center',
