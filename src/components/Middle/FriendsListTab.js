@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import snow from './snowsgiving.png';
-import nitro from './nitro.svg';
+import snow from '../imgs/snowsgiving.png';
+import nitro from '../imgs/nitro.svg';
 
 import Card from './Card';
 import FriendCard from './FriendCard';

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import SearchButton from "./SearchButton";
-const LeftHeader = () => {
+const MiddleHeader = () => {
   const { isRoom } = useSelector((state) => state.user);
   return (
     <div style={{
@@ -19,4 +19,4 @@ const LeftHeader = () => {
     </div>
   )
 }
-export default LeftHeader;
+export default MiddleHeader;

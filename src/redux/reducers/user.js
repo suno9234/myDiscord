@@ -4,7 +4,9 @@ import shortId from 'shortid';
 
 const initialState = {
   id: 1,
-  nickname: 'Suno',
+  nickName: 'Suno',
+  userCode : '9498',
+  profileImage : faker.image.avatar(),
   Servers: [],
   Friends: [],
   isServer: false,

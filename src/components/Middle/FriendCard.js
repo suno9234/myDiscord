@@ -1,5 +1,5 @@
 import { Wrapper } from "./Card";
-import friendBlack from './friend_black.png';
+import friendBlack from '../imgs/friend_black.png';
 
 const FriendCard = () => {
   return (

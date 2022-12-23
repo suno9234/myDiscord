@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import RoomInfoTab from './RoomInfoTab';
 import FriendsListTab from './FriendsListTab';
-import LeftHeader from './LeftHeader/LeftHeader';
+import LeftHeader from './MiddleHeader/MiddleHeader';
 import Footer from '../Footer/Footer';
 
 const EmptySpace = styled.div`
