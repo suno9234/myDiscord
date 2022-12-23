@@ -1,7 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import snow from './snowsgiving.png';
+import nitro from './nitro.svg';
+
 import Card from './Card';
+import FriendCard from './FriendCard';
 
 const ScrollWrapper = styled.div`
   overflow-y :scroll ;  
@@ -14,31 +19,28 @@ const ScrollWrapper = styled.div`
     background-color : black ;
     border-radius:2px;
   }
-  display:'flex';
-  flex: '1' ;
-  height:'100%';
-  flexDirection:'column';
-  justifyContent:'center';
-  alignItems:'center',
-  width:'240px';  
+  vertical-align:middle;
+  display : inline-block;
+  height: 100%;
+  width: 240px;  
 `;
 
 const FriendsListTab = () => {
+  const { Friends } = useSelector((state) => state.user);
 
   return (
     <ScrollWrapper>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}>
+        <FriendCard/>
+        <Card img={snow} name={'Snowsgiving'} size={'20px'}/>
+        <Card img={nitro} name={'Nitro'} size={'30px'}/>
+        <div>다이렉트 메시지</div>
+        {Friends.map((v, i) => <Card key={v.name} name={v.name} img={v.profileImage}/>)}
+      </div>
     </ScrollWrapper>
 
   );

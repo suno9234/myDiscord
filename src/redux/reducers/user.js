@@ -17,6 +17,13 @@ initialState.Servers = initialState.Servers.concat(
   }))
 );
 
+initialState.Friends = initialState.Friends.concat(
+  Array(20).fill().map((v, i) => ({
+    name : shortId.generate(),
+    profileImage : faker.image.avatar(),
+  }))
+)
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -25,12 +32,12 @@ export const userSlice = createSlice({
       console.log(state, action);
       state.isServer = true;
     },
-    enterHome : (state,action)=>{
-      console.log(state,action);
+    enterHome: (state, action) => {
+      console.log(state, action);
       state.isServer = false;
     }
   }
 })
 
-export const { enterServer , enterHome} = userSlice.actions;
+export const { enterServer, enterHome } = userSlice.actions;
 export default userSlice.reducer;
