@@ -4,12 +4,16 @@ const LeftHeader = () => {
   const { isRoom } = useSelector((state) => state.user);
   return (
     <div style={{
-      display:'flex',
-      width: '240px',
+      width:'230px',
+      flex: '0 0 49px',
       backgroundColor: '#2f3136',
       borderBottom: '1px solid #202225',
+      display:'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      paddingLeft:'4px',
+      paddingRight:'4px',
+      
     }}>
       {isRoom ? null : <SearchButton />}
     </div>

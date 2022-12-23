@@ -1,7 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
 import Profile from './Profile';
 import home from './home.jpg'
-import { useDispatch } from 'react-redux';
 import { enterHome } from '../../redux/reducers/user';
 
 const HomeButton = () => {

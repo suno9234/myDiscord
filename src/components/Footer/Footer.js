@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import MiniProfile from './MiniProfile';
 import PlayingGame from './PlayingGame';
 import CallingMenu from '../CallingMenu';
-const BottomProfile = () => {
+
+const Footer = () => {
   const [isCalling] = useState(false);
   const [isPlaying] = useState(false);
+
   return (
-    <div style={{
-      marginTop: 'auto',
-      height: '100px',
+    <div className={'Footer'} style={{
+      marginTop:'0',
+      height:'49px',
+      flex:'0 0',
       backgroundColor: '#202225',
-      flex: '0 0 auto',
     }}>
       {isPlaying ? <PlayingGame /> : null}
       {isCalling ? <CallingMenu /> : null}
@@ -19,4 +21,4 @@ const BottomProfile = () => {
   )
 }
 
-export default BottomProfile;
+export default Footer;

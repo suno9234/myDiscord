@@ -1,23 +1,33 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+
 import RoomInfoTab from './RoomInfoTab';
 import FriendsListTab from './FriendsListTab';
+import LeftHeader from './LeftHeader/LeftHeader';
+import Footer from '../Footer/Footer';
 
-const SideMenuTab = () => {
+const EmptySpace = styled.div`
+  width:240px;  
+  flex : 1 1;
+`;
+
+const Middle = () => {
   const { isServer } = useSelector((state) => state.user);
   return (
     <div style={{
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: '#2f3136',
-      width: '240px',
-      height:'100%',
+      height: '100%',
     }}>
-      SideMenuTab
+      <LeftHeader />
       {isServer ? <RoomInfoTab /> : <FriendsListTab />}
+      <EmptySpace />
+      <Footer />
     </div>
 
   );
 }
 
-export default SideMenuTab;
+export default Middle;

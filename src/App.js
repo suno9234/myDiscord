@@ -4,7 +4,7 @@ import AppLayout from './components/AppLayout';
 const App = ()=>{
   return (
     <AppLayout>
-      {<div style={{backgroundColor:'green', width:'100%'}}>test page</div>}
+      {<div style={{backgroundColor:'green', flex:'1 1'}}>test page</div>}
     </AppLayout>
   );
 }
