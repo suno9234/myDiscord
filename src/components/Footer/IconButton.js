@@ -9,7 +9,7 @@ const IconButton = ({ img }) => {
       backgroundColor: '#202225',
       height: '26px',
       borderRadius: '20%',
-      margin: '0 1px 0',
+      margin: '0 5px 0',
     }}>
       <img src={img} alt='tinyicon' style={{
         flex: '0 0 ',

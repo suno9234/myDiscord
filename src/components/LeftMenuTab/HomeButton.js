@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import Profile from './Profile';
-import home from '../imgs/home.jpg'
+import home from '../../imgs/home.jpg';
 import { enterHome } from '../../redux/reducers/user';
 
 const HomeButton = () => {
