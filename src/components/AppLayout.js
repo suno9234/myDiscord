@@ -1,21 +1,15 @@
 import React from 'react';
 import LeftMenu from './LeftMenuTab/LeftMenu';
-import RightHeader from './Header/RightHeader';
 import Middle from './Middle/Middle';
+import Right from './Right/Right';
 
 const AppLayout = ({ children }) => {
   return (
-    <div style={{ display: 'flex', height: '100%' }}>
-      <LeftMenu/>
-      <Middle/>
-      <div>
-        <RightHeader/>
-        {children}
-      </div>
-      
+    <div style={{ display: 'flex', height: '100%' ,width:'100%'}}>
+      <LeftMenu />
+      <Middle />
+      <Right/>
     </div>
-
-
   )
 }
 export default AppLayout;
