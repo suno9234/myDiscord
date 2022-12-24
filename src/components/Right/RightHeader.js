@@ -1,19 +1,24 @@
 import React from 'react';
+import FixedLeftHeader from './FixedLeftHeader';
 import FixedRightHeader from './FixedRightHeader';
-import FlexRightHeader from './FlexRightHeader';
+import FlexHeader from './FlexHeader';
 
-const RightHeader = ()=>{
-  return(
+const RightHeader = () => {
+  return (
     <div style={{
-      display : 'flex',
-      height:'50px',
-      backgroundColor:'red',
-      justifyContent:'center',
-      alignItems:'center',
+      width: '100%',
+      display: 'flex',
+      minWidth:'0',
+      flexShrink:'1',
+      padding:'0',
+      margin:'0',
+      height: '50px',
+      backgroundColor: '#36393f',
       borderBottom: '1px solid #202225',
+      alignItems: 'center',
     }}>
-      <FlexRightHeader/>
-      <FixedRightHeader/>
+      <FlexHeader />
+      <FixedRightHeader />
     </div>
   )
 }
