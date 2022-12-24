@@ -1,5 +1,4 @@
 import React from 'react';
-import FixedLeftHeader from './FixedLeftHeader';
 import FixedRightHeader from './FixedRightHeader';
 import FlexHeader from './FlexHeader';
 
