@@ -4,7 +4,7 @@ const SearchBar = () => {
   return (
     <div style={{
       display: 'flex',
-      flex: '1',
+      flex: '0',
       height: '32px',
       width: '100%',
       backgroundColor: '#202225',
@@ -22,12 +22,14 @@ const SearchBar = () => {
         lineHeight: '32px',
         height: '30px',
         backgroundColor: '#202225',
-        border:'none',
         padding:'0 8px',
         borderRadius: '4px 4px 4px 4px / 4px 4px 4px 4px',
         fontWeight:'bold',
         boxSizing: 'border-box',
         color: 'gray',
+        outline:'none',
+        border:'none',
+        
       }} placeholder='검색하기'>
       </input>
       <div style={{
