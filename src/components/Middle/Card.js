@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -12,8 +12,20 @@ export const Wrapper = styled.div`
   align-items : center;
 `
 const Card = ({ img, name, size = '34px' }) => {
+  const [hover, setHover] = useState(false);
+  const onMouseEnter = () => {
+    setHover(true);
+  }
+  const onMouseLeave = () => {
+    setHover(false);
+  }
   return (
-    <Wrapper>
+    <Wrapper style={{
+      backgroundColor: hover ? '#40444b' : '#2f3136',
+    }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -32,8 +44,10 @@ const Card = ({ img, name, size = '34px' }) => {
         paddingLeft: '8px',
         fontSize: '14px',
         fontWeight: 'bold',
-        color: 'gray',
-      }}>{name}</div>
+        color: hover ? 'white' : 'gray',
+      }}>
+        {name}
+      </div>
     </Wrapper>
   )
 }

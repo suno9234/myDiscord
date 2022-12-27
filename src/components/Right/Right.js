@@ -1,5 +1,5 @@
 import Content from "./Content"
-import RightHeader from "./RightHeader"
+import RightHeader from "./RightHeader/RightHeader";
 
 
 const Right = () => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import FixedLeftHeader from './FixedLeftHeader';
-import Menu from './Menu';
+import Menu from '../Menu';
 
 const Wrapper = styled.div`
   position: relative;
