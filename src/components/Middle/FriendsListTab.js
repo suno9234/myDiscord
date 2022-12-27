@@ -16,7 +16,7 @@ const ScrollWrapper = styled.div`
   &::-webkit-scrollbar-thumb{
     width: 8px;
     height: 10px;
-    background-color : black ;
+    background-color : #202225 ;
     border-radius:2px;
   }
   vertical-align:middle;

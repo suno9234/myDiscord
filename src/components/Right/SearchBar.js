@@ -5,7 +5,7 @@ const SearchBar = () => {
     <div style={{
       display: 'flex',
       flex: '0',
-      height: '32px',
+      height: '36px',
       width: '100%',
       backgroundColor: '#202225',
       alignItems: 'center',
@@ -20,7 +20,7 @@ const SearchBar = () => {
         width: '10px',
         fontSize: '16px',
         lineHeight: '32px',
-        height: '30px',
+        height: '36px',
         backgroundColor: '#202225',
         padding:'0 8px',
         borderRadius: '4px 4px 4px 4px / 4px 4px 4px 4px',
