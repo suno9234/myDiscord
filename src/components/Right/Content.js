@@ -41,7 +41,7 @@ const Content = () => {
         온라인-{Friends.length}명
       </div>
       <ScrollDiv>
-        {Friends.map((v, i) => <Card imgSrc={v.profileImage} name={v.name} />)}
+        {Friends.map((v, i) => <Card key={v.name} imgSrc={v.profileImage} name={v.name} />)}
       </ScrollDiv>
 
     </div>

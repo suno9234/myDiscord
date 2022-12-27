@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+
+import { directmessageRequest } from '../../redux/reducers/user';
 
 export const Wrapper = styled.div`
   width : 215px;
@@ -12,19 +15,40 @@ export const Wrapper = styled.div`
   align-items : center;
 `
 const Card = ({ img, name, size = '34px' }) => {
+  const dispatch = useDispatch();
+  const { lastClickedDM } = useSelector((state) => state.user);
   const [hover, setHover] = useState(false);
+
+  useEffect(() => {
+    if (name === lastClickedDM) {
+      setHover(true);
+    } else {
+      setHover(false);
+    }
+  }, [lastClickedDM, name])
   const onMouseEnter = () => {
+    if(name === lastClickedDM){
+      return;
+    }
     setHover(true);
   }
   const onMouseLeave = () => {
+    if(name === lastClickedDM){
+      return;
+    }
     setHover(false);
+  }
+  const onClickCard = () => {
+    dispatch(directmessageRequest({ name: name }))
   }
   return (
     <Wrapper style={{
+      cursor: hover ? 'pointer' : 'default',
       backgroundColor: hover ? '#40444b' : '#2f3136',
     }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={onClickCard}
     >
       <div style={{
         display: 'flex',

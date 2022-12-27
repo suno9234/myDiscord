@@ -5,11 +5,17 @@ import shortId from 'shortid';
 const initialState = {
   id: 1,
   nickName: 'Suno',
-  userCode : '9498',
-  profileImage : faker.image.avatar(),
+  userCode: '9498',
+  profileImage: faker.image.avatar(),
   Servers: [],
+  DirectMessages: [],
   Friends: [],
   isServer: false,
+
+  lastClickedServer: 'home',
+  lastClickedDM: 'friends',
+  lastClickedMenu: null,
+
 }
 
 initialState.Servers = initialState.Servers.concat(
@@ -19,10 +25,17 @@ initialState.Servers = initialState.Servers.concat(
   }))
 );
 
+initialState.DirectMessages = initialState.DirectMessages.concat(
+  Array(20).fill().map((v, i) => ({
+    name: shortId.generate(),
+    profileImage: faker.image.avatar(),
+  }))
+);
+
 initialState.Friends = initialState.Friends.concat(
   Array(20).fill().map((v, i) => ({
-    name : shortId.generate(),
-    profileImage : faker.image.avatar(),
+    name: shortId.generate(),
+    profileImage: faker.image.avatar(),
   }))
 )
 
@@ -30,16 +43,25 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    enterServer: (state, action) => {
-      console.log(state, action);
+    enterServerRequest: (state, action) => {
+      state.lastClickedServer = action.payload.name;
+    },
+    enterServerSuccess: (state, action) => {
       state.isServer = true;
     },
-    enterHome: (state, action) => {
-      console.log(state, action);
+    enterHomeSuccess: (state, action) => {
       state.isServer = false;
+    },
+
+    directmessageRequest:(state,action)=>{
+      state.lastClickedDM = action.payload.name;
     }
+
   }
 })
 
-export const { enterServer, enterHome } = userSlice.actions;
+export const { 
+  enterServerRequest, enterHomeSuccess, enterServerSuccess ,
+  directmessageRequest,
+} = userSlice.actions;
 export default userSlice.reducer;

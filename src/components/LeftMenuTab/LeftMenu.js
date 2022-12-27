@@ -30,8 +30,8 @@ const LeftMenu = () => {
   const { Servers } = useSelector((state) => state.user);
   return (
     <ScrollDiv>
-      <HomeButton />
-      <StyledDiv/>
+      <HomeButton name={'home'} />
+      <StyledDiv />
       {Servers.map((v, i) => {
         return <ServerProfile key={v.name} name={v.name} imgSrc={v.profileImage} />
       })}

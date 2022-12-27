@@ -15,6 +15,7 @@ const Card = ({ imgSrc, name, fstate = "잠수" }) => {
       width:'100%',
     }}>
       <div style={{
+        cursor : hover? 'pointer' : 'default',
         display: 'flex',
         borderRadius: '4px 4px 4px 4px / 4px 4px 4px 4px',
         height: '60px',

@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Profile = ({ innerText, imgSrc ,onClickMethod}) => {
+import { enterServerRequest } from '../../redux/reducers/user'
 
+const Profile = ({ name, innerText, imgSrc }) => {
+  const dispatch = useDispatch();
+  const { lastClickedServer } = useSelector((state) => state.user);
+  const [hover, setHover] = useState(false);
   const [border, setBorder] = useState('50%');
+
+  useEffect(() => {
+    if (lastClickedServer === name) {
+      setBorder('30%');
+    } else {
+      setBorder('50%');
+    }
+  }, [lastClickedServer, name])
+
+  const onClickServer = () => {
+    dispatch(enterServerRequest({ name }))
+  }
   const onMouseEnter = () => {
+    setHover(true);
+    if (lastClickedServer === name) {
+      return;
+    }
     setBorder('30%');
   }
   const onMouseLeave = () => {
+    setHover(false);
+    if (lastClickedServer === name) {
+      return;
+    }
     setBorder('50%');
   }
 
@@ -18,12 +43,14 @@ const Profile = ({ innerText, imgSrc ,onClickMethod}) => {
       borderRadius: border,
     }}
       onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave} 
-      onClick={onClickMethod}/>
+      onMouseLeave={onMouseLeave}
+      onClick={onClickServer} />
   );
 
   return (
-    <div>
+    <div style={{
+      cursor: hover ? 'pointer' : 'default',
+    }}>
       {iconImg ? iconImg : innerText}
     </div>
 

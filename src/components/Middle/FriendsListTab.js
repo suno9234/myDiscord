@@ -26,8 +26,7 @@ const ScrollWrapper = styled.div`
 `;
 
 const FriendsListTab = () => {
-  const { Friends } = useSelector((state) => state.user);
-
+  const { DirectMessages } = useSelector((state) => state.user);
   return (
     <ScrollWrapper>
       <div style={{
@@ -39,7 +38,7 @@ const FriendsListTab = () => {
         <Card img={snow} name={'Snowsgiving'} size={'20px'}/>
         <Card img={nitro} name={'Nitro'} size={'30px'}/>
         <div>다이렉트 메시지</div>
-        {Friends.map((v, i) => <Card key={v.name} name={v.name} img={v.profileImage}/>)}
+        {DirectMessages.map((v, i) => <Card key={v.name} name={v.name} img={v.profileImage}/>)}
       </div>
     </ScrollWrapper>
 
