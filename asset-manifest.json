@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/myDiscord/static/js/main.685a3864.js",
+    "main.js": "/myDiscord/static/js/main.e3d8e169.js",
     "static/js/787.6cb5784e.chunk.js": "/myDiscord/static/js/787.6cb5784e.chunk.js",
     "static/media/home.jpg": "/myDiscord/static/media/home.dcc79073aafc3e368fa4.jpg",
     "static/media/snowsgiving.png": "/myDiscord/static/media/snowsgiving.67d1e31709309e3a6776.png",
     "static/media/nitro.svg": "/myDiscord/static/media/nitro.09f290b89dea21a0fe682a38f7f90790.svg",
     "index.html": "/myDiscord/index.html",
-    "main.685a3864.js.map": "/myDiscord/static/js/main.685a3864.js.map",
+    "main.e3d8e169.js.map": "/myDiscord/static/js/main.e3d8e169.js.map",
     "787.6cb5784e.chunk.js.map": "/myDiscord/static/js/787.6cb5784e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.685a3864.js"
+    "static/js/main.e3d8e169.js"
   ]
 }
