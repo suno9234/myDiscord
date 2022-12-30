@@ -1,11 +1,15 @@
 import React from 'react';
-import AppLayout from './components/AppLayout';
+import { useSelector } from 'react-redux';
 
-const App = ()=>{
+import Channel from './components/Channel';
+import LoginPage from './components/LogInForm/LoginPage';
+
+const App = () => {
+  const { me } = useSelector((state) => state.user);
   return (
-    <AppLayout>
-      {<div style={{backgroundColor:'green', flex:'1'}}>test page</div>}
-    </AppLayout>
+    <>
+      {me ? <Channel /> : <LoginPage />}
+    </>
   );
 }
 

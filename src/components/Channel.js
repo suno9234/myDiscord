@@ -3,7 +3,7 @@ import LeftMenu from './LeftMenuTab/LeftMenu';
 import Middle from './Middle/Middle';
 import Right from './Right/Right';
 
-const AppLayout = ({ children }) => {
+const Channel = ({ children }) => {
   return (
     <div style={{ display: 'flex', height: '100%' ,width:'100%'}}>
       <LeftMenu />
@@ -12,4 +12,4 @@ const AppLayout = ({ children }) => {
     </div>
   )
 }
-export default AppLayout;
+export default Channel;

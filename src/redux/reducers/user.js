@@ -16,6 +16,9 @@ const initialState = {
   lastClickedDM: 'friends',
   lastClickedMenu: null,
 
+  me: null,
+
+  loginPageState: 'selectId',
 }
 
 initialState.Servers = initialState.Servers.concat(
@@ -53,15 +56,28 @@ export const userSlice = createSlice({
       state.isServer = false;
     },
 
-    directmessageRequest:(state,action)=>{
+    directmessageRequest: (state, action) => {
       state.lastClickedDM = action.payload.name;
+    },
+
+    addAccount: (state, action) => {
+      state.loginPageState = 'loginForm';
+    },
+    selectId: (state, action) => {
+      state.loginPageState = 'selectId';
+    },
+
+    loginRequest: (state, action) => {
+      state.me = 'test';
     }
 
   }
 })
 
-export const { 
-  enterServerRequest, enterHomeSuccess, enterServerSuccess ,
+export const {
+  enterServerRequest, enterHomeSuccess, enterServerSuccess,
   directmessageRequest,
+  addAccount, selectId,
+  loginRequest,
 } = userSlice.actions;
 export default userSlice.reducer;
