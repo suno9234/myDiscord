@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import UserProfile from '../Profile/UserProfile';
-import { addAccount } from '../../redux/reducers/user';
+import { changeLoginPageState } from '../../redux/reducers/user';
 
 const SelectId = () => {
   const dispatch = useDispatch();
@@ -13,8 +13,8 @@ const SelectId = () => {
   const onMouseLeaveEvent = () => {
     setHover(false);
   }
-  const onClickEvent = ()=>{
-    dispatch(addAccount());
+  const onClickEvent = () => {
+    dispatch(changeLoginPageState({ state: 'loginForm' }));
   }
 
   return (
@@ -24,11 +24,10 @@ const SelectId = () => {
       flexGrow: '0',
       flexShrink: '0',
       width: '480px',
-      borderRadius: '4px 4px 4px 4px / 4px 4px 4px 4px',
+      borderRadius: '5px',
       backgroundColor: '#36393f',
       padding: '24px 16px 16px',
       alignItems: 'center',
-      boxSizing: 'border-box',
     }}>
 
       <div style={{
@@ -59,13 +58,11 @@ const SelectId = () => {
           padding: '2px 16px',
           width: '120px',
           height: '38px',
-          background: 'none',
-          border: 'none',
         }}>
           <div style={{
             color: '#dcddde',
             textDecoration: hover ? 'underline' : 'none',
-            cursor: hover ? 'pointer' : 'default',
+            cursor: 'pointer',
           }}
             onMouseEnter={onMouseEnterEvent}
             onMouseLeave={onMouseLeaveEvent}

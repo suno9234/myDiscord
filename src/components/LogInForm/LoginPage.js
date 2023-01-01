@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 
 import SelectId from './SelectId';
 import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
 import background0 from '../../imgs/background0.svg';
 
 const LoginPage = () => {
@@ -18,6 +19,7 @@ const LoginPage = () => {
     }}>
       {loginPageState === 'selectId' && <SelectId />}
       {loginPageState === 'loginForm' && <LoginForm/>}
+      {loginPageState === 'signUp' && <SignUpForm/>}
 
     </div>
   )

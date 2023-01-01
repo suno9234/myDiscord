@@ -19,6 +19,11 @@ const initialState = {
   me: null,
 
   loginPageState: 'selectId',
+
+  signUpDone: false,
+  signUpLoading: false,
+  signUpError: null,
+
 }
 
 initialState.Servers = initialState.Servers.concat(
@@ -60,16 +65,24 @@ export const userSlice = createSlice({
       state.lastClickedDM = action.payload.name;
     },
 
-    addAccount: (state, action) => {
-      state.loginPageState = 'loginForm';
-    },
-    selectId: (state, action) => {
-      state.loginPageState = 'selectId';
+    changeLoginPageState: (state, action) => {
+      state.loginPageState = action.payload.state;
     },
 
     loginRequest: (state, action) => {
       state.me = 'test';
-    }
+    },
+
+    signUpRequest: (state, action) => {
+      state.signUpLoading = true;
+      state.signUpDone = false;
+    },
+
+    signUpSuccess: (state, action) => {
+      console.log("signupsuccess", action.payload);
+      state.signUpLoading = false;
+      state.signUpDone = true;
+    },
 
   }
 })
@@ -77,7 +90,8 @@ export const userSlice = createSlice({
 export const {
   enterServerRequest, enterHomeSuccess, enterServerSuccess,
   directmessageRequest,
-  addAccount, selectId,
+  changeLoginPageState,
   loginRequest,
+  signUpRequest, signUpSuccess,
 } = userSlice.actions;
 export default userSlice.reducer;
