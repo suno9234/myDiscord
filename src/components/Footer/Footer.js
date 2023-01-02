@@ -9,9 +9,9 @@ const Footer = () => {
 
   return (
     <div className={'Footer'} style={{
-      marginTop:'0',
-      height:'49px',
-      flex:'0 0',
+      marginTop: '0',
+      height: '50px',
+      flexShrink: '0',
       backgroundColor: '#202225',
     }}>
       {isPlaying ? <PlayingGame /> : null}

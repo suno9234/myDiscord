@@ -4,16 +4,15 @@ const MiddleHeader = () => {
   const { isRoom } = useSelector((state) => state.user);
   return (
     <div style={{
-      width:'230px',
-      flex: '0 0 49px',
+      width:'100%',
+      height:'50px',
+      flexGrow:'0',
+      flexShrink:'0',
       backgroundColor: '#2f3136',
       borderBottom: '1px solid #202225',
       display:'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingLeft:'4px',
-      paddingRight:'4px',
-      
     }}>
       {isRoom ? null : <SearchButton />}
     </div>

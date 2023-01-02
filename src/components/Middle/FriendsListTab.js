@@ -7,6 +7,7 @@ import nitro from '../../imgs/nitro.svg';
 
 import Card from './Card';
 import FriendCard from './FriendCard';
+import DirectMessageCard from './DirectMessageCard';
 
 const ScrollWrapper = styled.div`
   overflow-y :scroll ;  
@@ -20,28 +21,46 @@ const ScrollWrapper = styled.div`
     border-radius:2px;
   }
   vertical-align:middle;
-  display : inline-block;
   height: 100%;
   width: 240px;  
+  `;
+
+const Cover = styled.div`
+position: absolute;
+height: 100%;
+width: 5px;
+top: 0;
+right: 0;
+background-color: #2f3136;
+`
+
+const Wrapper = styled.div`
+position : relative;
+&::-webkit-transition: opacity 0.5s;
+&:hover .cover-bar{
+  opacity : 0;
+}
 `;
 
 const FriendsListTab = () => {
   const { DirectMessages } = useSelector((state) => state.user);
   return (
-    <ScrollWrapper>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}>
-        <FriendCard/>
-        <Card img={snow} name={'Snowsgiving'} size={'20px'}/>
-        <Card img={nitro} name={'Nitro'} size={'30px'}/>
-        <div>다이렉트 메시지</div>
-        {DirectMessages.map((v, i) => <Card key={v.name} name={v.name} img={v.profileImage}/>)}
-      </div>
-    </ScrollWrapper>
-
+    <Wrapper>
+      <ScrollWrapper>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+          <FriendCard />
+          <Card img={snow} name={'Snowsgiving'} size={'20px'} />
+          <Card img={nitro} name={'Nitro'} size={'30px'} />
+          <DirectMessageCard/>
+          {DirectMessages.map((v, i) => <Card key={v.name} name={v.name} img={v.profileImage} />)}
+        </div>
+      </ScrollWrapper>
+      <Cover className='cover-bar'/>
+    </Wrapper>
   );
 }
 

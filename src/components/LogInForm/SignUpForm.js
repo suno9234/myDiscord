@@ -19,7 +19,7 @@ const SignUpForm = () => {
     dispatch(signUpRequest({
       email: email,
       password: password,
-      name: name,
+      nickname: name,
     }))
   }
 

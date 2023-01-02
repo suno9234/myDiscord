@@ -23,6 +23,10 @@ const initialState = {
   signUpDone: false,
   signUpLoading: false,
   signUpError: null,
+  
+  logInDone: false,
+  logInLoading: false,
+  logInError: null,
 
 }
 
@@ -41,7 +45,7 @@ initialState.DirectMessages = initialState.DirectMessages.concat(
 );
 
 initialState.Friends = initialState.Friends.concat(
-  Array(20).fill().map((v, i) => ({
+  Array(10).fill().map((v, i) => ({
     name: shortId.generate(),
     profileImage: faker.image.avatar(),
   }))
@@ -69,19 +73,39 @@ export const userSlice = createSlice({
       state.loginPageState = action.payload.state;
     },
 
-    loginRequest: (state, action) => {
-      state.me = 'test';
+    logInRequest: (state, action) => {
+      console.log("loginRequest");
+      state.logInDone = false;
+      state.logInLoading = true;
+    },
+    logInSuccess: (state, action) => {
+      console.log("loginSuccess");
+      state.logInDone = true;
+      state.logInLoading = false;
+      state.me = action.payload.data;
+    },
+    logInFailure: (state, action) => {
+      console.log("loginFailure");
+      state.logInDone = false;
+      state.logInLoading = false;
+      state.logInError = true;
     },
 
+
     signUpRequest: (state, action) => {
+      console.log("signUpRequest");
       state.signUpLoading = true;
       state.signUpDone = false;
     },
-
     signUpSuccess: (state, action) => {
-      console.log("signupsuccess", action.payload);
+      console.log("signupsuccess");
       state.signUpLoading = false;
       state.signUpDone = true;
+    },
+    signUpFailure: (state, action) => {
+      console.log("signupFailed");
+      state.signUpLoading = false;
+      state.signUpError = action.payload.error;
     },
 
   }
@@ -91,7 +115,7 @@ export const {
   enterServerRequest, enterHomeSuccess, enterServerSuccess,
   directmessageRequest,
   changeLoginPageState,
-  loginRequest,
-  signUpRequest, signUpSuccess,
+  logInRequest, logInSuccess, logInFailure,
+  signUpRequest, signUpSuccess, signUpFailure,
 } = userSlice.actions;
 export default userSlice.reducer;

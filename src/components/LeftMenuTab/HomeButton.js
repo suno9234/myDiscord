@@ -6,7 +6,7 @@ import home from '../../imgs/home.jpg';
 const HomeButton = () => {
 
   return (
-    <div style={{ marginTop: '12px', marginBottom: '2px' }}>
+    <div style={{ marginTop: '12px', marginBottom: '2px' ,flexShrink:'0'}}>
       <Profile name='home' imgSrc={home} />
     </div>
 

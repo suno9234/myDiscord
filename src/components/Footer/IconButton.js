@@ -3,7 +3,7 @@ const IconButton = ({ img }) => {
   return (
     <div style={{
       display: 'flex',
-      flex: '0 0 26px',
+      flexShrink : '0',
       alignItems: 'center',
       verticalAlign: 'center',
       backgroundColor: '#202225',
@@ -12,7 +12,7 @@ const IconButton = ({ img }) => {
       margin: '0 5px 0',
     }}>
       <img src={img} alt='tinyicon' style={{
-        flex: '0 0 ',
+        flexShrink: '0',
         marginLeft: '2px',
         width: '22px',
         height: '22px',

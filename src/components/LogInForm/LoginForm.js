@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { changeLoginPageState, loginRequest } from '../../redux/reducers/user';
+import { changeLoginPageState, logInRequest } from '../../redux/reducers/user';
 
+import useInput from "../../hooks/useInput";
 import BackButton from "./BackButton";
 import InputForm from "./InputForm";
 
@@ -52,11 +53,16 @@ margin-top:4px;
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+
+  const [email, onChangeEmail] = useInput("");
+  const [password, onChangePassword] = useInput("");
+
   const onClickPassWordMissing = () => {
     console.log("passwordmissing");
   }
-  const onClickLogin = () => {
-    dispatch(loginRequest());
+  const onClickLogin = (e) => {
+    e.preventDefault();
+    dispatch(logInRequest({ email: email, password: password }));
   }
   const onClickSignUp = () => {
     dispatch(changeLoginPageState({ state: 'signUp' }));
@@ -67,15 +73,15 @@ const LoginForm = () => {
       <BackButton />
       <StyledH1>돌아오신 것을 환영해요!</StyledH1>
       <StyledHeader2>다시 만나다니 너무 반가워요!</StyledHeader2>
-      <InputForm header={"이메일 또는 전화번호"} type="text" bgColor='black' isRequired={true} />
-      <InputForm header={"비밀번호"} bgColor='black' type="password" isRequired={true} />
-      <StyledPasswordButton onClick={onClickPassWordMissing}>
+      <InputForm header={"이메일 또는 전화번호"} type="text" bgColor='black' isRequired={true} value={email || ''} onChangeValue={onChangeEmail} />
+      <InputForm header={"비밀번호"} bgColor='black' type="password" isRequired={true} value={password || ''} onChangeValue={onChangePassword} />
+      <StyledPasswordButton type="button" onClick={onClickPassWordMissing}>
         <BlueDiv>비밀번호를 잊으셨나요?</BlueDiv>
       </StyledPasswordButton>
-      <StyledSubmitButton onClick={onClickLogin}>로그인</StyledSubmitButton>
+      <StyledSubmitButton type="submit" onClick={onClickLogin}>로그인</StyledSubmitButton>
       <Wrapper>
         <StyledSpan>계정이 필요한가요?</StyledSpan>
-        <StyledSignUpButton onClick={onClickSignUp}>
+        <StyledSignUpButton type="button" onClick={onClickSignUp}>
           <BlueDiv>가입하기</BlueDiv>
         </StyledSignUpButton>
       </Wrapper>

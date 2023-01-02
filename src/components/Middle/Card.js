@@ -6,13 +6,16 @@ import { directmessageRequest } from '../../redux/reducers/user';
 
 export const Wrapper = styled.div`
   width : 215px;
-  height : 44px;
+  height : 40px;
   display : flex;
+  margin-left : 8px;
   margin-top : 2px;
   margin-bottom : 2px;
   background-color: #2f3136;
   border-radius : 6px 6px 6px 6px / 6px 6px 6px 6px;
   align-items : center;
+  cursor : pointer;
+  flex-shrink : 0;
 `
 const Card = ({ img, name, size = '34px' }) => {
   const dispatch = useDispatch();
@@ -43,7 +46,6 @@ const Card = ({ img, name, size = '34px' }) => {
   }
   return (
     <Wrapper style={{
-      cursor: hover ? 'pointer' : 'default',
       backgroundColor: hover ? '#40444b' : '#2f3136',
     }}
       onMouseEnter={onMouseEnter}
@@ -57,18 +59,16 @@ const Card = ({ img, name, size = '34px' }) => {
         width: '40px',
       }}>
         <img src={img} alt='hsico' style={{
+          flexShrink:'0',
           width: size,
           height: size,
           transition: 'border-radius 100ms',
           borderRadius: '50%',
-          padding: '0 2px 0',
         }} />
       </div>
       <div style={{
         paddingLeft: '8px',
-        fontSize: '14px',
-        fontWeight: 'bold',
-        color: hover ? 'white' : 'gray',
+        color: hover ? 'white' : '#96989d',
       }}>
         {name}
       </div>

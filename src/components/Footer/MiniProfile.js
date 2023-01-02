@@ -18,7 +18,7 @@ const MiniProfile = () => {
   return (
     <div style={{
       display: 'flex',
-      height: '49px',
+      height: '50px',
       flex: '0 0',
       alignItems: 'center',
       marginRight: '4px',

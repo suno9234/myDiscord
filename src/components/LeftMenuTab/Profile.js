@@ -49,7 +49,10 @@ const Profile = ({ name, innerText, imgSrc }) => {
 
   return (
     <div style={{
-      cursor: hover ? 'pointer' : 'default',
+      cursor: 'pointer',
+      wigth:'46px',
+      height:'46px',
+      flexShrink:'0',
     }}>
       {iconImg ? iconImg : innerText}
     </div>
