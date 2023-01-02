@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.js": "/myDiscord/static/js/main.629bf34e.js",
+    "main.js": "/myDiscord/static/js/main.78573781.js",
     "static/js/787.6cb5784e.chunk.js": "/myDiscord/static/js/787.6cb5784e.chunk.js",
     "static/media/background0.svg": "/myDiscord/static/media/background0.6531e7f9431ee0bcaa0a8af28f34ace7.svg",
+    "static/media/ggsans.woff2": "/myDiscord/static/media/ggsans.daa584d0d211cd0f2223.woff2",
     "static/media/home.jpg": "/myDiscord/static/media/home.dcc79073aafc3e368fa4.jpg",
     "static/media/snowsgiving.png": "/myDiscord/static/media/snowsgiving.67d1e31709309e3a6776.png",
     "static/media/nitro.svg": "/myDiscord/static/media/nitro.09f290b89dea21a0fe682a38f7f90790.svg",
     "index.html": "/myDiscord/index.html",
     "static/media/returnico.svg": "/myDiscord/static/media/returnico.023ba8c6c2f0312529faa1ea4eec006f.svg",
-    "main.629bf34e.js.map": "/myDiscord/static/js/main.629bf34e.js.map",
+    "main.78573781.js.map": "/myDiscord/static/js/main.78573781.js.map",
     "787.6cb5784e.chunk.js.map": "/myDiscord/static/js/787.6cb5784e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.629bf34e.js"
+    "static/js/main.78573781.js"
   ]
 }
