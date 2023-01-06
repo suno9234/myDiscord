@@ -55,11 +55,15 @@ const SelectId = () => {
         justifyContent: 'center',
       }}>
         <button style={{
+          flexShrink: '0',
           padding: '2px 16px',
           width: '120px',
           height: '38px',
-        }}>
+        }}
+          type="button">
           <div style={{
+            fontSize:'14px',
+            lineHeight:'16px',
             color: '#dcddde',
             textDecoration: hover ? 'underline' : 'none',
             cursor: 'pointer',
