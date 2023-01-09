@@ -1,6 +1,10 @@
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import FixedLeftHeader from './FixedLeftHeader';
 import Menu from '../Menu';
+import { useCallback } from 'react';
+
+import { changeRightMenuState } from '../../../redux/reducers/user';
 
 const Wrapper = styled.div`
   position: relative;
@@ -29,16 +33,20 @@ const Line = styled.div`
 // position: relative;
 // 
 const FlexHeader = () => {
+  const dispatch = useDispatch();
+  const onClickAddFrineds = useCallback(() => {
+    dispatch(changeRightMenuState({state : 'addFriends'}))
+  }, []);
   return (
     <Wrapper>
       <FixedLeftHeader />
       <Line />
-      <Menu menuName={'온라인'} ml='120px'/>
-      <Menu menuName={'모두'} ml='200px'/>
-      <Menu menuName={'대기 중'} ml='265px'/>
-      <Menu menuName={'추천'} ml='348px'/>
-      <Menu menuName={'차단 목록'} ml='440px'/>
-      <Menu menuName={'친구 추가하기'} ml='532px'/>
+      <Menu menuName={'온라인'} ml='120px' />
+      <Menu menuName={'모두'} ml='200px' />
+      <Menu menuName={'대기 중'} ml='265px' />
+      <Menu menuName={'추천'} ml='348px' />
+      <Menu menuName={'차단 목록'} ml='440px' />
+      <Menu menuName={'친구 추가하기'} ml='532px' onClickMenu={onClickAddFrineds} bgColor={'green'} />
 
     </Wrapper>
   )

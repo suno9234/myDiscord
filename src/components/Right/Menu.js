@@ -17,17 +17,21 @@ display: flex;
   position: absolute;
   flex-shrink : 0;
   white-space : nowrap;
+  cursor : pointer;
 `;
 
 
-const Menu = ({ menuName , ml,mr}) => {
+const Menu = ({ menuName, ml, mr, onClickMenu, bgColor = null }) => {
   return (
-      <StyledDiv style={{
-        marginLeft:ml,
-        marginRight:mr
-      }}>
-        {menuName}
-      </StyledDiv>
+    <StyledDiv style={{
+      marginLeft: ml,
+      marginRight: mr,
+      backgroundColor: bgColor ? bgColor : '#36393f'
+    }}
+      onClick={onClickMenu}
+    >
+      {menuName}
+    </StyledDiv>
   )
 }
 

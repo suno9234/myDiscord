@@ -19,6 +19,7 @@ const initialState = {
   me: null,
 
   loginPageState: 'selectId',
+  rightMenuState : 'online',
 
   signUpDone: false,
   signUpLoading: false,
@@ -55,6 +56,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    
     enterServerRequest: (state, action) => {
       state.lastClickedServer = action.payload.name;
     },
@@ -71,6 +73,9 @@ export const userSlice = createSlice({
 
     changeLoginPageState: (state, action) => {
       state.loginPageState = action.payload.state;
+    },
+    changeRightMenuState: (state, action)=>{
+      state.rightMenuState = action.payload.state;
     },
 
     logInRequest: (state, action) => {
@@ -114,7 +119,7 @@ export const userSlice = createSlice({
 export const {
   enterServerRequest, enterHomeSuccess, enterServerSuccess,
   directmessageRequest,
-  changeLoginPageState,
+  changeLoginPageState, changeRightMenuState,
   logInRequest, logInSuccess, logInFailure,
   signUpRequest, signUpSuccess, signUpFailure,
 } = userSlice.actions;

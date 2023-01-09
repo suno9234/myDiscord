@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import AddFriendForm from './AddFriendForm/AddFriendForm';
 
 import Card from './Card';
 import SearchBar from './SearchBar';
@@ -17,34 +18,44 @@ const ScrollDiv = styled.div`
 `;
 //  
 const Content = () => {
-  const { Friends } = useSelector((state) => state.user);
+  const { Friends, rightMenuState } = useSelector((state) => state.user);
 
   return (
     <div style={{
-      paddingTop: '13px',
-      paddingLeft: '30px',
-      backgroundColor: '#36393f',
       height: '100%',
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
+      display:'flex',
+      flexDirection:'column',
     }}>
-      <SearchBar />
-      <div style={{
-        display: 'flex',
-        flexShrink: '0',
-        height: '56px',
-        alignItems: 'center',
-        color: 'gray',
-        fontWeight: 'bold',
-      }}>
-        온라인-{Friends.length}명
-      </div>
-      <ScrollDiv>
-        {Friends.map((v, i) => <Card key={v.name} imgSrc={v.profileImage} name={v.name} />)}
-      </ScrollDiv>
-
+      {rightMenuState === 'online' ?
+        <div style={{
+          paddingTop: '13px',
+          paddingLeft: '30px',
+          backgroundColor: '#36393f',
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+          <SearchBar />
+          <div style={{
+            display: 'flex',
+            flexShrink: '0',
+            height: '56px',
+            alignItems: 'center',
+            color: 'gray',
+            fontWeight: 'bold',
+          }}>
+            온라인-{Friends.length}명
+          </div>
+          <ScrollDiv>
+            {Friends.map((v, i) => <Card key={v.name} imgSrc={v.profileImage} name={v.name} />)}
+          </ScrollDiv>
+        </div>
+        :
+        <AddFriendForm />
+      }
     </div>
+
+
+
   )
 }
 export default Content
