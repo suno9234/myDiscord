@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/myDiscord/static/js/main.78d9ee81.js",
+    "main.js": "/myDiscord/static/js/main.c9f85080.js",
     "static/js/787.6cb5784e.chunk.js": "/myDiscord/static/js/787.6cb5784e.chunk.js",
     "static/media/background0.svg": "/myDiscord/static/media/background0.6531e7f9431ee0bcaa0a8af28f34ace7.svg",
     "static/media/background1.svg": "/myDiscord/static/media/background1.a044cd6c8752efc0445171a8775b8270.svg",
@@ -10,10 +10,12 @@
     "static/media/nitro.svg": "/myDiscord/static/media/nitro.09f290b89dea21a0fe682a38f7f90790.svg",
     "index.html": "/myDiscord/index.html",
     "static/media/returnico.svg": "/myDiscord/static/media/returnico.023ba8c6c2f0312529faa1ea4eec006f.svg",
-    "main.78d9ee81.js.map": "/myDiscord/static/js/main.78d9ee81.js.map",
+    "static/media/check.svg": "/myDiscord/static/media/check.35cc9d339cf5410a21652fdd520f6761.svg",
+    "static/media/cancle.svg": "/myDiscord/static/media/cancle.882883507f5653adc7d8867655f54c8f.svg",
+    "main.c9f85080.js.map": "/myDiscord/static/js/main.c9f85080.js.map",
     "787.6cb5784e.chunk.js.map": "/myDiscord/static/js/787.6cb5784e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.78d9ee81.js"
+    "static/js/main.c9f85080.js"
   ]
 }
