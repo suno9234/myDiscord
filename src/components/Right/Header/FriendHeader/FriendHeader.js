@@ -2,7 +2,7 @@ import React from 'react';
 import FixedRightHeader from './FixedRightHeader';
 import FlexHeader from './FlexHeader';
 
-const RightHeader = () => {
+const FriendHeader = () => {
   return (
     <div style={{
       width: '100%',
@@ -19,4 +19,4 @@ const RightHeader = () => {
     </div>
   )
 }
-export default RightHeader;
+export default FriendHeader;

@@ -1,5 +1,5 @@
-import mailIcon from '../../../imgs/mail-black.png';
-import questionIcon from '../../../imgs/question-black.png';
+import mailIcon from '../../../../imgs/mail-black.png';
+import questionIcon from '../../../../imgs/question-black.png';
 
 const FixedRightHeader = () => {
   return (

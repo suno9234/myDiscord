@@ -1,7 +1,7 @@
-import messageBlack from '../../imgs/message-black.png';
-import messageWhite from '../../imgs/message-white.png';
-import moreBlack from '../../imgs/more-black.png';
-import moreWhite from '../../imgs/more-white.png';
+import messageBlack from '../../../../imgs/message-black.png';
+import messageWhite from '../../../../imgs/message-white.png';
+import moreBlack from '../../../../imgs/more-black.png';
+import moreWhite from '../../../../imgs/more-white.png';
 
 const FixedRightMenu = ({ hover }) => {
   return (

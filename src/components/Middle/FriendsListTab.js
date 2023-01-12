@@ -36,6 +36,7 @@ background-color: #2f3136;
 
 const Wrapper = styled.div`
 position : relative;
+overflow : hidden;
 &::-webkit-transition: opacity 0.5s;
 &:hover .cover-bar{
   opacity : 0;

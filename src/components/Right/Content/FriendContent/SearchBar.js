@@ -1,9 +1,10 @@
-import searchIcon from '../../imgs/search.png';
+import searchIcon from '../../../../imgs/search.png';
 
 const SearchBar = () => {
   return (
     <div style={{
-      display:'flex',
+      display: 'flex',
+      margin : '16px 20px 8px 30px',
     }}>
       <div style={{
         display: 'flex',
@@ -54,7 +55,6 @@ const SearchBar = () => {
         flexShrink: '0',
       }} />
     </div>
-
   )
 }
 export default SearchBar;

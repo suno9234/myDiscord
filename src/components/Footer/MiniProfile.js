@@ -7,7 +7,7 @@ import deafenOff from '../../imgs/deafen-off.png';
 import setting from '../../imgs/setting.png';
 
 const MiniProfile = () => {
-  const { profileImage, nickName, userCode } = useSelector((state) => state.user);
+  const { profileImage, me } = useSelector((state) => state.user);
   const myProfile = <img src={profileImage} alt='hsico' style={{
     width: '34px',
     height: '34px',
@@ -34,13 +34,13 @@ const MiniProfile = () => {
           fontWeight: 'bold',
           marginBottom: '0',
         }}>
-          {nickName}
+          {me.nickname}
         </div>
         <div style={{
           color: 'gray',
           fontSize: '12px',
         }}>
-          {'#'}{userCode}
+          {'#'}{me.tag}
         </div>
       </div>
       <IconButton img={muteOff} />

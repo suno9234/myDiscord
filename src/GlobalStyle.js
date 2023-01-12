@@ -5,7 +5,6 @@ const GlobalStyle = createGlobalStyle`
   box-sizing:border-box;
   border: none;
   text-overflow: ellipsis;
-  overflow : hidden;
   background : none;
   margin: 0;
   padding : 0;
@@ -14,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
   line-height:20px;
   font-height:20px;
   font-weight:500;
+  background-color : inherit;
 }
 loginPage{
   border-radius : 5px;

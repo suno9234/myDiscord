@@ -15,12 +15,11 @@ const Card = ({ imgSrc, name, fstate = "잠수" }) => {
       width:'100%',
     }}>
       <div style={{
-        cursor : hover? 'pointer' : 'default',
+        cursor :'pointer' ,
         display: 'flex',
-        borderRadius: '4px 4px 4px 4px / 4px 4px 4px 4px',
+        borderRadius: '4px',
         height: '60px',
         backgroundColor: hover ? '#40444b' : null,
-        boxSizing: 'border-box',
         borderTop: 'solid 1px #454950',
         // borderBottom: 'solid 1px #454950',
         flexGrow:'1',

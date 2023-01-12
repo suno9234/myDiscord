@@ -1,4 +1,4 @@
-import friendBlack from '../../../imgs/friend_black.png';
+import friendBlack from '../../../../imgs/friend_black.png';
 
 const FixedLeftHeader = () => {
   return (

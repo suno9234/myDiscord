@@ -1,13 +1,26 @@
-import Content from "./Content"
-import RightHeader from "./RightHeader/RightHeader";
 
+import ServerHeader from "./Header/ServerHeader/ServerHeader";
+import FriendHeader from "./Header/FriendHeader/FriendHeader";
+import ServerContent from "./Content/ServerContent/ServerContent";
+import FriendContent from "./Content/FriendContent/FriendContent";
+
+import styled from "styled-components";
+import { useSelector } from "react-redux";
+
+const StyledDiv = styled.div`
+flex : 1;
+display : flex;
+flex-direction : column;
+height : 100%;
+`
 
 const Right = () => {
+  const { isServer } = useSelector((state) => state.user);
   return (
-    <div style={{ flex: '1', display: 'flex', flexDirection: 'column' ,height:'100%'}}>
-      <RightHeader />
-      <Content />
-    </div>
+    <StyledDiv>
+      { isServer ?  <ServerHeader/> : <FriendHeader />}
+      { isServer ?  <ServerContent/>: <FriendContent />}
+    </StyledDiv>
   )
 }
 export default Right

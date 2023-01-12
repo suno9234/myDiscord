@@ -20,6 +20,7 @@ const Middle = () => {
       flexDirection: 'column',
       backgroundColor: '#2f3136',
       height: '100%',
+      overflow : 'hidden',
     }}>
       <LeftHeader />
       {isServer ? <RoomInfoTab /> : <FriendsListTab />}
