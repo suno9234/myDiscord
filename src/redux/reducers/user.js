@@ -3,19 +3,17 @@ import { faker } from '@faker-js/faker';
 import shortId from 'shortid';
 
 const initialState = {
-  id: 1,
-  profileImage: faker.image.avatar(),
   Servers: [],
-  DirectMessages: [],
   Friends: [],
   FriendRequests: {
     sended: [],
     received: [],
   },
+
   isServer: false,
 
   lastClickedServer: 'home',
-  lastClickedDM: 'friends',
+  lastClickedMiddleMenu: 'friends',
   lastClickedMenu: null,
 
   me: null,
@@ -40,20 +38,8 @@ initialState.Servers = initialState.Servers.concat(
   }))
 );
 
-initialState.DirectMessages = initialState.DirectMessages.concat(
-  Array(20).fill().map((v, i) => ({
-    name: shortId.generate(),
-    profileImage: faker.image.avatar(),
-  }))
-);
 
-initialState.Friends = initialState.Friends.concat(
-  Array(10).fill().map((v, i) => ({
-    name: shortId.generate(),
-    profileImage: faker.image.avatar(),
-    state: 'online',
-  }))
-)
+
 
 export const userSlice = createSlice({
   name: "user",
@@ -70,12 +56,13 @@ export const userSlice = createSlice({
       state.isServer = false;
     },
 
-    directmessageRequest: (state, action) => {
-      state.lastClickedDM = action.payload.name;
-    },
+
 
     changeLoginPageState: (state, action) => {
       state.loginPageState = action.payload.state;
+    },
+    changeMiddleMenuState: (state, action) => {
+      state.lastClickedMiddleMenu = action.payload.id;
     },
     changeRightMenuState: (state, action) => {
       state.rightMenuState = action.payload.state;
@@ -132,6 +119,7 @@ export const userSlice = createSlice({
     },
     loadFriendsSuccess: (state, action) => {
       console.log(action.payload);
+      state.Friends = action.payload;
       console.log('loadFriendsRequestSuccess');
     },
     loadFriendsFailure: (state, action) => {
@@ -143,35 +131,50 @@ export const userSlice = createSlice({
     },
     loadWaitingFriendsSuccess: (state, action) => {
       console.log('loadwaitingFriendsSuccess')
-      const receivers = action.payload.receivers;
-      receivers.forEach((r) => {
-        const result = state.FriendRequests.sended.some((s) => r.id === s.id)
-        if (!result) {
-          state.FriendRequests.sended.push(r)
-        }
-      })
-      const senders = action.payload.senders;
-      senders.forEach((s) => {
-        const result = state.FriendRequests.received.some((r) => r.id === s.id)
-        if (!result) {
-          state.FriendRequests.received.push(s);
-        }
-      })
+      console.log(action.payload);
+
+      state.FriendRequests.sended = action.payload.receivers;
+      state.FriendRequests.received = action.payload.senders;
 
     },
     loadWaitingFriendsFailure: (state, action) => {
       console.log('loadwaitingFriendsFailure')
     },
 
+    acceptFriendRequest: (state, action) => {
+      console.log('acceptFriendRequest');
+    },
+    acceptFriendSuccess: (state, action) => {
+      const senderId = action.payload.sender;
+      state.FriendRequests.received = state.FriendRequests.received.filter((v) => v.id !== parseInt(senderId))
+      console.log('refuseFriendSuccess');
+    },
+    acceptFriendFailure: (state, action) => {
+      console.log('refuseFriendFailure');
+    },
+
     refuseFriendRequest: (state, action) => {
       console.log('refuseFriendRequest');
     },
     refuseFriendSuccess: (state, action) => {
-      const senderId = action.payload.sender;
-      state.FriendRequests.received = state.FriendRequests.received.filter((v) => v.id !== parseInt(senderId) )
+      const senderId = action.payload.senderId;
+      state.FriendRequests.received = state.FriendRequests.received.filter((v) => v.id !== parseInt(senderId))
       console.log('refuseFriendSuccess');
     },
     refuseFriendFailure: (state, action) => {
+      console.log('refuseFriendFailure');
+    },
+
+
+    cancelFriendRequest: (state, action) => {
+      console.log('cancleFriendRequest');
+    },
+    cancelFriendSuccess: (state, action) => {
+      const receiverId = action.payload.receiverId;
+      state.FriendRequests.sended = state.FriendRequests.sended.filter((v) => v.id !== parseInt(receiverId))
+      console.log('cancelFriendSuccess');
+    },
+    cancelFriendFailure: (state, action) => {
       console.log('refuseFriendFailure');
     },
 
@@ -184,13 +187,15 @@ export const userSlice = createSlice({
 
 export const {
   enterServerRequest, enterHomeSuccess, enterServerSuccess,
-  directmessageRequest,
-  changeLoginPageState, changeRightMenuState,
+  changeLoginPageState, changeRightMenuState, changeMiddleMenuState,
   logInRequest, logInSuccess, logInFailure,
   signUpRequest, signUpSuccess, signUpFailure,
   addFriendRequest, addFriendSuccess, addFriendFailure,
   loadFriendsRequest, loadFriendsSuccess, loadFriendsFailure,
   loadWaitingFriendsRequest, loadWaitingFriendsSuccess, loadWaitingFriendsFailure,
+  acceptFriendRequest, acceptFriendSuccess, acceptFriendFailure,
   refuseFriendRequest, refuseFriendSuccess, refuseFriendFailure,
+  cancelFriendRequest, cancelFriendSuccess, cancelFriendFailure,
 } = userSlice.actions;
+
 export default userSlice.reducer;

@@ -8,12 +8,14 @@ import AllFriends from './Tabs/AllFriends';
 import Waiting from "./Tabs/Waiting";
 import AddFriendForm from "./Tabs/AddFriendForm";
 
+import DirectMessageTab from "./Tabs/DirectMessageTab";
+
 
 
 
 const FriendContent = () => {
   const dispatch = useDispatch();
-  const { me, rightMenuState } = useSelector((state) => state.user);
+  const { me, rightMenuState, lastClickedMiddleMenu } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(loadFriendsRequest({ userid: me.id }));
@@ -25,11 +27,12 @@ const FriendContent = () => {
       height: '100%',
     }}>
       {
-        rightMenuState === 'online' ? <OnlineFriends /> :
-          rightMenuState === 'all' ? <AllFriends /> :
-            rightMenuState === 'waiting' ? <Waiting /> :
-              rightMenuState === 'addFriends' ? <AddFriendForm /> :
-                null
+        ['friends', '친구'].includes(lastClickedMiddleMenu) ?
+          rightMenuState === 'online' ? <OnlineFriends /> :
+            rightMenuState === 'all' ? <AllFriends /> :
+              rightMenuState === 'waiting' ? <Waiting /> :
+                rightMenuState === 'addFriends' ? <AddFriendForm /> :
+                  null : <DirectMessageTab />
       }
     </div>
   )

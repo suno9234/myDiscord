@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 import { useEffect } from "react";
 import { loadWaitingFriendsRequest } from "../../../../../redux/reducers/user";
-import WaitingCard from "../WaitingCard";
+import WaitingCard from "../Card/WaitingCard";
 
 
-const ScrollDiv = styled.div`
+export const ScrollDiv = styled.div`
   overflow-y :scroll;
   &::-webkit-scrollbar{
     width: 8px;

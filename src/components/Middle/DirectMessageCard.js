@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   width : 215px;
   height : 44px;
   display : flex;
@@ -9,9 +9,13 @@ export const Wrapper = styled.div`
   padding : 18px 8px 4px 18px
   border-radius : 5px;
   align-items : center;
-  cursor : pointer;
+  cursor : default;
   flex-shrink : 0;
   font-size : 12px;
+  color: #96989d;
+  &:hover{
+    color : white;
+  }
 `
 const DirectMessageCard = ({ img, name, size = '34px' }) => {
   return (
@@ -24,10 +28,9 @@ const DirectMessageCard = ({ img, name, size = '34px' }) => {
         <div style={{
           flexGrow:'1',
           fontSize: '12px',
-          color: '#96989d'
         }}>다이렉트 메시지</div>
         <div style={{
-          color:'#96989d',
+          cursor : 'pointer',
         }}>+</div>
       </div>
 

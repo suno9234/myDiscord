@@ -46,7 +46,7 @@ const CommentButton = ({ comment, SvgImg, hoverColor, onClick }) => {
       onMouseLeave={onMouseLeave}
       onClick={onClick}
     >
-      <SvgImg width='20px' height='20px' fill={hover ? hoverColor : '#b9bbbe'} />
+      <SvgImg width='20px' height='20px' fill={hover ? hoverColor : '#b9bbbe'}  />
       {
         hover ?
           <div>

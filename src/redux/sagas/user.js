@@ -8,6 +8,8 @@ import {
   addFriendRequest, addFriendSuccess, addFriendFailure,
   loadFriendsRequest, loadFriendsSuccess, loadFriendsFailure,
   loadWaitingFriendsRequest, loadWaitingFriendsSuccess, loadWaitingFriendsFailure,
+  acceptFriendRequest, acceptFriendSuccess, acceptFriendFailure,
+  cancelFriendRequest, cancelFriendSuccess, cancelFriendFailure,
   refuseFriendRequest, refuseFriendSuccess, refuseFriendFailure,
 } from '../reducers/user';
 
@@ -21,8 +23,21 @@ function* enterServer(action) {
 }
 
 
+function acceptFriendAPI(data) {
+  return axios.post(`/user/acceptFriend/${data.senderId}`);
+}
+
+function* acceptFriend(action) {
+  try {
+    const result = yield call(acceptFriendAPI, action.payload);
+    yield put(acceptFriendSuccess(result.data));
+  } catch (err) {
+    yield put(acceptFriendFailure({ error: err }));
+  }
+}
+
 function refuseFriendAPI(data) {
-  return axios.patch(`/user/refuseFriend/${data.sender}`);
+  return axios.delete(`/user/friendRequest/sender/${data.senderId}`);
 }
 
 function* refuseFriend(action) {
@@ -33,6 +48,21 @@ function* refuseFriend(action) {
     yield put(refuseFriendFailure({ error: err }));
   }
 }
+
+function cancelFriendAPI(data) {
+  return axios.delete(`/user/friendRequest/receiver/${data.receiverId}`);
+}
+
+function* cancelFriend(action) {
+  try {
+    const result = yield call(cancelFriendAPI, action.payload);
+    yield put(cancelFriendSuccess(result.data));
+  } catch (err) {
+    yield put(cancelFriendFailure({ error: err }));
+  }
+}
+
+
 
 function loadWaitingFriendsAPI(data) {
   return axios.get(`/user/loadWaitingFriends`);
@@ -54,6 +84,7 @@ function loadFriendsAPI(data) {
 function* loadFriends() {
   try {
     const result = yield call(loadFriendsAPI);
+    console.log(result.data);
     yield put(loadFriendsSuccess(result.data));
   } catch (err) {
     yield put(loadFriendsFailure({ error: err }));
@@ -100,6 +131,12 @@ function* logIn(action) {
   }
 }
 
+function* watchAcceptFriend() {
+  yield takeLatest(acceptFriendRequest, acceptFriend);
+}
+function* watchCancelFriend() {
+  yield takeLatest(cancelFriendRequest, cancelFriend);
+}
 function* watchRefuseFriend() {
   yield takeLatest(refuseFriendRequest, refuseFriend);
 }
@@ -126,6 +163,8 @@ function* watchLogIn() {
 
 export default function* userSaga() {
   yield all([
+    fork(watchAcceptFriend),
+    fork(watchCancelFriend),
     fork(watchRefuseFriend),
     fork(watchLoadWaitingFriends),
     fork(watchLoadFriends),

@@ -2,77 +2,78 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { directmessageRequest } from '../../redux/reducers/user';
+import { changeMiddleMenuState } from '../../redux/reducers/user';
 
-export const Wrapper = styled.div`
-  width : 215px;
-  height : 40px;
-  display : flex;
+const DivWrapper = styled.div`
+  width : 100%;
   margin-left : 8px;
-  margin-top : 2px;
-  margin-bottom : 2px;
-  background-color: #2f3136;
-  border-radius : 6px 6px 6px 6px / 6px 6px 6px 6px;
+  border-radius : 4px;
+  padding : 1px 0;
+  background-color: transparent;
   align-items : center;
   cursor : pointer;
-  flex-shrink : 0;
+  color : #96989d;
+  
 `
-const Card = ({ img, name, size = '34px' }) => {
-  const dispatch = useDispatch();
-  const { lastClickedDM } = useSelector((state) => state.user);
-  const [hover, setHover] = useState(false);
 
-  useEffect(() => {
-    if (name === lastClickedDM) {
-      setHover(true);
-    } else {
-      setHover(false);
-    }
-  }, [lastClickedDM, name])
+const InnerWrapper = styled.div`
+display : flex;
+margin-right : 8px;
+border-radius : 4px;
+padding : 5px;
+align-items : center;
+`;
+
+const IconWrapper = styled.div`
+display : flex;
+flex-grow : 0;
+flex-shrink : 0;
+align-items : center;
+justify-content : center;
+margin : 0 12px 0 0 ;
+width : 32px;
+height : 32px;
+`
+const Card = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon, name }) => {
+  const dispatch = useDispatch();
+  const [hover, setHover] = useState(false);
+  const { lastClickedMiddleMenu } = useSelector((state) => state.user);
+
+  const onClickCard = () => {
+    dispatch(changeMiddleMenuState({ id: userInfo.id }))
+  }
   const onMouseEnter = () => {
-    if(name === lastClickedDM){
-      return;
-    }
     setHover(true);
   }
   const onMouseLeave = () => {
-    if(name === lastClickedDM){
-      return;
-    }
     setHover(false);
   }
-  const onClickCard = () => {
-    dispatch(directmessageRequest({ name: name }))
-  }
   return (
-    <Wrapper style={{
-      backgroundColor: hover ? '#40444b' : '#2f3136',
-    }}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+    <DivWrapper
       onClick={onClickCard}
-    >
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '40px',
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}>
+      <InnerWrapper style={{
+        backgroundColor: lastClickedMiddleMenu === userInfo.id ? '#40444b' :
+          hover ? '#40444b' : 'transparent',
+        color: lastClickedMiddleMenu === userInfo.id ? 'white' : hover ? 'white' : '#96989d',
+        marginLeft: '-4px',
+        paddingLeft: '9px',
       }}>
-        <img src={img} alt='hsico' style={{
-          flexShrink:'0',
-          width: size,
-          height: size,
-          transition: 'border-radius 100ms',
-          borderRadius: '50%',
-        }} />
-      </div>
-      <div style={{
-        paddingLeft: '8px',
-        color: hover ? 'white' : '#96989d',
-      }}>
-        {name}
-      </div>
-    </Wrapper>
+        <IconWrapper>
+          {cardType !== 'svg' ? <div style={{ borderRadius: '50%', backgroundColor: 'red', width: '32px', height: '32px' }}></div> :
+            lastClickedMiddleMenu === userInfo.id ? <HoverSvgIcon width='24px' height='24px' /> :
+              !hover ? <SvgIcon width='24px' height='24px' /> : <HoverSvgIcon width='24px' height='24px' />
+          }
+
+        </IconWrapper>
+        <div style={{
+          marginRight: 'auto',
+        }}>
+          {name ? name : userInfo.nickname}
+        </div>
+      </InnerWrapper>
+    </DivWrapper>
   )
 }
 export default Card;

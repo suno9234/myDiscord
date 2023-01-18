@@ -2,15 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import snow from '../../imgs/snowsgiving.png';
-import nitro from '../../imgs/nitro.svg';
+import { ReactComponent as FriendSvg } from '../../imgs/svgs/friends.svg';
+import { ReactComponent as FriendHoverSvg } from '../../imgs/svgs/friends-hover.svg';
+import { ReactComponent as NitroSvg } from '../../imgs/svgs/nitro.svg';
+import { ReactComponent as NitroHoverSvg } from '../../imgs/svgs/nitro-hover.svg';
 
 import Card from './Card';
-import FriendCard from './FriendCard';
 import DirectMessageCard from './DirectMessageCard';
 
 const ScrollWrapper = styled.div`
   overflow-y :scroll ;  
+  overflow-x : hidden;
   &::-webkit-scrollbar{
     width: 5px;
   }
@@ -37,6 +39,7 @@ background-color: #2f3136;
 const Wrapper = styled.div`
 position : relative;
 overflow : hidden;
+margin-left : 8px;
 &::-webkit-transition: opacity 0.5s;
 &:hover .cover-bar{
   opacity : 0;
@@ -44,24 +47,31 @@ overflow : hidden;
 `;
 
 const FriendsListTab = () => {
-  const { DirectMessages } = useSelector((state) => state.user);
+  const { directMessages } = useSelector((state) => state.directMessage);
   return (
-    <Wrapper>
-      <ScrollWrapper>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}>
-          <FriendCard />
-          <Card img={snow} name={'Snowsgiving'} size={'20px'} />
-          <Card img={nitro} name={'Nitro'} size={'30px'} />
-          <DirectMessageCard/>
-          {DirectMessages.map((v, i) => <Card key={v.name} name={v.name} img={v.profileImage} />)}
-        </div>
-      </ScrollWrapper>
-      <Cover className='cover-bar'/>
-    </Wrapper>
+    <>
+      <div style={{
+        marginLeft: '8px',
+        marginTop: '8px',
+        paddingRight: '8px',
+      }}>
+        <Card cardType='svg' SvgIcon={FriendSvg} HoverSvgIcon={FriendHoverSvg} userInfo = {{id : -1 , nickname : '친구'}} />
+        <Card cardType='svg' SvgIcon={NitroSvg} HoverSvgIcon={NitroHoverSvg} userInfo={{id : -2, nickname : 'Nitro'}} />
+        <DirectMessageCard />
+      </div>
+      <Wrapper>
+        <ScrollWrapper>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            {directMessages.map((v, i) => <Card key={v.id} userInfo={v} img={v.profileImage} />)}
+          </div>
+        </ScrollWrapper>
+        <Cover className='cover-bar' />
+      </Wrapper>
+    </>
   );
 }
 

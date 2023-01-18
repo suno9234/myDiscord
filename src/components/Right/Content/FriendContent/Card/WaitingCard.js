@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CommentButton from './CommentButton';
-import { ReactComponent as cancleSvg } from '../../../../imgs/svgs/cancle.svg';
-import { ReactComponent as checkSvg } from '../../../../imgs/svgs/check.svg';
-import { refuseFriendRequest } from '../../../../redux/reducers/user';
+import CommentButton from '../CommentButton';
+import { ReactComponent as cancleSvg } from '../../../../../imgs/svgs/cancle.svg';
+import { ReactComponent as checkSvg } from '../../../../../imgs/svgs/check.svg';
+import { acceptFriendRequest, cancelFriendRequest, refuseFriendRequest } from '../../../../../redux/reducers/user';
 
 const StyledCardWrapper = styled.div`
 display: flex;
@@ -27,15 +27,15 @@ const WaitingCard = ({ type, userInfo }) => {
   const { me } = useSelector((state) => state.user);
   const onClickAccept = () => {
     console.log('수락')
-    //dispatch()
+    dispatch(acceptFriendRequest({ senderId: userInfo.id, receiverId: me.id }))
   }
   const onClickRefuse = () => {
     console.log('거절')
-    dispatch(refuseFriendRequest({ sender: userInfo.id, receiver: me.id }))
+    dispatch(refuseFriendRequest({ senderId: userInfo.id, receiverId: me.id }))
   }
   const onClickCancel = () => {
     console.log('취소')
-    //dispatch()
+    dispatch(cancelFriendRequest({senderId : me.id, receiverId : userInfo.id}))
   }
   return (
     <div style={{

@@ -1,23 +1,24 @@
+import styled from "styled-components";
 
-const IconButton = ({ img }) => {
+const Wrapper = styled.div`
+display : flex;
+flex : 0 0 32px;
+height : 32px;
+align-items : center;
+justify-content : center;
+background-color : transparent;
+border-radius : 5px;
+cursor : pointer;
+&:hover{
+  background-color : #40444b;
+}
+
+`
+const IconButton = ({ SvgIcon }) => {
   return (
-    <div style={{
-      display: 'flex',
-      flexShrink : '0',
-      alignItems: 'center',
-      verticalAlign: 'center',
-      backgroundColor: '#202225',
-      height: '26px',
-      borderRadius: '20%',
-      margin: '0 5px 0',
-    }}>
-      <img src={img} alt='tinyicon' style={{
-        flexShrink: '0',
-        marginLeft: '2px',
-        width: '22px',
-        height: '22px',
-      }} />
-    </div>
+    <Wrapper >
+      <SvgIcon width='20px' height='20px' fill='#b9bbbe'/>
+    </Wrapper>
   )
 }
 
