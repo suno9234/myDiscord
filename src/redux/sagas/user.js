@@ -10,8 +10,9 @@ import {
   loadWaitingFriendsRequest, loadWaitingFriendsSuccess, loadWaitingFriendsFailure,
   acceptFriendRequest, acceptFriendSuccess, acceptFriendFailure,
   cancelFriendRequest, cancelFriendSuccess, cancelFriendFailure,
-  refuseFriendRequest, refuseFriendSuccess, refuseFriendFailure,
+  refuseFriendRequest, refuseFriendSuccess, refuseFriendFailure, changeMiddleMenuState,
 } from '../reducers/user';
+import { loadDirectMessageRequest } from "../reducers/directMessage";
 
 
 function* enterServer(action) {
@@ -21,6 +22,8 @@ function* enterServer(action) {
     yield put(enterServerSuccess({ name: action.payload.name }));
   }
 }
+
+
 
 
 function acceptFriendAPI(data) {

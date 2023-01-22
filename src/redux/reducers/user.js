@@ -13,7 +13,7 @@ const initialState = {
   isServer: false,
 
   lastClickedServer: 'home',
-  lastClickedMiddleMenu: 'friends',
+  lastClickedMiddleMenu: -1,
   lastClickedMenu: null,
 
   me: null,
@@ -39,8 +39,6 @@ initialState.Servers = initialState.Servers.concat(
 );
 
 
-
-
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -62,6 +60,8 @@ export const userSlice = createSlice({
       state.loginPageState = action.payload.state;
     },
     changeMiddleMenuState: (state, action) => {
+      console.log('changeMiddleMenuState');
+      console.log(action.payload.id);
       state.lastClickedMiddleMenu = action.payload.id;
     },
     changeRightMenuState: (state, action) => {

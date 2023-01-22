@@ -5,7 +5,7 @@ import { ReactComponent as DefaultProfileSvg } from '../../../../../imgs/svgs/de
 import { ReactComponent as moreSvg } from '../../../../../imgs/svgs/more.svg';
 import { ReactComponent as directmessageSvg } from '../../../../../imgs/svgs/directmessage.svg';
 import CommentButton from '../CommentButton';
-import { changeMiddleMenuState, refuseFriendRequest } from '../../../../../redux/reducers/user';
+import { changeMiddleMenuState } from '../../../../../redux/reducers/user';
 import { loadDirectMessageRequest } from '../../../../../redux/reducers/directMessage';
 
 const StyledCardWrapper = styled.div`
@@ -31,11 +31,9 @@ const FriendCard = ({ type, userInfo }) => {
   const onClickAccept = () => {
     console.log('메시지 보내기')
     dispatch(loadDirectMessageRequest({ senderId: me.id, receiverId: userInfo.id }))
-    dispatch(changeMiddleMenuState({ id: userInfo.id }));
   }
   const onClickRefuse = () => {
     console.log('기타')
-    dispatch(refuseFriendRequest({ senderId: me.id, receiverId: userInfo.id }))
   }
   return (
     <div style={{

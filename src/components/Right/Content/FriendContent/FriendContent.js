@@ -27,7 +27,7 @@ const FriendContent = () => {
       height: '100%',
     }}>
       {
-        ['friends', '친구'].includes(lastClickedMiddleMenu) ?
+        [-1, -2].includes(lastClickedMiddleMenu) ?
           rightMenuState === 'online' ? <OnlineFriends /> :
             rightMenuState === 'all' ? <AllFriends /> :
               rightMenuState === 'waiting' ? <Waiting /> :
