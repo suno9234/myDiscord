@@ -27,10 +27,16 @@ border-radius: 8px;
 const FriendCard = ({ type, userInfo }) => {
   const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
+  const { directMessages } = useSelector((state) => state.directMessage);
   const profileBGColor = userInfo.tag % 5;
   const onClickAccept = () => {
     console.log('메시지 보내기')
-    dispatch(loadDirectMessageRequest({ senderId: me.id, receiverId: userInfo.id }))
+    const lastId = directMessages[directMessages.length - 1]?.id;
+    dispatch(loadDirectMessageRequest({
+      senderId: me.id,
+      receiverId: userInfo.id,
+      lastId,
+    }))
   }
   const onClickRefuse = () => {
     console.log('기타')

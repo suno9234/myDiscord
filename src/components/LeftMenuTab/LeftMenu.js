@@ -27,12 +27,12 @@ const StyledDiv = styled.div`
 
 
 const LeftMenu = () => {
-  const { Servers } = useSelector((state) => state.user);
+  const { channels } = useSelector((state) => state.channel);
   return (
     <ScrollDiv>
       <HomeButton name={'home'} />
       <StyledDiv />
-      {Servers.map((v, i) => {
+      {channels.map((v, i) => {
         return <ServerProfile key={v.name} name={v.name} imgSrc={v.profileImage} />
       })}
 

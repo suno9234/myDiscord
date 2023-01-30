@@ -7,8 +7,8 @@ import { ReactComponent as FriendHoverSvg } from '../../imgs/svgs/friends-hover.
 import { ReactComponent as NitroSvg } from '../../imgs/svgs/nitro.svg';
 import { ReactComponent as NitroHoverSvg } from '../../imgs/svgs/nitro-hover.svg';
 
-import Card from './Card';
 import DirectMessageCard from './DirectMessageCard';
+import DirectMessageHeader from './DirectMessageHeader';
 
 const ScrollWrapper = styled.div`
   overflow-y :scroll ;  
@@ -55,9 +55,9 @@ const FriendsListTab = () => {
         marginTop: '8px',
         paddingRight: '8px',
       }}>
-        <Card cardType='svg' SvgIcon={FriendSvg} HoverSvgIcon={FriendHoverSvg} userInfo = {{id : -1 , nickname : '친구'}} />
-        <Card cardType='svg' SvgIcon={NitroSvg} HoverSvgIcon={NitroHoverSvg} userInfo={{id : -2, nickname : 'Nitro'}} />
-        <DirectMessageCard />
+        <DirectMessageCard cardType='svg' SvgIcon={FriendSvg} HoverSvgIcon={FriendHoverSvg} userInfo={{ id: -1, nickname: '친구' }} />
+        <DirectMessageCard cardType='svg' SvgIcon={NitroSvg} HoverSvgIcon={NitroHoverSvg} userInfo={{ id: -2, nickname: 'Nitro' }} />
+        <DirectMessageHeader />
       </div>
       <Wrapper>
         <ScrollWrapper>
@@ -66,7 +66,7 @@ const FriendsListTab = () => {
             flexDirection: 'column',
             alignItems: 'center',
           }}>
-            {directMessages.map((v, i) => <Card key={v.id} userInfo={v} img={v.profileImage} />)}
+            {directMessages.map((v, i) => <DirectMessageCard key={v.id} userInfo={v} img={v.profileImage} />)}
           </div>
         </ScrollWrapper>
         <Cover className='cover-bar' />

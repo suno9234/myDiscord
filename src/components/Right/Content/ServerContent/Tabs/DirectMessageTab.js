@@ -19,6 +19,7 @@ left : 0;
 right : 0;
 &::-webkit-scrollbar{
   width: 10px;
+  border-radius : 8px;
   background-color : #2e3338;
 }
 &::-webkit-scrollbar-thumb{
@@ -53,14 +54,23 @@ const DirectMessageTab = () => {
   return (
     <div style={{
       display: 'flex',
+      position : 'relative',
+      flexGrow:'1',
+      flexShrink:'1',
       flexDirection: 'column',
+      minWidth:'0',
       height: '100%',
+      overflow:'hidden',
     }}>
       <div style={{
         display: 'flex',
+        position:'relative',
+        minHeight: '0',
         flexDirection: 'column',
-        flex: '1 1 auto',
-        position: 'relative',
+        minWidth:'0',
+        height:'100%',
+        marginRight:'4px',
+        overflow:'hidden',
       }}>
         <ScrollWrapper ref={scrollRef}>
           <div className='ContentWrapper' style={{
@@ -70,7 +80,7 @@ const DirectMessageTab = () => {
           }}>
             {
               currentChannel.currentMessages.map((v, i) =>
-                currentChannel.currentMessages[i + 1]?.createdAt.substr(0, 17) === v.createdAt.substr(0, 17) ?
+                currentChannel.currentMessages[i + 1]?.createdAt?.substr(0, 17) === v.createdAt?.substr(0, 17) ?
                   currentChannel.currentMessages[i + 1]?.User.id === v.User.id ?
                     <div style={{ padding: '2px 48px 2px 72px', position: 'relative' }} key={i}>
                       <div style={{ color: '#dcddde' }}>{v.content}</div>
@@ -136,7 +146,7 @@ const DirectMessageTab = () => {
 
       <form style={{
         display: 'flex',
-        width: '100%',
+        minWidth:'0',
         height: '68px',
         padding: '0 16px ',
       }} onSubmit={onSubmitForm}>
@@ -146,6 +156,7 @@ const DirectMessageTab = () => {
           width: '100%',
           borderRadius: '8px',
           marginBottom: '24px',
+          minWidth:'0',
         }}>
           <button style={{
             width: '56px',
@@ -157,9 +168,9 @@ const DirectMessageTab = () => {
               <UploadSvg fill="#b9bbbe" />
             </div>
           </button>
-          <input style={{ outline: '0' ,width:'100%' }} placeholder="메시지를 보내세요" value={message || ''} onChange={onChangeMessage} />
+          <input style={{ outline: '0' ,width:'100%' ,minWidth:'0'}} placeholder="메시지를 보내세요" value={message || ''} onChange={onChangeMessage} />
           {/* <button type='submit' onSubmit={onSubmitForm} /> */}
-          <div style={{ display: 'flex', alignItems: 'center', height: '44px', width: '150px', marginLeft: 'auto', }}>
+          <div style={{ display: 'flex', alignItems: 'center', height: '44px', width: '150px', marginLeft: 'auto', minWidth:'0'}}>
             <div style={{
               margin: '0px 4px',
               padding: '4px',

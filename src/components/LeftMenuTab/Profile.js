@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { enterServerRequest } from '../../redux/reducers/user'
+import { loadChannelRequest } from '../../redux/reducers/channel';
 
-const Profile = ({ name, innerText, imgSrc }) => {
+const Profile = ({ name, innerText, imgSrc, id }) => {
   const dispatch = useDispatch();
   const { lastClickedServer } = useSelector((state) => state.user);
   const [hover, setHover] = useState(false);
@@ -18,7 +19,7 @@ const Profile = ({ name, innerText, imgSrc }) => {
   }, [lastClickedServer, name])
 
   const onClickServer = () => {
-    dispatch(enterServerRequest({ name }))
+    dispatch(loadChannelRequest({ channelId: 1 }))
   }
   const onMouseEnter = () => {
     setHover(true);
@@ -50,11 +51,11 @@ const Profile = ({ name, innerText, imgSrc }) => {
   return (
     <div style={{
       cursor: 'pointer',
-      wigth:'46px',
-      height:'46px',
-      flexShrink:'0',
+      wigth: '46px',
+      height: '46px',
+      flexShrink: '0',
     }}>
-      {iconImg ? iconImg : innerText}
+      {imgSrc ? iconImg : <div style={{ backgroundColor: 'red', width: '46px', height: '46px', borderRadius: '50%' }} onClick={onClickServer} />}
     </div>
 
   );

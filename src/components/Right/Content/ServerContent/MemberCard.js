@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { changeMiddleMenuState } from '../../redux/reducers/user';
 
 const DivWrapper = styled.div`
   width : 100%;
@@ -34,13 +33,11 @@ margin : 0 12px 0 0 ;
 width : 32px;
 height : 32px;
 `
-const Card = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon, name }) => {
+const MemberCard = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon, name }) => {
   const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
   const { lastClickedMiddleMenu } = useSelector((state) => state.user);
-
   const onClickCard = () => {
-    dispatch(changeMiddleMenuState({ id: userInfo.id }))
   }
   const onMouseEnter = () => {
     setHover(true);
@@ -76,4 +73,4 @@ const Card = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon, name }) => {
     </DivWrapper>
   )
 }
-export default Card;
+export default MemberCard;

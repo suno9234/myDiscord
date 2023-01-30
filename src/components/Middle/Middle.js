@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import RoomInfoTab from './RoomInfoTab';
+import MiddleRoomTab from './MiddleRoomTab';
 import FriendsListTab from './FriendsListTab';
 import LeftHeader from './MiddleHeader/MiddleHeader';
 import Footer from '../Footer/Footer';
@@ -17,13 +17,15 @@ const Middle = () => {
   return (
     <div style={{
       display: 'flex',
+      width:'240px',
+      flexShrink:'0',
       flexDirection: 'column',
       backgroundColor: '#2f3136',
       height: '100%',
       overflow : 'hidden',
     }}>
       <LeftHeader />
-      {isServer ? <RoomInfoTab /> : <FriendsListTab />}
+      {isServer ? <MiddleRoomTab /> : <FriendsListTab />}
       <EmptySpace />
       <Footer />
     </div>

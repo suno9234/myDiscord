@@ -4,11 +4,42 @@ import axios from 'axios';
 import { changeMiddleMenuState } from '../reducers/user';
 import {
   loadDirectMessageRequest, loadDirectMessageSuccess, loadDirectMessageFailure,
+  loadChannelMessageRequest, loadChannelMessageSuccess, loadChannelMessageFailure,
   postMessageRequest, postMessageSuccess, postMessageFailure,
 } from '../reducers/directMessage';
 
+import { setLastSelectedChattingChannelId } from '../reducers/channel';
+
+function loadChannelMessageAPI(data) {
+  return axios.get(`/directMessages?receiverId=${data.receiverId}&lastId=${data.lastId || 0}`);
+}
+
+function* loadChannelMessage(action) {
+  console.log(action.payload);
+  try {
+    // const result = yield call(loadChannelMessageAPI, action.payload);
+    const result = {
+      data: {
+        channelId: action.payload.channelId,
+        messages:[
+          {
+            date:'1',
+            User : 'Suno',
+            comment : '테스트'
+          }
+        ]
+      }
+    }
+    yield put(loadChannelMessageSuccess(result.data));
+    yield put(setLastSelectedChattingChannelId({ channelId: action.payload.channelId }))
+  } catch (err) {
+    yield put(loadChannelMessageFailure({ error: err }));
+  }
+}
+
+
 function loadDirectMessageAPI(data) {
-  return axios.get(`/directMessage/loadPrivate/${data.receiverId}`);
+  return axios.get(`/directMessages?receiverId=${data.receiverId}&lastId=${data.lastId || 0}`);
 }
 
 function* loadDirectMessage(action) {
@@ -36,6 +67,10 @@ function* myPostMessage(action) {
   }
 }
 
+function* watchLoadChannelMessage() {
+  yield takeLatest(loadChannelMessageRequest, loadChannelMessage);
+}
+
 function* watchLoadDirectMessage() {
   yield takeLatest(loadDirectMessageRequest, loadDirectMessage);
 }
@@ -45,6 +80,7 @@ function* watchPostMessage() {
 
 export default function* directMessageSaga() {
   yield all([
+    fork(watchLoadChannelMessage),
     fork(watchLoadDirectMessage),
     fork(watchPostMessage),
   ])

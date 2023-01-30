@@ -7,9 +7,7 @@ import OnlineFriends from "./Tabs/OnlineFriends";
 import AllFriends from './Tabs/AllFriends';
 import Waiting from "./Tabs/Waiting";
 import AddFriendForm from "./Tabs/AddFriendForm";
-
 import DirectMessageTab from "./Tabs/DirectMessageTab";
-
 
 
 
