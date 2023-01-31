@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 
 const DivWrapper = styled.div`
-  width : 100%;
+  display: flex;
   margin-left : 8px;
   border-radius : 4px;
   padding : 1px 0;
@@ -17,6 +17,7 @@ const DivWrapper = styled.div`
 
 const InnerWrapper = styled.div`
 display : flex;
+width: 100% ;
 margin-right : 8px;
 border-radius : 4px;
 padding : 5px;
@@ -38,6 +39,7 @@ const MemberCard = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon, name }
   const [hover, setHover] = useState(false);
   const { lastClickedMiddleMenu } = useSelector((state) => state.user);
   const onClickCard = () => {
+    dispatch();
   }
   const onMouseEnter = () => {
     setHover(true);

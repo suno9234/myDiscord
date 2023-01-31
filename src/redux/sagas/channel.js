@@ -1,4 +1,4 @@
-import { all, fork, put, call, takeLatest } from 'redux-saga/effects';
+import { all, fork, put, takeLatest } from 'redux-saga/effects';
 import { loadChannelRequest, loadChannelSuccess, loadChannelFailure } from '../reducers/channel';
 import { enterServerSuccess } from '../reducers/user';
 

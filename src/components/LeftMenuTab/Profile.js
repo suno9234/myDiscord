@@ -1,36 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { enterServerRequest } from '../../redux/reducers/user'
+import { enterHomeSuccess } from '../../redux/reducers/user'
 import { loadChannelRequest } from '../../redux/reducers/channel';
 
-const Profile = ({ name, innerText, imgSrc, id }) => {
+const Profile = ({ channelInfo, imgSrc }) => {
   const dispatch = useDispatch();
-  const { lastClickedServer } = useSelector((state) => state.user);
+  const { lastClickedServerId } = useSelector((state) => state.user);
   const [hover, setHover] = useState(false);
   const [border, setBorder] = useState('50%');
 
   useEffect(() => {
-    if (lastClickedServer === name) {
+    if (lastClickedServerId === channelInfo.channelId) {
       setBorder('30%');
     } else {
       setBorder('50%');
     }
-  }, [lastClickedServer, name])
+  }, [lastClickedServerId, channelInfo.channelId])
 
   const onClickServer = () => {
-    dispatch(loadChannelRequest({ channelId: 1 }))
+    if (channelInfo.channelId === -1) {
+      dispatch(enterHomeSuccess());
+    } else {
+      dispatch(loadChannelRequest({ channelId: 1 }))
+    }
   }
   const onMouseEnter = () => {
     setHover(true);
-    if (lastClickedServer === name) {
+    if (lastClickedServerId === channelInfo.channelId) {
       return;
     }
     setBorder('30%');
   }
   const onMouseLeave = () => {
     setHover(false);
-    if (lastClickedServer === name) {
+    if (lastClickedServerId === channelInfo.channelId) {
       return;
     }
     setBorder('50%');

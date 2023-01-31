@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CommentButton from '../CommentButton';
+import { ReactComponent as DefaultProfileSvg } from '../../../../../imgs/svgs/default-profile.svg';
 import { ReactComponent as cancleSvg } from '../../../../../imgs/svgs/cancle.svg';
 import { ReactComponent as checkSvg } from '../../../../../imgs/svgs/check.svg';
 import { acceptFriendRequest, cancelFriendRequest, refuseFriendRequest } from '../../../../../redux/reducers/user';
@@ -25,6 +26,7 @@ border-radius: 8px;
 const WaitingCard = ({ type, userInfo }) => {
   const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
+  const profileBGColor = userInfo.tag % 5;
   const onClickAccept = () => {
     console.log('수락')
     dispatch(acceptFriendRequest({ senderId: userInfo.id, receiverId: me.id }))
@@ -54,14 +56,24 @@ const WaitingCard = ({ type, userInfo }) => {
           alignItems: 'center',
         }}>
           <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             borderRadius: '50%',
             marginRight: '12px',
             flexShrink: '0',
             position: 'relative',
             width: '32px',
             height: '32px',
-            backgroundColor: 'red',
-          }} />
+            backgroundColor:
+              profileBGColor === 0 ? '#7289da' :
+                profileBGColor === 1 ? '#747f8d' :
+                  profileBGColor === 2 ? '#43b581' :
+                    profileBGColor === 1 ? '#faa61a' : '#f04747',
+          }} >
+            {userInfo.ProfileImage || <DefaultProfileSvg width='20px' fill='white' />}
+            {/* {<img src={`http://localhost:3065/${userInfo.Image.src}`} alt='profileImage'/>} */}
+          </div>
           <div style={{
             display: 'flex',
             flexDirection: 'column',

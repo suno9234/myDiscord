@@ -3,13 +3,18 @@ import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components";
 import { loadFriendsRequest } from "../../../../redux/reducers/user";
 
-import OnlineFriends from "./Tabs/OnlineFriends";
+
 import AllFriends from './Tabs/AllFriends';
-import Waiting from "./Tabs/Waiting";
 import AddFriendForm from "./Tabs/AddFriendForm";
 import DirectMessageTab from "./Tabs/DirectMessageTab";
 
-
+const DivWrapper = styled.div`
+display : flex;
+height : 100%;
+overflow : hidden;
+width : 100%;
+background-color : #36393f;
+`
 
 const FriendContent = () => {
   const dispatch = useDispatch();
@@ -17,22 +22,17 @@ const FriendContent = () => {
 
   useEffect(() => {
     dispatch(loadFriendsRequest({ userid: me.id }));
-  }, [])
+  }, [dispatch, me.id])
 
   return (
-    <div style={{
-      backgroundColor: '#36393f',
-      height: '100%',
-    }}>
+    <DivWrapper>
       {
         [-1, -2].includes(lastClickedMiddleMenu) ?
-          rightMenuState === 'online' ? <OnlineFriends /> :
-            rightMenuState === 'all' ? <AllFriends /> :
-              rightMenuState === 'waiting' ? <Waiting /> :
-                rightMenuState === 'addFriends' ? <AddFriendForm /> :
-                  null : <DirectMessageTab />
+          rightMenuState === 'addFriends' ? <AddFriendForm /> :
+            rightMenuState === 'online' || 'all' || 'waiting' ? <AllFriends /> :
+              null : <DirectMessageTab />
       }
-    </div>
+    </DivWrapper>
   )
 }
 

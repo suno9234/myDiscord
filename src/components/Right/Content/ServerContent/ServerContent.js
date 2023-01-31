@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux"
-
 import MembersTab from "./Tabs/MembersTab";
 import DirectMessageTab from "./Tabs/DirectMessageTab"
 const ServerContent = () => {
-  const { currentChannel } = useSelector((state) => state.channel);
   return (
     <div style={{
       display:'flex',

@@ -12,7 +12,7 @@ const initialState = {
 
   isServer: false,
 
-  lastClickedServer: 'home',
+  lastClickedServerId: -1,
   lastClickedMiddleMenu: -1,
   lastClickedMenu: null,
 
@@ -45,7 +45,7 @@ export const userSlice = createSlice({
   reducers: {
 
     enterServerRequest: (state, action) => {
-      state.lastClickedServer = action.payload.name;
+      state.lastClickedServerId = action.payload.channelId;
     },
     enterServerSuccess: (state, action) => {
       state.isServer = true;
@@ -145,20 +145,22 @@ export const userSlice = createSlice({
       console.log('acceptFriendRequest');
     },
     acceptFriendSuccess: (state, action) => {
-      const senderId = action.payload.sender;
-      state.FriendRequests.received = state.FriendRequests.received.filter((v) => v.id !== parseInt(senderId))
-      console.log('refuseFriendSuccess');
+      const userInfo = action.payload;
+      state.FriendRequests.received = state.FriendRequests.received.filter((v) => v.id !== userInfo.senderId)
+      state.Friends = state.Friends.concat({ id: userInfo.senderId, nickname: userInfo.nickname, tag: userInfo.tag, state: ['online', 'offline'][Math.floor(Math.random() * 2)] })
+      console.log('acceptFriendSuccess');
     },
     acceptFriendFailure: (state, action) => {
-      console.log('refuseFriendFailure');
+      console.log('acceptFriendFailure');
     },
+
 
     refuseFriendRequest: (state, action) => {
       console.log('refuseFriendRequest');
     },
     refuseFriendSuccess: (state, action) => {
       const senderId = action.payload.senderId;
-      state.FriendRequests.received = state.FriendRequests.received.filter((v) => v.id !== parseInt(senderId))
+      state.FriendRequests.received = state.FriendRequests.received.filter((v) => v.id !== senderId)
       console.log('refuseFriendSuccess');
     },
     refuseFriendFailure: (state, action) => {
@@ -171,7 +173,7 @@ export const userSlice = createSlice({
     },
     cancelFriendSuccess: (state, action) => {
       const receiverId = action.payload.receiverId;
-      state.FriendRequests.sended = state.FriendRequests.sended.filter((v) => v.id !== parseInt(receiverId))
+      state.FriendRequests.sended = state.FriendRequests.sended.filter((v) => v.id !== receiverId)
       console.log('cancelFriendSuccess');
     },
     cancelFriendFailure: (state, action) => {

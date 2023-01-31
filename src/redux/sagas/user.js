@@ -1,5 +1,7 @@
 import { all, call, fork, put, takeLatest } from "redux-saga/effects";
 import axios from 'axios';
+import { faker } from "@faker-js/faker";
+import shortid from "shortid";
 
 import {
   enterServerRequest, enterHomeSuccess, enterServerSuccess,
@@ -10,9 +12,29 @@ import {
   loadWaitingFriendsRequest, loadWaitingFriendsSuccess, loadWaitingFriendsFailure,
   acceptFriendRequest, acceptFriendSuccess, acceptFriendFailure,
   cancelFriendRequest, cancelFriendSuccess, cancelFriendFailure,
-  refuseFriendRequest, refuseFriendSuccess, refuseFriendFailure, changeMiddleMenuState,
+  refuseFriendRequest, refuseFriendSuccess, refuseFriendFailure,
 } from '../reducers/user';
-import { loadDirectMessageRequest } from "../reducers/directMessage";
+
+const dummyWaitingFriends = {
+  receivers: Array(10).fill().map((v, i) => ({
+    id: shortid.generate(),
+    nickname: faker.name.fullName(),
+    tag: Math.floor(Math.random() * (9999 - 1000)) + 1000,
+  })),
+  senders: Array(10).fill().map((v, i) => ({
+    id: shortid.generate(),
+    nickname: faker.name.fullName(),
+    tag: Math.floor(Math.random() * (9999 - 1000)) + 1000,
+  }))
+}
+
+const state = ['online', 'offline'];
+const dummyUsers = Array(20).fill().map((v, i) => ({
+  id: shortid.generate(),
+  nickname: faker.name.fullName(),
+  tag: Math.floor(Math.random() * (9999 - 1000)) + 1000,
+  state: state[Math.floor(Math.random() * 2)]
+}))
 
 
 function* enterServer(action) {
@@ -24,42 +46,45 @@ function* enterServer(action) {
 }
 
 
-
-
-function acceptFriendAPI(data) {
+/* function acceptFriendAPI(data) {
   return axios.post(`/user/acceptFriend/${data.senderId}`);
-}
+} */
 
 function* acceptFriend(action) {
   try {
-    const result = yield call(acceptFriendAPI, action.payload);
-    yield put(acceptFriendSuccess(result.data));
+    /* const result = yield call(acceptFriendAPI, action.payload); action(result.data) */
+    const userInfo = dummyWaitingFriends.senders.filter((v) => v.id === action.payload.senderId)[0]
+    yield put(acceptFriendSuccess({
+      senderId: userInfo.id,
+      nickname: userInfo.nickname,
+      tag: userInfo.tag,
+    }));
   } catch (err) {
     yield put(acceptFriendFailure({ error: err }));
   }
 }
 
-function refuseFriendAPI(data) {
+/* function refuseFriendAPI(data) {
   return axios.delete(`/user/friendRequest/sender/${data.senderId}`);
-}
+} */
 
 function* refuseFriend(action) {
   try {
-    const result = yield call(refuseFriendAPI, action.payload);
-    yield put(refuseFriendSuccess(result.data));
+    /* const result = yield call(refuseFriendAPI, action.payload); action(result.data) */
+    yield put(refuseFriendSuccess({ senderId: action.payload.senderId }));
   } catch (err) {
     yield put(refuseFriendFailure({ error: err }));
   }
 }
 
-function cancelFriendAPI(data) {
+/* function cancelFriendAPI(data) {
   return axios.delete(`/user/friendRequest/receiver/${data.receiverId}`);
-}
+} */
 
 function* cancelFriend(action) {
   try {
-    const result = yield call(cancelFriendAPI, action.payload);
-    yield put(cancelFriendSuccess(result.data));
+    /* const result = yield call(cancelFriendAPI, action.payload); */
+    yield put(cancelFriendSuccess({ receiverId: action.payload.receiverId }));
   } catch (err) {
     yield put(cancelFriendFailure({ error: err }));
   }
@@ -67,28 +92,33 @@ function* cancelFriend(action) {
 
 
 
-function loadWaitingFriendsAPI(data) {
+/* function loadWaitingFriendsAPI(data) {
   return axios.get(`/user/loadWaitingFriends`);
 }
-
+ */
 function* loadWaitingFriends() {
   try {
-    const result = yield call(loadWaitingFriendsAPI);
-    yield put(loadWaitingFriendsSuccess(result.data));
+    //const result = yield call(loadWaitingFriendsAPI);
+    //console.log(result.data);
+    yield put(loadWaitingFriendsSuccess(dummyWaitingFriends));
   } catch (err) {
     yield put(loadWaitingFriendsFailure({ error: err }));
   }
 }
 
-function loadFriendsAPI(data) {
+
+
+/* function loadFriendsAPI(data) {
   return axios.get(`/user/loadFriends`);
-}
+} */
+
+
 
 function* loadFriends() {
   try {
-    const result = yield call(loadFriendsAPI);
-    console.log(result.data);
-    yield put(loadFriendsSuccess(result.data));
+    //const result = yield call(loadFriendsAPI);
+    //console.log(result.data);
+    yield put(loadFriendsSuccess(dummyUsers));
   } catch (err) {
     yield put(loadFriendsFailure({ error: err }));
   }

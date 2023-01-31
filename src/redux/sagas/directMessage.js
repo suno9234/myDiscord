@@ -10,9 +10,9 @@ import {
 
 import { setLastSelectedChattingChannelId } from '../reducers/channel';
 
-function loadChannelMessageAPI(data) {
+/* function loadChannelMessageAPI(data) {
   return axios.get(`/directMessages?receiverId=${data.receiverId}&lastId=${data.lastId || 0}`);
-}
+} */
 
 function* loadChannelMessage(action) {
   console.log(action.payload);

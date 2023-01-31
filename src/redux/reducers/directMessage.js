@@ -23,6 +23,17 @@ export const dmSlice = createSlice({
   name: 'directMessage',
   initialState,
   reducers: {
+
+    loadDirectMessagesRequest: (state, action) => {
+      console.log('LOAD_DIRECTMESSAGECARDS')
+    },
+    loadDirectMessagesSuccess: (state, action) => {
+      console.log('LOAD_DIRECTMESSAGECARDS_SUCCESS')
+    },
+    loadDirectMessagesFailure: (state, action) => {
+      console.log('LOAD_DIRECTMESSAGECARDS_FAILURE')
+    },
+
     loadDirectMessageRequest: (state, action) => {
       console.log('ldmr')
     },
@@ -72,7 +83,8 @@ export const dmSlice = createSlice({
 export const {
   addDirectMessageTab,
   loadDirectMessageRequest, loadDirectMessageSuccess, loadDirectMessageFailure,
-  loadChannelMessageRequest,loadChannelMessageSuccess,loadChannelMessageFailure,
+  loadDirectMessagesRequest, loadDirectMessagesSuccess, loadDirectMessagesFailure,
+  loadChannelMessageRequest, loadChannelMessageSuccess, loadChannelMessageFailure,
   postMessageRequest, postMessageSuccess, postMessageFailure,
 
 } = dmSlice.actions;

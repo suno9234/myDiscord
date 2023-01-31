@@ -1,12 +1,12 @@
 import React from 'react';
 import Profile from './Profile';
 
-const ServerProfile = ({ name, imgSrc }) => {
+const ServerProfile = ({ channelInfo }) => {
   return (
     <div style={{ marginBottom: '5px', marginTop: '5px' ,flexShrink:'0'}}>
       <Profile
-        name={name}
-        imgSrc={imgSrc}
+        channelInfo={channelInfo}
+        imgSrc={null}
       />
     </div>
 
