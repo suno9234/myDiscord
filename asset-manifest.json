@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.js": "/myDiscord/static/js/main.4b558cf3.js",
+    "main.js": "/myDiscord/static/js/main.c225ca17.js",
     "static/js/787.6cb5784e.chunk.js": "/myDiscord/static/js/787.6cb5784e.chunk.js",
     "static/media/background0.svg": "/myDiscord/static/media/background0.6531e7f9431ee0bcaa0a8af28f34ace7.svg",
     "static/media/background1.svg": "/myDiscord/static/media/background1.a044cd6c8752efc0445171a8775b8270.svg",
     "static/media/ggsans.woff2": "/myDiscord/static/media/ggsans.daa584d0d211cd0f2223.woff2",
     "static/media/home.jpg": "/myDiscord/static/media/home.dcc79073aafc3e368fa4.jpg",
-    "static/media/nitro.svg": "/myDiscord/static/media/nitro.a58b6eff8a9c266fd099847d965a789d.svg",
+    "static/media/nitro.svg": "/myDiscord/static/media/nitro.c7ae882b77706514c66ef8500e1ed4a7.svg",
     "static/media/nitro-hover.svg": "/myDiscord/static/media/nitro-hover.1e6a5c870b5763e92de9071c55684539.svg",
     "static/media/upload-sticker.svg": "/myDiscord/static/media/upload-sticker.7edce03e9418c9b066eb7cf2a31e8533.svg",
     "static/media/threads.svg": "/myDiscord/static/media/threads.e2e02fde51e0be7336e75c43e0028545.svg",
     "static/media/default-profile.svg": "/myDiscord/static/media/default-profile.fb21f02d5e9113ef4275fb0a81e9a32d.svg",
     "static/media/members.svg": "/myDiscord/static/media/members.029ba8a8c062f6fc24d1a5a37d0109f1.svg",
     "static/media/chattingChannel.svg": "/myDiscord/static/media/chattingChannel.4b3a9753f7285f8dfa7be1ab578d610c.svg",
+    "static/media/directmessage-header.svg": "/myDiscord/static/media/directmessage-header.c28a3653820d99879f06b0b5c3072106.svg",
     "static/media/mic.svg": "/myDiscord/static/media/mic.f305e1f37cf0f60a0a4b66a886acf65f.svg",
     "static/media/upload-gif.svg": "/myDiscord/static/media/upload-gif.37d127d2d56ea2810a87ceebd09476d9.svg",
     "static/media/alarm-off.svg": "/myDiscord/static/media/alarm-off.d0578732cdfb675c584c85123cb90be0.svg",
     "static/media/settings.svg": "/myDiscord/static/media/settings.ed5aa7482f62372c3342239d0d191d23.svg",
     "static/media/search.svg": "/myDiscord/static/media/search.a34f540a2e31c3c66218ccde397e21ad.svg",
-    "static/media/friends.svg": "/myDiscord/static/media/friends.ef32cb648a056446fec0014e02f23ef6.svg",
+    "static/media/friends.svg": "/myDiscord/static/media/friends.619124319d6df74bdd26507bc0f344a2.svg",
     "static/media/friends-hover.svg": "/myDiscord/static/media/friends-hover.32185c81ce5cd93ec80261c215f8324a.svg",
     "static/media/question.svg": "/myDiscord/static/media/question.25c2c66a2f4ba9aaa773889b3b366cf5.svg",
     "static/media/sounds.svg": "/myDiscord/static/media/sounds.a17af24aab06a68f95c0da6b2a8e6579.svg",
@@ -31,12 +32,12 @@
     "static/media/upload-button.svg": "/myDiscord/static/media/upload-button.871c94b20783642a300a3a7e17f0219a.svg",
     "static/media/returnico.svg": "/myDiscord/static/media/returnico.023ba8c6c2f0312529faa1ea4eec006f.svg",
     "static/media/check.svg": "/myDiscord/static/media/check.35cc9d339cf5410a21652fdd520f6761.svg",
+    "static/media/cancle.svg": "/myDiscord/static/media/cancle.1582de4364e8d2e644db989ee7ebe789.svg",
     "static/media/arrow_down.svg": "/myDiscord/static/media/arrow_down.6989c5eac951d71fc024e6bf5fe06981.svg",
-    "static/media/cancle.svg": "/myDiscord/static/media/cancle.882883507f5653adc7d8867655f54c8f.svg",
-    "main.4b558cf3.js.map": "/myDiscord/static/js/main.4b558cf3.js.map",
+    "main.c225ca17.js.map": "/myDiscord/static/js/main.c225ca17.js.map",
     "787.6cb5784e.chunk.js.map": "/myDiscord/static/js/787.6cb5784e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.4b558cf3.js"
+    "static/js/main.c225ca17.js"
   ]
 }
