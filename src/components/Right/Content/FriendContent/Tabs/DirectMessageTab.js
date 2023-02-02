@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import useInput from '../../../../../hooks/useInput';
 import { postMessageRequest } from '../../../../../redux/reducers/directMessage';
-
+import { ReactComponent as DefaultProfileSvg } from '../../../../../imgs/svgs/default-profile.svg';
 import { ReactComponent as UploadSvg } from '../../../../../imgs/svgs/upload-button.svg';
 import { ReactComponent as UploadStickerSvg } from '../../../../../imgs/svgs/upload-sticker.svg';
 import { ReactComponent as UploadGifSvg } from '../../../../../imgs/svgs/upload-gif.svg';
+import ChatCard from '../Card/ChatCard';
+import ChatCardWithImage from '../Card/ChatCardWithImage';
+import DateLine from '../Card/DateLine';
 
 const ScrollWrapper = styled.div`
 position : absolute;
@@ -31,10 +34,11 @@ right : 0;
 
 const DirectMessageTab = () => {
   const scrollRef = useRef();
+  const inputRef = useRef();
   const dispatch = useDispatch();
-  const [message, onChangeMessage] = useInput('');
+  const [message, onChangeMessage, setMessage] = useInput('');
   const { currentChannel, postMessageDone } = useSelector((state) => state.directMessage);
-
+  const profileBGColor = ['#7289da', '#747f8d', '#43b581', '#faa61a', '#f04747'][currentChannel.currentReceiver.tag % 5];
   const scrollToBottom = () => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }
@@ -44,15 +48,17 @@ const DirectMessageTab = () => {
       serverId: currentChannel.id,
       content: message
     }));
+    setMessage(null);
     scrollToBottom();
   }
 
   useEffect(() => {
     scrollToBottom();
-  }, [postMessageDone])
+  }, [postMessageDone, currentChannel.currentMessages.length])
   return (
     <div style={{
       display: 'flex',
+      flexGrow: '1',
       flexDirection: 'column',
       height: '100%',
     }}>
@@ -72,39 +78,20 @@ const DirectMessageTab = () => {
               currentChannel.currentMessages.map((v, i) =>
                 currentChannel.currentMessages[i + 1]?.createdAt.substr(0, 17) === v.createdAt.substr(0, 17) ?
                   currentChannel.currentMessages[i + 1]?.User.id === v.User.id ?
-                    <div style={{ padding: '2px 48px 2px 72px', position: 'relative' }} key={i}>
-                      <div style={{ color: '#dcddde' }}>{v.content}</div>
-                    </div> //이전 메세지와 같은 시간(분) 같은 유저일 경우 콘텐트만 추가
+                    <ChatCard directMessage={v} key={v.id} />
+                    //이전 메세지와 같은 시간(분) 같은 유저일 경우 콘텐트만 추가
 
-                    : <div style={{ margin: '17px 0 0', padding: '2px 48px 2px 72px', position: 'relative' }} key={i}>
-                      <div style={{ borderRadius: '50%', backgroundColor: 'red', width: '40px', height: '40px', position: 'absolute', left: '16px', }} />
-                      <h3><span style={{ marginRight: '.25rem' }}>{v.User.nickname}</span><span>{v.createdAt.substr(0, 10)}</span></h3>
-                      <div style={{ color: '#dcddde' }}>{v.content}</div>
-                    </div> // 이전 메세지와 같은 시간(분)이어도 유저가 다르면 상단에 닉네임과 프로필사진 추가
+                    : <ChatCardWithImage directMessage={v} key={v.id} />
+                  // 이전 메세지와 같은 시간(분)이어도 유저가 다르면 상단에 닉네임과 프로필사진 추가
                   :
                   currentChannel.currentMessages[i + 1]?.createdAt.substr(0, 10) === v.createdAt.substr(0, 10) ?
                     // 날짜는 같고 보낸 시간(분) 이 다른 경우
-                    <div style={{ margin: '17px 0 0', padding: '2px 48px 2px 72px', position: 'relative' }} key={i}>
-                      <div style={{ borderRadius: '50%', backgroundColor: 'red', width: '40px', height: '40px', position: 'absolute', left: '16px', }} />
-                      <h3><span style={{ marginRight: '.25rem', color: '#dcddde' }}>{v.User.nickname}</span><span>{v.createdAt.substr(0, 16)}</span></h3>
-                      <div style={{ color: '#dcddde' }}>{v.content}</div>
-                    </div>
+                    <ChatCardWithImage directMessage={v} key={v.id} />
                     :
                     //날짜가 다른 경우 (경계선 추가)
                     <>
-                      <div style={{ margin: '17px 0 0', padding: '2px 48px 2px 72px', position: 'relative' }} key={i}>
-                        <div style={{ borderRadius: '50%', backgroundColor: 'red', width: '40px', height: '40px', position: 'absolute', left: '16px', }} />
-                        <h3><span style={{ marginRight: '.25rem' , color: '#dcddde'}}>{v.User.nickname}</span><span>{v.createdAt.substr(0, 10)}</span></h3>
-                        <div style={{ color: '#dcddde' }}>{v.content}</div>
-                      </div>
-                      <div style={{
-                        display: 'flex', alignItems: 'center', marginLeft: '16px', marginRight: '16px', color: '#a3a6aa'
-                        , fontSize: '12px', fontWeight: '600'
-                      }}>
-                        <div style={{ display: 'flex', flexGrow: '1', backgroundColor: '#40444b', height: '1px' }}></div>
-                        {v.createdAt.substr(0, 10)}
-                        <div style={{ backgroundColor: '#40444b', height: '1px', display: 'flex', flexGrow: '1', }}></div>
-                      </div>
+                      <ChatCardWithImage directMessage={v} key={v.id} />
+                      <DateLine dateStr={v.createdAt.substr(0, 10)} />
                     </>
 
               )
@@ -115,24 +102,28 @@ const DirectMessageTab = () => {
               flexDirection: 'column',
             }}>
               <div style={{
-                backgroundColor: 'red',
+                display:'flex',
+                backgroundColor: profileBGColor,
+                alignItems:'center',
+                justifyContent:'center',
                 width: '80px',
                 height: '80px',
                 borderRadius: '50%',
               }}>
+                <DefaultProfileSvg width='60px' fill='white'/>
               </div>
               <h3 style={{
                 margin: '8px 0px',
                 fontSize: '32px',
                 lineHeight: '40px',
-              }}>TEST</h3>
+              }}>{currentChannel.currentReceiver.nickname}</h3>
               <div>
-                <strong>TEST</strong> 님과 함께 나눈 메시지의 첫 부분이에요
+                <strong>{currentChannel.currentReceiver.nickname}</strong> 님과 함께 나눈 메시지의 첫 부분이에요
               </div>
             </div>
           </div>
         </ScrollWrapper>
-      </div>
+      </div >
 
       <form style={{
         display: 'flex',
@@ -157,7 +148,7 @@ const DirectMessageTab = () => {
               <UploadSvg fill="#b9bbbe" />
             </div>
           </button>
-          <input style={{ outline: '0' ,width:'100%' }} placeholder="메시지를 보내세요" value={message || ''} onChange={onChangeMessage} />
+          <input ref={inputRef} style={{ outline: '0', width: '100%' }} placeholder="메시지를 보내세요" value={message || ''} onChange={onChangeMessage} />
           {/* <button type='submit' onSubmit={onSubmitForm} /> */}
           <div style={{ display: 'flex', alignItems: 'center', height: '44px', width: '150px', marginLeft: 'auto', }}>
             <div style={{
@@ -177,7 +168,7 @@ const DirectMessageTab = () => {
 
         </div>
       </form>
-    </div>
+    </div >
   )
 }
 export default DirectMessageTab;

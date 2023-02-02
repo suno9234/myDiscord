@@ -25,7 +25,6 @@ border-radius : 5px;
 vertical-align : middle;
 text-align : center;
 visibility : visible;
-left : 50%;
 transform : translateX(-50%);
 
 `
@@ -51,8 +50,8 @@ const CommentButton = ({ comment, SvgImg, hoverColor, onClick }) => {
         hover ?
           <div>
             <ArrowSpan style={{
-              left: btnRef.current.offsetLeft + 18,
-              top: btnRef.current.offsetTop - 43,
+              left: btnRef.current.getBoundingClientRect().left+18,
+              top: btnRef.current.getBoundingClientRect().top-40,
             }}>
               {comment}
             </ArrowSpan>
@@ -63,8 +62,8 @@ const CommentButton = ({ comment, SvgImg, hoverColor, onClick }) => {
               transform: 'rotate(45deg)',
               trnasform: 'tranlateX(-50%)',
               backgroundColor: '#191a1d',
-              left: btnRef.current.offsetLeft + 13,
-              top: btnRef.current.offsetTop - 16,
+              left: btnRef.current.getBoundingClientRect().left+13,
+              top: btnRef.current.getBoundingClientRect().top-13,
             }} />
           </div>
           :

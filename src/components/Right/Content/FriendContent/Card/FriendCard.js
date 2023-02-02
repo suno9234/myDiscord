@@ -28,13 +28,15 @@ const FriendCard = ({ type, userInfo }) => {
   const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
   const { directMessages } = useSelector((state) => state.directMessage);
-  const profileBGColor = userInfo.tag % 5;
+  const profileBGColor = ['#7289da', '#747f8d', '#43b581', '#faa61a', '#f04747'][userInfo.tag % 5];
   const onClickAccept = () => {
     console.log('메시지 보내기')
     const lastId = directMessages[directMessages.length - 1]?.id;
     dispatch(loadDirectMessageRequest({
       senderId: me.id,
       receiverId: userInfo.id,
+      receiverNickname: userInfo.nickname,
+      receiverTag: userInfo.tag,
       lastId,
     }))
   }
@@ -67,11 +69,7 @@ const FriendCard = ({ type, userInfo }) => {
             position: 'relative',
             width: '32px',
             height: '32px',
-            backgroundColor:
-              profileBGColor === 0 ? '#7289da' :
-                profileBGColor === 1 ? '#747f8d' :
-                  profileBGColor === 2 ? '#43b581' :
-                    profileBGColor === 1 ? '#faa61a' : '#f04747',
+            backgroundColor: profileBGColor
           }} >
             {userInfo.ProfileImage || <DefaultProfileSvg width='20px' fill='white' />}
             {/* {<img src={`http://localhost:3065/${userInfo.Image.src}`} alt='profileImage'/>} */}

@@ -24,13 +24,14 @@ export const dmSlice = createSlice({
   initialState,
   reducers: {
 
-    loadDirectMessagesRequest: (state, action) => {
+    loadDirectMessageListRequest: (state, action) => {
       console.log('LOAD_DIRECTMESSAGECARDS')
     },
-    loadDirectMessagesSuccess: (state, action) => {
-      console.log('LOAD_DIRECTMESSAGECARDS_SUCCESS')
+    loadDirectMessageListSuccess: (state, action) => {
+      console.log('LOAD_DIRECTMESSAGECARDS_SUCCESS', action.payload);
+      state.directMessages = action.payload;
     },
-    loadDirectMessagesFailure: (state, action) => {
+    loadDirectMessageListFailure: (state, action) => {
       console.log('LOAD_DIRECTMESSAGECARDS_FAILURE')
     },
 
@@ -40,11 +41,15 @@ export const dmSlice = createSlice({
     loadDirectMessageSuccess: (state, action) => {
       console.log('서버 메세지 불러오기 성공')
       console.log(action.payload);
+      if (state.currentChannel.currentReceiver.id !== action.payload.receiver.id) {
+        state.currentChannel.currentMessages = [];
+      }
       if (state.directMessages.every((v) => v.id !== action.payload.receiver.id)) {
-        state.directMessages = state.directMessages.concat({ id: action.payload.receiver.id, nickname: action.payload.receiver.nickname });
+        state.directMessages = state.directMessages.concat({ id: action.payload.receiver.id, nickname: action.payload.receiver.nickname, tag: action.payload.receiver.tag });
       }
       state.currentChannel.id = action.payload.channelId;
       state.currentChannel.currentMessages = state.currentChannel.currentMessages.concat(action.payload.messages);
+      state.currentChannel.currentReceiver = action.payload.receiver;
     },
     loadDirectMessageFailure: (state, action) => {
       console.log('ldmf')
@@ -57,6 +62,7 @@ export const dmSlice = createSlice({
       console.log(action.payload);
       state.currentChannel.id = action.payload.channelId;
       state.currentChannel.currentMessages = state.currentChannel.currentMessages.concat(action.payload.messages);
+      state.currentChannel.currentReceiver = action.payload.receiver;
     },
     loadChannelMessageFailure: (state, action) => {
       console.log('lcmf')
@@ -70,21 +76,34 @@ export const dmSlice = createSlice({
     },
     postMessageSuccess: (state, action) => {
       console.log('성공', action.payload);
-      state.currentChannel.currentMessages = [{ sender: 1, day: 'now', content: action.payload.data }].concat(state.currentChannel.currentMessages)
+      state.currentChannel.currentMessages = [{ id: state.currentChannel.currentMessages.length, ...action.payload }].concat(state.currentChannel.currentMessages)
       state.postMessageLoading = false;
       state.postMessageDone = true;
     },
     postMessageFailure: (state, action) => {
       console.log('실패');
     },
+
+    removeDirectMessageCardRequest: (state, action) => {
+      console.log('RDMR')
+    },
+    removeDirectMessageCardSuccess: (state, action) => {
+      state.directMessages = state.directMessages.filter((v) => v.id !== action.payload.userId);
+      state.currentChannel.id = -1;
+    },
+    removeDirectMessageCardFailure: (state, action) => {
+      console.log('RDMR')
+    },
+
   }
 })
 
 export const {
   addDirectMessageTab,
   loadDirectMessageRequest, loadDirectMessageSuccess, loadDirectMessageFailure,
-  loadDirectMessagesRequest, loadDirectMessagesSuccess, loadDirectMessagesFailure,
+  loadDirectMessageListRequest, loadDirectMessageListSuccess, loadDirectMessageListFailure,
   loadChannelMessageRequest, loadChannelMessageSuccess, loadChannelMessageFailure,
+  removeDirectMessageCardRequest, removeDirectMessageCardSuccess, removeDirectMessageCardFailure,
   postMessageRequest, postMessageSuccess, postMessageFailure,
 
 } = dmSlice.actions;

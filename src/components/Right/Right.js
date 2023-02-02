@@ -6,6 +6,7 @@ import FriendContent from "./Content/FriendContent/FriendContent";
 
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import DirectMessageHeader from "./Header/DirectMessageHeader/DirectMessageHeader";
 
 const StyledDiv = styled.div`
 flex : 1;
@@ -16,10 +17,10 @@ min-width:0;
 `
 
 const Right = () => {
-  const { isServer } = useSelector((state) => state.user);
+  const { isServer  , lastClickedMiddleMenu} = useSelector((state) => state.user);
   return (
     <StyledDiv>
-      { isServer ?  <ServerHeader/> : <FriendHeader />}
+      { isServer ?  <ServerHeader/> : [-1,-2].includes(lastClickedMiddleMenu) ?  <FriendHeader /> : <DirectMessageHeader/>}
       { isServer ?  <ServerContent/>: <FriendContent />}
     </StyledDiv>
   )
