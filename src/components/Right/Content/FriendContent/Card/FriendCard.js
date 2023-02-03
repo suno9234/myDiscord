@@ -37,6 +37,7 @@ const FriendCard = ({ type, userInfo }) => {
       receiverId: userInfo.id,
       receiverNickname: userInfo.nickname,
       receiverTag: userInfo.tag,
+      profileImage : userInfo.profileImage,
       lastId,
     }))
   }

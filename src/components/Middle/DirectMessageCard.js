@@ -58,7 +58,7 @@ const DirectMessageCard = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon,
   const onClickCard = () => {
     const lastId = directMessages[directMessages.length - 1]?.id;
     dispatch(changeMiddleMenuState({ id: userInfo.id }))
-    if (![-1, -2].includes(userInfo.id)) {
+    if (![-1, -2].includes(userInfo.id) && lastClickedMiddleMenu !== userInfo.id) {
       dispatch(loadDirectMessageRequest({
         receiverId: userInfo.id,
         receiverNickname: userInfo.nickname,
@@ -112,9 +112,9 @@ const DirectMessageCard = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon,
         }
 
         <div style={{
-          height : '20px',
+          height: '20px',
           marginRight: 'auto',
-          overflow:'hidden',
+          overflow: 'hidden',
         }}>
           {name ? name : userInfo.nickname}
         </div>

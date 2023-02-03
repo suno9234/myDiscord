@@ -44,7 +44,8 @@ function* loadChannelMessage(action) {
 const dummyCards = Array(15).fill().map((v) => ({
   id: shortid.generate(),
   nickname: faker.name.fullName(),
-  tag: Math.floor(Math.random() * (9999 - 1000)) + 1000
+  tag: Math.floor(Math.random() * (9999 - 1000)) + 1000,
+  profileImage : faker.image.avatar(),
 }))
 
 
@@ -70,7 +71,8 @@ function* loadDirectMessage(action) {
     receiver: {
       id: action.payload.receiverId,
       nickname: action.payload.receiverNickname,
-      tag: action.payload.receiverTag
+      tag: action.payload.receiverTag,
+      profileImage : action.payload.profileImage,
     },
     channelId: shortid.generate(),
     messages: [
