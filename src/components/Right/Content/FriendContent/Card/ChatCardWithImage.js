@@ -18,6 +18,7 @@ width : 40px;
 height : 40px;
 position : absolute;
 left : 16px;
+overflow : hidden;
 `
 
 const ContentWrapper = styled.div`
@@ -38,11 +39,18 @@ const ChatCardWithImage = ({ directMessage }) => {
 
     <DivWrapper>
       <ImageWrapper bgColor={profileBGColor}>
-        <DefaultProfileSvg width='26px' fill='white' />
+        {directMessage.User.profileImage ?
+          <div style={{ width: '40px', height: '40px', border: 'none' }}>
+            <svg width='40' height='40' >
+              <image href={directMessage.User.profileImage} height='40' width='40' x='0' y='0' />
+            </svg>
+          </div>
+          : <DefaultProfileSvg width='26px' fill='white' />}
+
       </ImageWrapper>
       <h3>
         <NicknameWrapper>{directMessage.User.nickname}</NicknameWrapper>
-        <DateWrapper>{directMessage.createdAt.substr(0, 10)}</DateWrapper>
+        <DateWrapper>{directMessage.createdAt?.substr(0, 10)}</DateWrapper>
       </h3>
       <ContentWrapper>{directMessage.content}</ContentWrapper>
     </DivWrapper>

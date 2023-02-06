@@ -48,7 +48,7 @@ const ChannelCard = ({ channelInfo, channelType }) => {
   }
   const onClickEvent = () => {
     if (channelType === 'chatting') {
-      dispatch(loadChannelMessageRequest({ channelId: channelInfo.channelId }))
+      dispatch(loadChannelMessageRequest({ channel : channelInfo }))
     }
   }
   return (

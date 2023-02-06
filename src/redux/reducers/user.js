@@ -11,6 +11,8 @@ const initialState = {
   },
 
   isServer: false,
+  isMicOff: false,
+  isHeadsetOff: false,
 
   lastClickedServerId: -1,
   lastClickedMiddleMenu: -1,
@@ -44,18 +46,28 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
 
-    enterServerRequest: (state, action) => {
-      state.lastClickedServerId = action.payload.channelId;
-    },
     enterServerSuccess: (state, action) => {
       state.isServer = true;
     },
     enterHomeSuccess: (state, action) => {
       state.isServer = false;
     },
+    setLastClickedServerId: (state, action) => {
+      state.lastClickedServerId = action.payload.channelId
+    },
+    toggleMic: (state, action) => {
+      if (state.isMicOff && state.isHeadsetOff) {
+        state.isHeadsetOff = !state.isHeadsetOff
+      }
+      state.isMicOff = !state.isMicOff
+    },
+    toggleHeadset: (state, action) => {
+      if (state.isMicOff === state.isHeadsetOff) {
+        state.isMicOff = !state.isMicOff
+      }
+      state.isHeadsetOff = !state.isHeadsetOff
 
-
-
+    },
     changeLoginPageState: (state, action) => {
       state.loginPageState = action.payload.state;
     },
@@ -188,7 +200,8 @@ export const userSlice = createSlice({
 })
 
 export const {
-  enterServerRequest, enterHomeSuccess, enterServerSuccess,
+  enterHomeSuccess, enterServerSuccess,
+  toggleMic, toggleHeadset, setLastClickedServerId,
   changeLoginPageState, changeRightMenuState, changeMiddleMenuState,
   logInRequest, logInSuccess, logInFailure,
   signUpRequest, signUpSuccess, signUpFailure,

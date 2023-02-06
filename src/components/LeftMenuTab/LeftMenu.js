@@ -1,8 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ServerProfile from './ServerProfile';
 import HomeButton from './HomeButton';
+import { useEffect } from 'react';
+import { loadChannelsRequest } from '../../redux/reducers/channel';
 
 const ScrollDiv = styled.div`
   overflow-y : scroll;
@@ -28,13 +30,15 @@ const StyledDiv = styled.div`
 
 const LeftMenu = () => {
   const { channels } = useSelector((state) => state.channel);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadChannelsRequest());
+  }, [])
   return (
     <ScrollDiv>
-      <HomeButton channelInfo={{ channelId: -1, name: 'home' }} />
+      <HomeButton channelInfo={{ channelId: -1, channelName: '다이렉트 메세지' ,  }} />
       <StyledDiv />
-      {channels.map((v, i) => {
-        return <ServerProfile key={v.name} channelInfo={{ channelId: i, name: v.name }} imgSrc={v.profileImage} />
-      })}
+      {channels.map((v, i) => (<ServerProfile key={v.id} channelInfo={v} />))}
 
     </ScrollDiv>
 

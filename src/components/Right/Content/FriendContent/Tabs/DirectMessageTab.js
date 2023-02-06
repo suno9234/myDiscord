@@ -74,9 +74,10 @@ const DirectMessageTab = () => {
             flex: '1 1 auto',
             flexDirection: 'column-reverse',
           }}>
+            <div style={{height:'30px'}}></div>
             {
               currentChannel.currentMessages.map((v, i) =>
-                currentChannel.currentMessages[i + 1]?.createdAt.substr(0, 17) === v.createdAt.substr(0, 17) ?
+                currentChannel.currentMessages[i + 1]?.createdAt?.substr(0, 17) === v.createdAt?.substr(0, 17) ?
                   currentChannel.currentMessages[i + 1]?.User.id === v.User.id ?
                     <ChatCard directMessage={v} key={v.id} />
                     //이전 메세지와 같은 시간(분) 같은 유저일 경우 콘텐트만 추가
@@ -84,14 +85,14 @@ const DirectMessageTab = () => {
                     : <ChatCardWithImage directMessage={v} key={v.id} />
                   // 이전 메세지와 같은 시간(분)이어도 유저가 다르면 상단에 닉네임과 프로필사진 추가
                   :
-                  currentChannel.currentMessages[i + 1]?.createdAt.substr(0, 10) === v.createdAt.substr(0, 10) ?
+                  currentChannel.currentMessages[i + 1]?.createdAt?.substr(0, 10) === v.createdAt?.substr(0, 10) ?
                     // 날짜는 같고 보낸 시간(분) 이 다른 경우
                     <ChatCardWithImage directMessage={v} key={v.id} />
                     :
                     //날짜가 다른 경우 (경계선 추가)
                     <>
                       <ChatCardWithImage directMessage={v} key={v.id} />
-                      <DateLine dateStr={v.createdAt.substr(0, 10)} />
+                      <DateLine dateStr={v.createdAt?.substr(0, 10)} />
                     </>
 
               )
@@ -102,22 +103,31 @@ const DirectMessageTab = () => {
               flexDirection: 'column',
             }}>
               <div style={{
-                display:'flex',
-                backgroundColor: profileBGColor,
-                alignItems:'center',
-                justifyContent:'center',
+                display: 'flex',
+                backgroundColor: currentChannel.currentReceiver.profileImage ? null : profileBGColor,
+                alignItems: 'center',
+                justifyContent: 'center',
                 width: '80px',
                 height: '80px',
+                overflow:'hidden',
                 borderRadius: '50%',
               }}>
-                <DefaultProfileSvg width='60px' fill='white'/>
+                {currentChannel.currentReceiver.profileImage ?
+                  <div style={{ width: '80px', height: '80px', border: 'none' }}>
+                    <svg width='80' height='80' >
+                      <image href={currentChannel.currentReceiver.profileImage} height='80' width='80' x='0' y='0' />
+                    </svg>
+                  </div>
+                  : <DefaultProfileSvg width='60px' fill='white' />
+                }
               </div>
               <h3 style={{
                 margin: '8px 0px',
                 fontSize: '32px',
                 lineHeight: '40px',
+                color:'white',
               }}>{currentChannel.currentReceiver.nickname}</h3>
-              <div>
+              <div style={{color : '#b9bbbe'}}>
                 <strong>{currentChannel.currentReceiver.nickname}</strong> 님과 함께 나눈 메시지의 첫 부분이에요
               </div>
             </div>

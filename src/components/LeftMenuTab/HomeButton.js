@@ -6,7 +6,7 @@ import home from '../../imgs/home.jpg';
 const HomeButton = ({ channelInfo }) => {
 
   return (
-    <div style={{ marginTop: '12px', marginBottom: '2px', flexShrink: '0' }}>
+    <div style={{ marginTop: '12px', marginBottom: '2px', flexShrink: '0' ,position:'relative' }}>
       <Profile channelInfo={channelInfo} imgSrc={home} />
     </div>
 

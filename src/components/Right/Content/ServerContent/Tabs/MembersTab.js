@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import MemberCard from "../MemberCard";
 import MemberCardHeader from "../MemberCardHeader";
 
-const MembersTab = () => {
+const MembersTab = ({isVisible}) => {
   const { currentChannel } = useSelector((state) => state.channel);
   return (
     <div style={{

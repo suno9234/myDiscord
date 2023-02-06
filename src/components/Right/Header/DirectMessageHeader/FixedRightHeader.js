@@ -1,7 +1,8 @@
-import {ReactComponent as ThreadSvg} from '../../../../imgs/svgs/threads.svg';
-import {ReactComponent as AlarmOffSvg} from '../../../../imgs/svgs/alarm-off.svg';
-import {ReactComponent as MembersSvg} from '../../../../imgs/svgs/members.svg';
+import {ReactComponent as CallSvg} from '../../../../imgs/svgs/call.svg';
+import {ReactComponent as CameraSvg} from '../../../../imgs/svgs/camera.svg';
 import {ReactComponent as FixedMessageSvg} from '../../../../imgs/svgs/fixed-message.svg';
+import {ReactComponent as AddFriendSvg} from '../../../../imgs/svgs/add-friend.svg';
+import {ReactComponent as UserProfileSvg} from '../../../../imgs/svgs/user-profile.svg';
 import {ReactComponent as MailSvg} from '../../../../imgs/svgs/mail.svg';
 import {ReactComponent as QuestionSvg} from '../../../../imgs/svgs/question.svg';
 
@@ -24,32 +25,23 @@ color : ${props=>props.isSelected ? 'white' : '#b9bbbe'};
 cursor : pointer;
 `
 const FixedRightHeader = () => {
-  const dispatch = useDispatch();
-  const [isVisibleMember , setIsVisibleMember] = useState(false);
-  const onClickMembers = ()=>{
-    if(isVisibleMember){
-      setIsVisibleMember(false);
-      dispatch(hideMembers());
-    }else{
-      setIsVisibleMember(true);
-      dispatch(showMembers());
-    }
-  }
   return (
     <div style={{
       display : 'flex',
       flexShrink : '0',
       alignItems: 'center',
+      paddingRight : '8px',
       marginLeft : 'auto',
       height: '50px',
-      width: '400px',
+      width: '440px',
       borderBottom: '1px solid #202225',
       zIndex:'2',
     }}>
-      <SvgWrapper><ThreadSvg/></SvgWrapper>
-      <SvgWrapper><AlarmOffSvg/></SvgWrapper>
-      <SvgWrapper isSelected={isVisibleMember} onClick={onClickMembers}><MembersSvg/></SvgWrapper>
+      <SvgWrapper><CallSvg/></SvgWrapper>
+      <SvgWrapper><CameraSvg/></SvgWrapper>
       <SvgWrapper><FixedMessageSvg/></SvgWrapper>
+      <SvgWrapper><AddFriendSvg/></SvgWrapper>
+      <SvgWrapper><UserProfileSvg/></SvgWrapper>
       <SearchBar/>
       <SvgWrapper><MailSvg/></SvgWrapper>
       <SvgWrapper><QuestionSvg/></SvgWrapper>

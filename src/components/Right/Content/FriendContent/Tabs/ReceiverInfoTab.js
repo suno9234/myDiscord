@@ -1,24 +1,27 @@
 import { useSelector } from "react-redux";
-import Vibrant from 'node-vibrant';
 import { useEffect, useState } from "react";
+import { prominent } from 'color.js';
+
 const ReceiverInfoTab = ({ isVisible }) => {
   const { currentChannel } = useSelector((state) => state.directMessage)
-  const getPaletteData = async () => {
-    const paletteData = await Vibrant.from(currentChannel.currentReceiver.profileImage).getPalette()
-    return paletteData;
-  }
+
   const [bgColor, setBgColor] = useState(null)
   useEffect(() => {
-    setBgColor(getPaletteData())
-    console.log(bgColor);
+    prominent(currentChannel.currentReceiver.profileImage, { amount: 1, format: 'hex' }).then(
+      color => {
+        setBgColor(color)
+      }
+    )
   }, [])
 
   return (
     <div style={{
-      display: isVisible ? 'flex' : 'none',
+      display: isVisible && bgColor ? 'flex' : 'none',
+      flexDirection: 'column',
       position: 'relative',
       width: '340px',
       height: '100%',
+      alignItems: 'center',
       backgroundColor: '#292b2f'
     }}>
       <div style={{ width: '100%', height: '120px', backgroundColor: bgColor }} />
@@ -35,6 +38,63 @@ const ReceiverInfoTab = ({ isVisible }) => {
           </div>
           : null}
       </div>
+      <div style={{
+        width: '308px',
+        height: '200px',
+        backgroundColor: '#18191c',
+        borderRadius: '5px',
+        margin: '16px',
+        marginTop: '44px',
+        padding: '0 12px 12px',
+      }}>
+        <div style={{
+          paddingTop: '12px',
+          fontSize: '20px',
+          fontWeight: '600',
+          lineHeight: '24px',
+        }}>
+          <span style={{
+            color: 'white',
+
+          }}>{currentChannel.currentReceiver.nickname}</span>
+          <span style={{
+            color: '#b9bbbe'
+          }}>#{currentChannel.currentReceiver.tag}</span>
+        </div>
+        <div style={{
+          width: '100%',
+          height: '1px',
+          marginTop: '12px',
+          backgroundColor: '#40444b',
+        }} />
+        <div style={{
+          paddingTop: '12px',
+          color: 'white',
+        }}>
+          <div style={{
+            fontSize: '12px',
+            margin: '0 0 6px'
+          }}>Discord 가입 시기:</div>
+          <div style={{
+            fontSize: '14px',
+            color: '#dcddde'
+          }}>12월 08, 2016 </div>
+        </div>
+        <div style={{
+          width: '100%',
+          height: '1px',
+          marginTop: '12px',
+          backgroundColor: '#40444b',
+        }} />
+        <div style={{
+          paddingTop: '12px',
+          color: 'white',
+        }}>
+          메모
+        </div>
+      </div>
+
+
     </div>
   )
 }

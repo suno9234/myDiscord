@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import shortid from "shortid";
 
 import {
-  enterServerRequest, enterHomeSuccess, enterServerSuccess,
+  enterHomeSuccess, enterServerSuccess,
   signUpRequest, signUpSuccess, signUpFailure,
   logInRequest, logInSuccess, logInFailure,
   addFriendRequest, addFriendSuccess, addFriendFailure,
@@ -20,13 +20,13 @@ const dummyWaitingFriends = {
     id: shortid.generate(),
     nickname: faker.name.fullName(),
     tag: Math.floor(Math.random() * (9999 - 1000)) + 1000,
-    profileImage : faker.image.avatar(),
+    profileImage: faker.image.avatar(),
   })),
   senders: Array(10).fill().map((v, i) => ({
     id: shortid.generate(),
     nickname: faker.name.fullName(),
     tag: Math.floor(Math.random() * (9999 - 1000)) + 1000,
-    profileImage : faker.image.avatar(),
+    profileImage: faker.image.avatar(),
   }))
 }
 
@@ -35,19 +35,9 @@ const dummyUsers = Array(20).fill().map((v, i) => ({
   id: shortid.generate(),
   nickname: faker.name.fullName(),
   tag: Math.floor(Math.random() * (9999 - 1000)) + 1000,
-  profileImage : faker.image.avatar(),
+  profileImage: faker.image.avatar(),
   state: state[Math.floor(Math.random() * 2)]
 }))
-
-
-function* enterServer(action) {
-  if (action.payload.name === 'home') {
-    yield put(enterHomeSuccess())
-  } else {
-    yield put(enterServerSuccess({ name: action.payload.name }));
-  }
-}
-
 
 /* function acceptFriendAPI(data) {
   return axios.post(`/user/acceptFriend/${data.senderId}`);
@@ -61,7 +51,7 @@ function* acceptFriend(action) {
       senderId: userInfo.id,
       nickname: userInfo.nickname,
       tag: userInfo.tag,
-      profileImage : userInfo.profileImage,
+      profileImage: userInfo.profileImage,
     }));
   } catch (err) {
     yield put(acceptFriendFailure({ error: err }));
@@ -186,9 +176,6 @@ function* watchLoadFriends() {
 function* watchAddFriend() {
   yield takeLatest(addFriendRequest, addFriend);
 }
-function* watchEnterServer() {
-  yield takeLatest(enterServerRequest, enterServer);
-}
 
 function* watchSignUp() {
   yield takeLatest(signUpRequest, signUp);
@@ -206,7 +193,6 @@ export default function* userSaga() {
     fork(watchLoadWaitingFriends),
     fork(watchLoadFriends),
     fork(watchAddFriend),
-    fork(watchEnterServer),
     fork(watchSignUp),
     fork(watchLogIn),
   ])

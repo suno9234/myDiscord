@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ReactComponent as DefaultProfileSvg } from '../../imgs/svgs/default-profile.svg';
 import { ReactComponent as CancleSvg } from '../../imgs/svgs/cancle.svg';
+import { ReactComponent as OnlineSvg } from '../../imgs/svgs/online.svg';
+import { ReactComponent as OfflineSvg } from '../../imgs/svgs/offline.svg';
 import { loadDirectMessageRequest, removeDirectMessageCardRequest } from '../../redux/reducers/directMessage';
 import { changeMiddleMenuState } from '../../redux/reducers/user';
 
@@ -20,6 +22,7 @@ const DivWrapper = styled.div`
 `
 
 const InnerWrapper = styled.div`
+position : relative;
 display : flex;
 margin-right : 8px;
 border-radius : 4px;
@@ -63,6 +66,7 @@ const DirectMessageCard = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon,
         receiverId: userInfo.id,
         receiverNickname: userInfo.nickname,
         receiverTag: userInfo.tag,
+        profileImage: userInfo.profileImage,
         lastId,
       }))
     }
@@ -93,22 +97,42 @@ const DirectMessageCard = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon,
         paddingLeft: '9px',
       }}>
         {cardType === 'svg' ? <IconWrapper color='inherit' ><SvgIcon width='24px' /></IconWrapper>
-          : <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '50%',
-            marginRight: '12px',
-            flexShrink: '0',
-            position: 'relative',
-            width: '32px',
-            height: '32px',
-            backgroundColor: profileBGColor
-          }} >
-            {userInfo.ProfileImage || <DefaultProfileSvg width='20px' fill='white' />}
-            {/* {<img src={`http://localhost:3065/${userInfo.Image.src}`} alt='profileImage'/>} */}
-          </div>
-
+          : <>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '50%',
+              marginRight: '12px',
+              flexShrink: '0',
+              position: 'relative',
+              width: '32px',
+              height: '32px',
+              overflow: 'hidden',
+              border: 'none',
+              backgroundColor: userInfo.profileImage ? 'transparent' : profileBGColor
+            }} >
+              {userInfo.profileImage ?
+                <div style={{ width: '32px', height: '32px', border: 'none' }}>
+                  <svg width='32' height='32' >
+                    <image href={userInfo.profileImage} height='32' width='32' x='0' y='0' />
+                  </svg>
+                </div>
+                : <DefaultProfileSvg width='20px' fill='white' />}
+              {/* {<img src={`http://localhost:3065/${userInfo.Image.src}`} alt='profileImage'/>} */}
+            </div>
+            <div style={{
+              position: 'absolute',
+              left: '30px',
+              top: '24px',
+              width: '15px',
+              height: '15px',
+              backgroundColor: 'transparent',
+              zIndex: '2',
+            }}>
+              {userInfo.state === 'online' ? <OnlineSvg /> : <OfflineSvg />}
+            </div>
+          </>
         }
 
         <div style={{

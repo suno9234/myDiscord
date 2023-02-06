@@ -1,21 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-  channels: [
-    {
-      channelName: 'Channel01',
-      channelId: 1,
-      profileImage: null,
-    }
-  ],
-  selectedChattingChannelId: 1,
+  channels: [],
   currentChannel: {
     channelName: 'Channel01',
     channelId: '1',
-    lastSelectedChattingChannelId : null,
-    isvisibleChattingChannels : true,
-    isvisibleVoiceChannels : true,
-    isvisibleMembers : false,
+    lastSelectedChattingChannelId: null,
+    isvisibleChattingChannels: true,
+    isvisibleVoiceChannels: true,
+    isvisibleMembers: true,
     chattingChannels: [
       {
         channelId: 'server_1_chat_1',
@@ -32,11 +25,11 @@ const initialState = {
         channelName: '일반'
       }
     ],
-    Users : [
+    Users: [
       {
-        id : 1,
-        nickname : 'Suno',
-        state : 'online',
+        id: 1,
+        nickname: 'Suno',
+        state: 'online',
       }
     ]
   },
@@ -47,21 +40,22 @@ export const channelSlice = createSlice({
   initialState,
   reducers: {
 
-    setLastSelectedChattingChannelId : (state,action)=>{
+    setLastSelectedChattingChannelId: (state, action) => {
+      console.log("SET LAST CLICKED :", action.payload)
       state.currentChannel.lastSelectedChattingChannelId = action.payload.channelId;
     },
 
-    hideChattingChannels : (state,action)=>{
+    hideChattingChannels: (state, action) => {
       state.currentChannel.isvisibleChattingChannels = false;
     },
-    showChattingChannels : (state,action)=>{
+    showChattingChannels: (state, action) => {
       state.currentChannel.isvisibleChattingChannels = true;
     },
 
-    hideMembers : (state,action)=>{
+    hideMembers: (state, action) => {
       state.currentChannel.isvisibleMembers = false;
     },
-    showMembers : (state,action)=>{
+    showMembers: (state, action) => {
       state.currentChannel.isvisibleMembers = true;
     },
 
@@ -69,18 +63,31 @@ export const channelSlice = createSlice({
       console.log('loadChannelRequest');
     },
     loadChannelSuccess: (state, action) => {
-      state.currentChannel.lastSelectedChattingChannelId = state.currentChannel.chattingChannels[0].channelId;
+      console.log(action.payload);
+      state.currentChannel = action.payload;
     },
     loadChannelFailure: (state, action) => {
       console.log('loadChannelFailure');
+    },
+
+    loadChannelsRequest: (state, action) => {
+      console.log('LOAD_CHANNELS')
+    },
+    loadChannelsSuccess: (state, action) => {
+      console.log('LOAD_CHANNELS_SUCCSES')
+      state.channels = action.payload;
+    },
+    loadChannelsFailure: (state, action) => {
+
     },
   }
 })
 export const {
   loadChannelRequest, loadChannelSuccess, loadChannelFailure,
-  setLastSelectedChattingChannelId, 
-  hideChattingChannels , showChattingChannels,
-  hideMembers,showMembers,
+  loadChannelsRequest, loadChannelsSuccess, loadChannelsFailure,
+  setLastSelectedChattingChannelId,
+  hideChattingChannels, showChattingChannels,
+  hideMembers, showMembers,
 
 } = channelSlice.actions;
 export default channelSlice.reducer;

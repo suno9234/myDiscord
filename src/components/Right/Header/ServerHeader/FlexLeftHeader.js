@@ -33,7 +33,8 @@ const FlexLeftHeader = () => {
       }}>
         <ChannelSvg fill='#96989d' width='24px' />
       </div>
-      <div style={{ position: 'absolute', left: '42px', top: '17px', display: 'flex', whiteSpace: 'nowrap', color: 'white', fontWeight:'600' }}>{currentChannel.chattingChannels.filter((v) => v.channelId === currentChannel.lastSelectedChattingChannelId)[0].channelName}</div>
+      <div style={{ position: 'absolute', left: '42px', top: '17px', display: 'flex', whiteSpace: 'nowrap', color: 'white', fontWeight:'600' }}>
+        {currentChannel.chattingChannels.filter((v) => v.channelId === currentChannel.lastSelectedChattingChannelId)[0]?.channelName}</div>
 
 
     </Wrapper>)

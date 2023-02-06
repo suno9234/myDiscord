@@ -8,6 +8,8 @@ import { postMessageRequest } from '../../../../../redux/reducers/directMessage'
 import { ReactComponent as UploadSvg } from '../../../../../imgs/svgs/upload-button.svg';
 import { ReactComponent as UploadStickerSvg } from '../../../../../imgs/svgs/upload-sticker.svg';
 import { ReactComponent as UploadGifSvg } from '../../../../../imgs/svgs/upload-gif.svg';
+import { ReactComponent as ChattingChannel } from '../../../../../imgs/svgs/chattingChannel.svg';
+
 
 const ScrollWrapper = styled.div`
 position : absolute;
@@ -50,27 +52,27 @@ const DirectMessageTab = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [postMessageDone])
+  }, [postMessageDone, currentChannel.currentMessages.length])
   return (
     <div style={{
       display: 'flex',
-      position : 'relative',
-      flexGrow:'1',
-      flexShrink:'1',
+      position: 'relative',
+      flexGrow: '1',
+      flexShrink: '1',
       flexDirection: 'column',
-      minWidth:'0',
+      minWidth: '0',
       height: '100%',
-      overflow:'hidden',
+      overflow: 'hidden',
     }}>
       <div style={{
         display: 'flex',
-        position:'relative',
+        position: 'relative',
         minHeight: '0',
         flexDirection: 'column',
-        minWidth:'0',
-        height:'100%',
-        marginRight:'4px',
-        overflow:'hidden',
+        minWidth: '0',
+        height: '100%',
+        marginRight: '4px',
+        overflow: 'hidden',
       }}>
         <ScrollWrapper ref={scrollRef}>
           <div className='ContentWrapper' style={{
@@ -78,6 +80,7 @@ const DirectMessageTab = () => {
             flex: '1 1 auto',
             flexDirection: 'column-reverse',
           }}>
+            <div style={{height:'30px'}}></div>
             {
               currentChannel.currentMessages.map((v, i) =>
                 currentChannel.currentMessages[i + 1]?.createdAt?.substr(0, 17) === v.createdAt?.substr(0, 17) ?
@@ -88,15 +91,15 @@ const DirectMessageTab = () => {
 
                     : <div style={{ margin: '17px 0 0', padding: '2px 48px 2px 72px', position: 'relative' }} key={i}>
                       <div style={{ borderRadius: '50%', backgroundColor: 'red', width: '40px', height: '40px', position: 'absolute', left: '16px', }} />
-                      <h3><span style={{ marginRight: '.25rem' }}>{v.User.nickname}</span><span>{v.createdAt.substr(0, 10)}</span></h3>
+                      <h3><span style={{ marginRight: '.25rem' }}>{v.User.nickname}</span><span>{v.createdAt?.substr(0, 10)}</span></h3>
                       <div style={{ color: '#dcddde' }}>{v.content}</div>
                     </div> // 이전 메세지와 같은 시간(분)이어도 유저가 다르면 상단에 닉네임과 프로필사진 추가
                   :
-                  currentChannel.currentMessages[i + 1]?.createdAt.substr(0, 10) === v.createdAt.substr(0, 10) ?
+                  currentChannel.currentMessages[i + 1]?.createdAt?.substr(0, 10) === v.createdAt?.substr(0, 10) ?
                     // 날짜는 같고 보낸 시간(분) 이 다른 경우
                     <div style={{ margin: '17px 0 0', padding: '2px 48px 2px 72px', position: 'relative' }} key={i}>
                       <div style={{ borderRadius: '50%', backgroundColor: 'red', width: '40px', height: '40px', position: 'absolute', left: '16px', }} />
-                      <h3><span style={{ marginRight: '.25rem', color: '#dcddde' }}>{v.User.nickname}</span><span>{v.createdAt.substr(0, 16)}</span></h3>
+                      <h3><span style={{ marginRight: '.25rem', color: '#dcddde' }}>{v.User.nickname}</span><span>{v.createdAt?.substr(0, 16)}</span></h3>
                       <div style={{ color: '#dcddde' }}>{v.content}</div>
                     </div>
                     :
@@ -104,7 +107,7 @@ const DirectMessageTab = () => {
                     <>
                       <div style={{ margin: '17px 0 0', padding: '2px 48px 2px 72px', position: 'relative' }} key={i}>
                         <div style={{ borderRadius: '50%', backgroundColor: 'red', width: '40px', height: '40px', position: 'absolute', left: '16px', }} />
-                        <h3><span style={{ marginRight: '.25rem' , color: '#dcddde'}}>{v.User.nickname}</span><span>{v.createdAt.substr(0, 10)}</span></h3>
+                        <h3><span style={{ marginRight: '.25rem', color: '#dcddde' }}>{v.User.nickname}</span><span>{v.createdAt?.substr(0, 10)}</span></h3>
                         <div style={{ color: '#dcddde' }}>{v.content}</div>
                       </div>
                       <div style={{
@@ -112,7 +115,7 @@ const DirectMessageTab = () => {
                         , fontSize: '12px', fontWeight: '600'
                       }}>
                         <div style={{ display: 'flex', flexGrow: '1', backgroundColor: '#40444b', height: '1px' }}></div>
-                        {v.createdAt.substr(0, 10)}
+                        {v.createdAt?.substr(0, 10)}
                         <div style={{ backgroundColor: '#40444b', height: '1px', display: 'flex', flexGrow: '1', }}></div>
                       </div>
                     </>
@@ -125,19 +128,27 @@ const DirectMessageTab = () => {
               flexDirection: 'column',
             }}>
               <div style={{
-                backgroundColor: 'red',
-                width: '80px',
-                height: '80px',
+                backgroundColor: '#4f545c',
+                marginTop:'16px',
+                width: '68px',
+                height: '68px',
                 borderRadius: '50%',
+                overflow : 'hidden',
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center',
               }}>
+                <ChattingChannel width='44px' fill="white"/>
               </div>
               <h3 style={{
                 margin: '8px 0px',
                 fontSize: '32px',
                 lineHeight: '40px',
-              }}>TEST</h3>
-              <div>
-                <strong>TEST</strong> 님과 함께 나눈 메시지의 첫 부분이에요
+                fontWeight:'700',
+                color : 'white',
+              }}>#{currentChannel.channelName}에 오신 것을 환영합니다!</h3>
+              <div style={{color : '#b9bbbe'}}>
+                #<strong>{currentChannel.channelName}</strong> 채널의 첫 시작이에요.
               </div>
             </div>
           </div>
@@ -146,7 +157,7 @@ const DirectMessageTab = () => {
 
       <form style={{
         display: 'flex',
-        minWidth:'0',
+        minWidth: '0',
         height: '68px',
         padding: '0 16px ',
       }} onSubmit={onSubmitForm}>
@@ -156,7 +167,7 @@ const DirectMessageTab = () => {
           width: '100%',
           borderRadius: '8px',
           marginBottom: '24px',
-          minWidth:'0',
+          minWidth: '0',
         }}>
           <button style={{
             width: '56px',
@@ -168,9 +179,9 @@ const DirectMessageTab = () => {
               <UploadSvg fill="#b9bbbe" />
             </div>
           </button>
-          <input style={{ outline: '0' ,width:'100%' ,minWidth:'0'}} placeholder="메시지를 보내세요" value={message || ''} onChange={onChangeMessage} />
+          <input style={{ outline: '0', width: '100%', minWidth: '0' }} placeholder="메시지를 보내세요" value={message || ''} onChange={onChangeMessage} />
           {/* <button type='submit' onSubmit={onSubmitForm} /> */}
-          <div style={{ display: 'flex', alignItems: 'center', height: '44px', width: '150px', marginLeft: 'auto', minWidth:'0'}}>
+          <div style={{ display: 'flex', alignItems: 'center', height: '44px', width: '150px', marginLeft: 'auto', minWidth: '0' }}>
             <div style={{
               margin: '0px 4px',
               padding: '4px',

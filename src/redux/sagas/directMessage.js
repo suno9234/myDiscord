@@ -24,7 +24,8 @@ function* loadChannelMessage(action) {
     // const result = yield call(loadChannelMessageAPI, action.payload);
     const result = {
       data: {
-        channelId: action.payload.channelId,
+        channelId: action.payload.channel.channelId,
+        channelName: action.payload.channel.channelName,
         messages: [
           {
             date: '1',
@@ -35,17 +36,17 @@ function* loadChannelMessage(action) {
       }
     }
     yield put(loadChannelMessageSuccess(result.data));
-    yield put(setLastSelectedChattingChannelId({ channelId: action.payload.channelId }))
+    yield put(setLastSelectedChattingChannelId({ channelId: result.data.channelId }))
   } catch (err) {
     yield put(loadChannelMessageFailure({ error: err }));
   }
 }
 
-const dummyCards = Array(15).fill().map((v) => ({
+const dummyCards = Array(5).fill().map((v) => ({
   id: shortid.generate(),
   nickname: faker.name.fullName(),
   tag: Math.floor(Math.random() * (9999 - 1000)) + 1000,
-  profileImage : faker.image.avatar(),
+  profileImage: faker.image.avatar(),
 }))
 
 
@@ -72,89 +73,97 @@ function* loadDirectMessage(action) {
       id: action.payload.receiverId,
       nickname: action.payload.receiverNickname,
       tag: action.payload.receiverTag,
-      profileImage : action.payload.profileImage,
+      profileImage: action.payload.profileImage,
+      state:action.payload.state,
     },
     channelId: shortid.generate(),
     messages: [
       {
-        id : 7,
-        User : {
-          id : action.payload.receiverId,
-          nickname : action.payload.receiverNickname,
-          tag : action.payload.receiverTag,
+        id: 7,
+        User: {
+          id: action.payload.receiverId,
+          nickname: action.payload.receiverNickname,
+          tag: action.payload.receiverTag,
+          profileImage: action.payload.profileImage,
         },
-        createdAt : '2023-02-01T18:36:30',
-        content :  faker.lorem.sentence(),
+        createdAt: '2023-02-01T18:36:30',
+        content: faker.lorem.sentence(),
       },
       {
-        id : 6,
-        User : {
-          id : 1,
-          nickname : 'Suno',
-          tag : 6600,
+        id: 6,
+        User: {
+          id: 1,
+          nickname: 'Suno',
+          tag: 6600,
         },
-        createdAt : '2023-02-01T18:33:33',
-        content :  faker.lorem.sentence(),
+        createdAt: '2023-02-01T18:33:33',
+        content: faker.lorem.sentence(),
       },
       {
-        id : 5,
-        User : {
-          id : 1,
-          nickname : 'Suno',
-          tag : 6600,
+        id: 5,
+        User: {
+          id: action.payload.receiverId,
+          nickname: action.payload.receiverNickname,
+          tag: action.payload.receiverTag,
+          profileImage: action.payload.profileImage,
         },
-        createdAt : '2023-02-01T18:32:31',
-        content :  faker.lorem.sentence(),
+        createdAt: '2023-02-01T18:32:31',
+        content: faker.lorem.sentence(),
       },
       {
-        id : 4,
-        User : {
-          id : action.payload.receiverId,
-          nickname : action.payload.receiverNickname,
-          tag : action.payload.receiverTag,
+        id: 4,
+        User: {
+          id: action.payload.receiverId,
+          nickname: action.payload.receiverNickname,
+          tag: action.payload.receiverTag,
+          profileImage: action.payload.profileImage,
         },
-        createdAt : '2023-02-01T18:32:30',
-        content :  faker.lorem.sentence(),
+        createdAt: '2023-02-01T18:32:30',
+        content: faker.lorem.sentence(),
       },
       {
-        id : 3,
-        User : {
-          id : action.payload.receiverId,
-          nickname : action.payload.receiverNickname,
-          tag : action.payload.receiverTag,
+        id: 3,
+        User: {
+          id: action.payload.receiverId,
+          nickname: action.payload.receiverNickname,
+          tag: action.payload.receiverTag,
+          profileImage: action.payload.profileImage,
         },
-        createdAt : '2023-02-01T18:32:25',
-        content :  faker.lorem.sentence(),
+        createdAt: '2023-02-01T18:32:25',
+        content: faker.lorem.sentence(),
       },
       {
-        id : 2,
-        User : {
-          id : action.payload.receiverId,
-          nickname : action.payload.receiverNickname,
-          tag : action.payload.receiverTag,
+        id: 2,
+        User: {
+          id: action.payload.receiverId,
+          nickname: action.payload.receiverNickname,
+          tag: action.payload.receiverTag,
+          profileImage: action.payload.profileImage,
         },
-        createdAt : '2023-02-01T18:32:15',
-        content :  faker.lorem.sentence(),
+        createdAt: '2023-02-01T18:32:15',
+        content: faker.lorem.sentence(),
       },
       {
-        id : 1,
-        User : {
-          id : action.payload.receiverId,
-          nickname : action.payload.receiverNickname,
-          tag : action.payload.receiverTag,
+        id: 1,
+        User: {
+          id: action.payload.receiverId,
+          nickname: action.payload.receiverNickname,
+          tag: action.payload.receiverTag,
+          profileImage: action.payload.profileImage,
         },
-        createdAt : '2023-02-01T18:32:10',
-        content : faker.lorem.sentence(),
+        createdAt: '2023-02-01T18:32:10',
+        content: faker.lorem.sentence(),
       },
       {
-        id : 0,
-        User : {
-          id : action.payload.receiverId,
-          nickname : action.payload.receiverNickname,
-          tag : action.payload.receiverTag,
+        id: 0,
+        User: {
+          id: action.payload.receiverId,
+          nickname: action.payload.receiverNickname,
+          tag: action.payload.receiverTag,
+          profileImage: action.payload.profileImage,
         },
-        createdAt : '2023-02-01T18:32:00',
-        content : faker.lorem.sentence(),
+        createdAt: '2023-02-01T18:32:00',
+        content: faker.lorem.sentence(),
       },
     ],
   }
@@ -177,14 +186,14 @@ function* myPostMessage(action) {
     /* const result = yield call(postMessageAPI, action.payload); action(result.data) */
     const today = new Date();
     const result = {
-      data : {
-        User : {
-          id : 1,
-          nickname : 'Suno',
-          tag : 6600,
+      data: {
+        User: {
+          id: 1,
+          nickname: 'Suno',
+          tag: 6600,
         },
-        content : action.payload.content,
-        createdAt : today.toLocaleString(),
+        content: action.payload.content,
+        createdAt: today.toLocaleString(),
       }
     }
     yield put(postMessageSuccess(result.data));

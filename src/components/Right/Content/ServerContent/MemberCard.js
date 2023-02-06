@@ -33,8 +33,10 @@ justify-content : center;
 margin : 0 12px 0 0 ;
 width : 32px;
 height : 32px;
+overflow : hidden;
+border-radius : 50%;
 `
-const MemberCard = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon, name }) => {
+const MemberCard = ({ userInfo }) => {
   const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
   const { lastClickedMiddleMenu } = useSelector((state) => state.user);
@@ -60,16 +62,13 @@ const MemberCard = ({ cardType, userInfo, SvgIcon, HoverSvgIcon, PngIcon, name }
         paddingLeft: '9px',
       }}>
         <IconWrapper>
-          {cardType !== 'svg' ? <div style={{ borderRadius: '50%', backgroundColor: 'red', width: '32px', height: '32px' }}></div> :
-            lastClickedMiddleMenu === userInfo.id ? <HoverSvgIcon width='24px' height='24px' /> :
-              !hover ? <SvgIcon width='24px' height='24px' /> : <HoverSvgIcon width='24px' height='24px' />
-          }
+          {userInfo.profileImage ? <svg width='32px' height='32px'><image width='32px' height='32px' href={userInfo.profileImage}/></svg> : null}
 
         </IconWrapper>
         <div style={{
           marginRight: 'auto',
         }}>
-          {name ? name : userInfo.nickname}
+          {userInfo.nickname}
         </div>
       </InnerWrapper>
     </DivWrapper>
