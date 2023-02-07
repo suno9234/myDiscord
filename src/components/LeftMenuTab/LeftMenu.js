@@ -36,9 +36,9 @@ const LeftMenu = () => {
   }, [])
   return (
     <ScrollDiv>
-      <HomeButton channelInfo={{ channelId: -1, channelName: '다이렉트 메세지' ,  }} />
+      <HomeButton channelInfo={{ channelId: -1, channelName: '다이렉트 메세지', }} />
       <StyledDiv />
-      {channels.map((v, i) => (<ServerProfile key={v.id} channelInfo={v} />))}
+      {channels.map((v, i) => (<ServerProfile key={v.channelId} channelInfo={v} />))}
 
     </ScrollDiv>
 

@@ -68,13 +68,14 @@ function* loadDirectMessageList(action) {
 
 function* loadDirectMessage(action) {
   console.log(action.payload);
+  const today = new Date();
   const dummyDirectMessage = {
     receiver: {
       id: action.payload.receiverId,
       nickname: action.payload.receiverNickname,
       tag: action.payload.receiverTag,
       profileImage: action.payload.profileImage,
-      state:action.payload.state,
+      state: action.payload.state,
     },
     channelId: shortid.generate(),
     messages: [
@@ -86,7 +87,8 @@ function* loadDirectMessage(action) {
           tag: action.payload.receiverTag,
           profileImage: action.payload.profileImage,
         },
-        createdAt: '2023-02-01T18:36:30',
+        temp: today.setMinutes(today.getMinutes() - 100),
+        createdAt: today.toLocaleString(),
         content: faker.lorem.sentence(),
       },
       {
@@ -96,7 +98,8 @@ function* loadDirectMessage(action) {
           nickname: 'Suno',
           tag: 6600,
         },
-        createdAt: '2023-02-01T18:33:33',
+        temp:today.setSeconds(today.getSeconds() - 3),
+        createdAt: today.toLocaleString(),
         content: faker.lorem.sentence(),
       },
       {
@@ -107,7 +110,8 @@ function* loadDirectMessage(action) {
           tag: action.payload.receiverTag,
           profileImage: action.payload.profileImage,
         },
-        createdAt: '2023-02-01T18:32:31',
+        temp : today.setMinutes(today.getMinutes() - 1),
+        createdAt: today.toLocaleString(),
         content: faker.lorem.sentence(),
       },
       {
@@ -118,7 +122,8 @@ function* loadDirectMessage(action) {
           tag: action.payload.receiverTag,
           profileImage: action.payload.profileImage,
         },
-        createdAt: '2023-02-01T18:32:30',
+        temp : today.setSeconds(today.getSeconds() - 30),
+        createdAt: today.toLocaleString(),
         content: faker.lorem.sentence(),
       },
       {
@@ -129,7 +134,8 @@ function* loadDirectMessage(action) {
           tag: action.payload.receiverTag,
           profileImage: action.payload.profileImage,
         },
-        createdAt: '2023-02-01T18:32:25',
+        temp : today.setMinutes(today.getMinutes() - 1),
+        createdAt: today.toLocaleString(),
         content: faker.lorem.sentence(),
       },
       {
@@ -140,7 +146,8 @@ function* loadDirectMessage(action) {
           tag: action.payload.receiverTag,
           profileImage: action.payload.profileImage,
         },
-        createdAt: '2023-02-01T18:32:15',
+        temp : today.setMinutes(today.getMinutes() - 1),
+        createdAt: today.toLocaleString(),
         content: faker.lorem.sentence(),
       },
       {
@@ -151,7 +158,8 @@ function* loadDirectMessage(action) {
           tag: action.payload.receiverTag,
           profileImage: action.payload.profileImage,
         },
-        createdAt: '2023-02-01T18:32:10',
+        temp : today.setMinutes(today.getMinutes() - 1),
+        createdAt: today.toLocaleString(),
         content: faker.lorem.sentence(),
       },
       {
@@ -162,7 +170,8 @@ function* loadDirectMessage(action) {
           tag: action.payload.receiverTag,
           profileImage: action.payload.profileImage,
         },
-        createdAt: '2023-02-01T18:32:00',
+        temp : today.setMinutes(today.getMinutes() - 1),
+        createdAt: today.toLocaleString(),
         content: faker.lorem.sentence(),
       },
     ],

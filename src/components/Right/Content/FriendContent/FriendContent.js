@@ -9,6 +9,8 @@ import AddFriendForm from "./Tabs/AddFriendForm";
 import DirectMessageTab from "./Tabs/DirectMessageTab";
 import ReceiverInfoTab from "./Tabs/ReceiverInfoTab";
 import { debounce } from "lodash"
+import BannedUserTab from "./Tabs/BannedUserTab";
+import DirectMessageTab2 from "./Tabs/DirectMessageTab2";
 
 const DivWrapper = styled.div`
 display : flex;
@@ -45,11 +47,12 @@ const FriendContent = () => {
     <DivWrapper>
       {
         [-1, -2].includes(lastClickedMiddleMenu) ?
-          rightMenuState === 'addFriends' ? <AddFriendForm /> :
-            rightMenuState === 'online' || 'all' || 'waiting' ? <AllFriends /> :
-              null :
+          rightMenuState === '친구 추가하기' ? <AddFriendForm /> :
+            rightMenuState === '차단 목록' ? <BannedUserTab /> :
+              rightMenuState === '온라인' || '모두' || '대기 중' ? <AllFriends /> :
+                null :
           <>
-            <DirectMessageTab />
+            <DirectMessageTab2 />
             <ReceiverInfoTab isVisible={isVisibleUserInfo} />
           </>
       }

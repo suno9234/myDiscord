@@ -66,6 +66,7 @@ const WaitingCard = ({ type, userInfo }) => {
             position: 'relative',
             width: '32px',
             height: '32px',
+            color : 'white',
             backgroundColor: profileBGColor
           }} >
             {userInfo.ProfileImage || <DefaultProfileSvg width='20px' fill='white' />}

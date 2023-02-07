@@ -32,7 +32,7 @@ right : 0;
 }
 `
 
-const DirectMessageTab = () => {
+const DirectMessageTab2 = () => {
   const scrollRef = useRef();
   const inputRef = useRef();
   const dispatch = useDispatch();
@@ -50,6 +50,29 @@ const DirectMessageTab = () => {
     }));
     setMessage(null);
     scrollToBottom();
+  }
+  const convertString2Date = (s) => {
+    if (!s) {
+      return null
+    }
+    const result = new Date(s.substr(0, 10))
+    let isAfternoon = false;
+    if (s.substr(12, 2) === '오후') {
+      isAfternoon = true;
+    }
+    const time = s.substr(15);
+    const tA = time.split(':');
+    let hour = tA[0]
+    const minute = tA[1]
+    const second = tA[2]
+    if (isAfternoon) {
+      hour = String(parseInt(hour) + 12)
+    }
+    console.log(hour, minute, second)
+    result.setHours(result.getHours() + hour)
+    result.setMinutes(result.getMinutes() + minute)
+    result.setSeconds(result.getSeconds() + second)
+    return result;
   }
 
   useEffect(() => {
@@ -74,28 +97,54 @@ const DirectMessageTab = () => {
             flex: '1 1 auto',
             flexDirection: 'column-reverse',
           }}>
-            <div style={{height:'30px'}}></div>
+            <div style={{ height: '30px' }}></div>
             {
-              currentChannel.currentMessages.map((v, i) =>
-                currentChannel.currentMessages[i + 1]?.createdAt?.substr(0, 17) === v.createdAt?.substr(0, 17) ?
-                  currentChannel.currentMessages[i + 1]?.User.id === v.User.id ?
-                    <ChatCard directMessage={v} key={v.id} />
-                    //이전 메세지와 같은 시간(분) 같은 유저일 경우 콘텐트만 추가
-
-                    : <ChatCardWithImage directMessage={v} key={v.id} />
-                  // 이전 메세지와 같은 시간(분)이어도 유저가 다르면 상단에 닉네임과 프로필사진 추가
-                  :
-                  currentChannel.currentMessages[i + 1]?.createdAt?.substr(0, 10) === v.createdAt?.substr(0, 10) ?
-                    // 날짜는 같고 보낸 시간(분) 이 다른 경우
+              currentChannel.currentMessages.map((v, i) => {
+                const currentDate = convertString2Date(v.createdAt);
+                const nextDate = convertString2Date(currentChannel.currentMessages[i + 1]?.createdAt)
+                if (!nextDate) {
+                  console.log("NO NEXT DATE")
+                  return (<>
                     <ChatCardWithImage directMessage={v} key={v.id} />
-                    :
-                    //날짜가 다른 경우 (경계선 추가)
-                    <>
+                    <DateLine dateStr={v.createdAt?.substr(0, 10)} />
+                  </>)
+                }
+                /* console.log("CURRENT : ", currentDate)
+                console.log("NEXT : ", nextDate)
+                console.log(currentDate.getTime())
+                console.log(nextDate.getTime()) */
+                let answer;
+                if (currentDate.getTime() - nextDate.getTime() < 60001) {
+                  if (currentChannel.currentMessages[i + 1]?.User.id === v.User.id) {
+                    answer = <ChatCard directMessage={v} key={v.id} />
+                    //이전 메세지와 같은 시간(분) 같은 유저일 경우 콘텐트만 추가
+                  } else {
+                    console.log("DIFFRENT USER");
+                    answer = <ChatCardWithImage directMessage={v} key={v.id} />;
+                    // 이전 메세지와 같은 시간(분)이어도 유저가 다르면 상단에 닉네임과 프로필사진 추가
+                  }
+                } else {
+                  if (currentDate.getDay() === nextDate.getDay() &&
+                    currentDate.getMonth() === nextDate.getMonth() &&
+                    currentDate.getFullYear() === nextDate.getFullYear()) {
+                    answer = <ChatCardWithImage directMessage={v} key={v.id} />
+                    console.log("LONG_DISTANCE")
+                    // 보낸 시간(분)이 다르나 날짜가 같은 경우
+                  } else {
+                    console.log("DATE DIFFRENT")
+                    console.log(v.createdAt)
+                    console.log(currentDate)
+                    console.log(currentChannel.currentMessages[i + 1].createdAt)
+                    console.log(nextDate)
+                    answer = <>
                       <ChatCardWithImage directMessage={v} key={v.id} />
                       <DateLine dateStr={v.createdAt?.substr(0, 10)} />
                     </>
-
-              )
+                    //날짜가 다른 경우 (경계선 추가)
+                  }
+                }
+                return answer;
+              })
             }
             <div className='content' style={{
               margin: '16px',
@@ -109,9 +158,9 @@ const DirectMessageTab = () => {
                 justifyContent: 'center',
                 width: '80px',
                 height: '80px',
-                overflow:'hidden',
+                overflow: 'hidden',
                 borderRadius: '50%',
-                color:'white',
+                color: 'white',
               }}>
                 {currentChannel.currentReceiver.profileImage ?
                   <div style={{ width: '80px', height: '80px' }}>
@@ -126,9 +175,9 @@ const DirectMessageTab = () => {
                 margin: '8px 0px',
                 fontSize: '32px',
                 lineHeight: '40px',
-                color:'white',
+                color: 'white',
               }}>{currentChannel.currentReceiver.nickname}</h3>
-              <div style={{color : '#b9bbbe'}}>
+              <div style={{ color: '#b9bbbe' }}>
                 <strong>{currentChannel.currentReceiver.nickname}</strong> 님과 함께 나눈 메시지의 첫 부분이에요
               </div>
             </div>
@@ -182,4 +231,4 @@ const DirectMessageTab = () => {
     </div >
   )
 }
-export default DirectMessageTab;
+export default DirectMessageTab2;

@@ -1,20 +1,37 @@
-import mailIcon from '../../../../imgs/mail-black.png';
-import questionIcon from '../../../../imgs/question-black.png';
+import { ReactComponent as MailSvg } from '../../../../imgs/svgs/mail.svg';
+import { ReactComponent as QeustionSvg } from '../../../../imgs/svgs/question.svg';
 
 const FixedRightHeader = () => {
   return (
     <div style={{
-      display:'flex',
-      justifyContent:'center',
-      alignItems:'center',
-      flexShrink : '0',
-      width:'90px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexShrink: '0',
+      width: '90px',
       backgroundColor: '#36393f',
-      height:'50px',
-      marginLeft :'0',
+      borderBottom :'1px solid #202225',
+      height: '50px',
+      marginLeft: '0',
+      color: '#b9bbbe',
     }}>
-      <img src={mailIcon} alt='mail' style={{ height:'19px' ,paddingLeft:'4px',paddingRight:'8x'}}/>
-      <img src={questionIcon} alt='question' style={{ height:'19px',paddingLeft:'8px',paddingRight:'8px'}}/>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '40px',
+      }}>
+        <MailSvg height='24px' />
+      </div>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '40px',
+      }}>
+        <QeustionSvg height='24px' />
+      </div>
+      
     </div>
   )
 }

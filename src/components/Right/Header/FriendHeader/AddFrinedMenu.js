@@ -16,16 +16,12 @@ flex-shrink : 0;
 line-height: 20px;
 cursor : pointer;
 white-space : nowrap;
-background-color : ${props => props.isSelected ? '#454950' : '#36393f'};
-color : ${props => props.isSelected ? 'white' : 'gray'};
-&:hover{
-  background-color : #454950;
-  color : white;
-}
+background-color : ${props => props.isSelected ? 'transparent' : '#2d7d46'};
+color : ${props => props.isSelected ? '#46c460' : 'white'};
 `;
 
 
-const Menu = ({ menuName, ml, mr, onClickMenu }) => {
+const AddFriendMenu = ({ menuName, ml, mr, onClickMenu }) => {
   const { rightMenuState } = useSelector((state) => state.user);
   return (
     <StyledDiv style={{
@@ -40,4 +36,4 @@ const Menu = ({ menuName, ml, mr, onClickMenu }) => {
   )
 }
 
-export default Menu;
+export default AddFriendMenu;

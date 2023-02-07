@@ -52,19 +52,20 @@ const AllFriends = () => {
               margin: '16px 20px 8px 30px',
               color: '#b9bbbe',
             }}>
-              {`${rightMenuState === 'online' ? '온라인' :
-                rightMenuState === 'all' ? '모든 친구' : '대기중'} - 
-                ${rightMenuState === 'online' ? Friends.filter(v => v.state === 'online').length :
-                  rightMenuState === 'all' ? Friends.length : FriendRequests.sended.length + FriendRequests.received.length}명`}
+              {`${rightMenuState} - 
+                ${rightMenuState === '온라인' ? Friends.filter(v => v.state === 'online').length :
+                  rightMenuState === '모두' ? Friends.length : FriendRequests.sended.length + FriendRequests.received.length}명`}
             </h2>
           </div>
           <ScrollDiv>
-            {rightMenuState === 'online' ? Friends.filter((v) => v.state === 'online').map((v) => <FriendCard key={v.id} userInfo={v} />) :
-              rightMenuState === 'all' ? Friends.map((v) => <FriendCard key={v.id} userInfo={v} />) :
-                <>
-                  {FriendRequests.sended.map((v) => <WaitingCard key={v.id} type='sended' userInfo={v} />)}
-                  {FriendRequests.received.map((v) => <WaitingCard key={v.id} type='received' userInfo={v} />)}
-                </>
+            {rightMenuState === '온라인' ? Friends.filter((v) => v.state === 'online').map((v) => <FriendCard key={v.id} userInfo={v} />) :
+              rightMenuState === '모두' ? Friends.map((v) => <FriendCard key={v.id} userInfo={v} />) :
+                rightMenuState === '대기 중' ?
+                  <>
+                    {FriendRequests.sended.map((v) => <WaitingCard key={v.id} type='sended' userInfo={v} />)}
+                    {FriendRequests.received.map((v) => <WaitingCard key={v.id} type='received' userInfo={v} />)}
+                  </>
+                  : FriendRequests.received.map((v) => <WaitingCard key={v.id} type='received' userInfo={v} />)
             }
           </ScrollDiv>
         </div>

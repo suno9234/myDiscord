@@ -62,7 +62,8 @@ const MemberCard = ({ userInfo }) => {
         paddingLeft: '9px',
       }}>
         <IconWrapper>
-          {userInfo.profileImage ? <svg width='32px' height='32px'><image width='32px' height='32px' href={userInfo.profileImage}/></svg> : null}
+          {userInfo.profileImage ? <svg width='32px' height='32px'><image width='32px' height='32px' href={userInfo.profileImage}/></svg> 
+          : null}
 
         </IconWrapper>
         <div style={{

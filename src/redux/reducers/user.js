@@ -21,7 +21,7 @@ const initialState = {
   me: null,
 
   loginPageState: 'selectId',
-  rightMenuState: 'online',
+  rightMenuState: '온라인',
 
   signUpDone: false,
   signUpLoading: false,

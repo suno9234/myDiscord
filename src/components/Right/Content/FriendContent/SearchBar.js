@@ -1,4 +1,4 @@
-import searchIcon from '../../../../imgs/search.png';
+import {ReactComponent as SearchSvg} from '../../../../imgs/svgs/search.svg';
 
 const SearchBar = () => {
   return (
@@ -13,7 +13,7 @@ const SearchBar = () => {
         width: '100%',
         backgroundColor: '#202225',
         alignItems: 'center',
-        borderRadius: '4px 4px 4px 4px / 4px 4px 4px 4px',
+        borderRadius: '4px',
         minWidth: '0',
       }}>
         <input style={{
@@ -27,7 +27,7 @@ const SearchBar = () => {
           height: '36px',
           backgroundColor: '#202225',
           padding: '0 8px',
-          borderRadius: '4px 4px 4px 4px / 4px 4px 4px 4px',
+          borderRadius: '4px',
           fontWeight: 'bold',
           boxSizing: 'border-box',
           color: 'gray',
@@ -45,9 +45,7 @@ const SearchBar = () => {
           height: '20px',
           borderRadius: '4px 4px 4px 4px / 4px 4px 4px 4px',
         }}>
-          <img src={searchIcon} alt='searchIcon' style={{
-            height: '16px',
-          }} />
+          <SearchSvg height='16px'/>
         </div>
       </div>
       <div style={{

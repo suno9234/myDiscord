@@ -20,7 +20,7 @@ const Right = () => {
   const { isServer  , lastClickedMiddleMenu} = useSelector((state) => state.user);
   return (
     <StyledDiv>
-      { isServer ?  <ServerHeader/> : [-1,-2].includes(lastClickedMiddleMenu) ?  <FriendHeader /> : <DirectMessageHeader/>}
+      { isServer ?  <ServerHeader/> : [-1,-2].includes(lastClickedMiddleMenu) ?  <FriendHeader /> :  <DirectMessageHeader/>}
       { isServer ?  <ServerContent/>: <FriendContent />}
     </StyledDiv>
   )

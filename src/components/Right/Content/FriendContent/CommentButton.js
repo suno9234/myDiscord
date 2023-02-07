@@ -12,7 +12,11 @@ justify-content: center;
 align-items: center;
 background-color: #2f3136;
 cursor: pointer;
+color : #b9bbbe;
 position:relative;
+&:hover{
+  color : ${props => props.color}
+}
 `
 
 const ArrowSpan = styled.span`
@@ -44,14 +48,15 @@ const CommentButton = ({ comment, SvgImg, hoverColor, onClick }) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
+      color={hoverColor}
     >
-      <SvgImg width='20px' height='20px' fill={hover ? hoverColor : '#b9bbbe'}  />
+      <SvgImg width='20px' height='20px' />
       {
         hover ?
           <div>
             <ArrowSpan style={{
-              left: btnRef.current.getBoundingClientRect().left+18,
-              top: btnRef.current.getBoundingClientRect().top-40,
+              left: btnRef.current.getBoundingClientRect().left + 18,
+              top: btnRef.current.getBoundingClientRect().top - 40,
             }}>
               {comment}
             </ArrowSpan>
@@ -62,8 +67,8 @@ const CommentButton = ({ comment, SvgImg, hoverColor, onClick }) => {
               transform: 'rotate(45deg)',
               trnasform: 'tranlateX(-50%)',
               backgroundColor: '#191a1d',
-              left: btnRef.current.getBoundingClientRect().left+13,
-              top: btnRef.current.getBoundingClientRect().top-13,
+              left: btnRef.current.getBoundingClientRect().left + 13,
+              top: btnRef.current.getBoundingClientRect().top - 13,
             }} />
           </div>
           :

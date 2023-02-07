@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { enterHomeSuccess, setLastClickedServerId } from '../../redux/reducers/user'
+import { ReactComponent as DefaultSvg } from '../../imgs/svgs/default-profile.svg'
 import { loadChannelRequest } from '../../redux/reducers/channel';
 
 
@@ -63,7 +64,7 @@ const Profile = ({ channelInfo }) => {
       cursor: 'pointer',
       wigth: '46px',
       height: '46px',
-      flexGrow:'0',
+      flexGrow: '0',
       flexShrink: '0',
       borderRadius: border,
       overflow: 'hidden',
@@ -78,7 +79,15 @@ const Profile = ({ channelInfo }) => {
           <image href={channelInfo.profileImage} width='46px' height='46px' />
         </svg>
 
-        : <div style={{ display: 'flex', backgroundColor: 'red', width: '46px', height: '46px', }} />}
+        : <div style={{
+          display: 'flex',
+          backgroundColor: hover ? '#5865f2' : lastClickedServerId === -1 ? '#5865f2' : '#36393f',
+          color: hover ? 'white' : lastClickedServerId === -1 ? 'white' : '#dcddde',
+          width: '46px',
+          height: '46px',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }} ><DefaultSvg width='30px' /></div>}
       <div style={{
         position: 'absolute',
         display: 'flex',

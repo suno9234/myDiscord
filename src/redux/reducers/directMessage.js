@@ -48,7 +48,7 @@ export const dmSlice = createSlice({
 
       state.directMessages = state.directMessages.filter((v) => v.id !== action.payload.receiver.id)
       if (state.currentChannel.currentReceiver.id === action.payload.receiver.id) {
-        state.directMessages = []
+        state.currentChannel.currentMessages = []
       }
       state.directMessages = [{
         id: action.payload.receiver.id,

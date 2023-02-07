@@ -85,7 +85,8 @@ const MiniProfile = () => {
           position: 'relative',
           width: '32px',
           height: '32px',
-          backgroundColor: profileBGColor
+          backgroundColor: profileBGColor,
+          color : 'white',
         }} >
           {me.ProfileImage || <DefaultProfileSvg width='20px' fill='white' />}
           {/* {<img src={`http://localhost:3065/${userInfo.Image.src}`} alt='profileImage'/>} */}

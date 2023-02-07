@@ -150,7 +150,16 @@ function logInAPI(data) {
 
 function* logIn(action) {
   try {
-    const result = yield call(logInAPI, action.payload);
+    /* const result = yield call(logInAPI, action.payload); */
+    const result = {
+      data: {
+        id: 1,
+        email: "ssh9234@gmail.com",
+        nickname: "Suno",
+        tag: 6600,
+        state: "online",
+      }
+    }
     console.log(result);
     yield put(logInSuccess(result));
   } catch (err) {

@@ -75,6 +75,7 @@ const FriendCard = ({ type, userInfo }) => {
             width: '32px',
             height: '32px',
             overflow:'hidden',
+            color : 'white',
             border:'none',
             backgroundColor:userInfo.profileImage ? 'transparent':  profileBGColor
           }} >
