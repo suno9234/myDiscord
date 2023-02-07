@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/myDiscord/static/js/main.12505259.js",
+    "main.js": "/myDiscord/static/js/main.1746e980.js",
     "static/js/845.eacf0858.chunk.js": "/myDiscord/static/js/845.eacf0858.chunk.js",
     "static/js/787.6cb5784e.chunk.js": "/myDiscord/static/js/787.6cb5784e.chunk.js",
     "static/media/background0.svg": "/myDiscord/static/media/background0.6531e7f9431ee0bcaa0a8af28f34ace7.svg",
+    "static/media/background-ban.svg": "/myDiscord/static/media/background-ban.52e2a879ef3fb194a2a52eb2ab96d68f.svg",
     "static/media/background1.svg": "/myDiscord/static/media/background1.a044cd6c8752efc0445171a8775b8270.svg",
     "static/media/ggsans.woff2": "/myDiscord/static/media/ggsans.daa584d0d211cd0f2223.woff2",
-    "static/media/home.jpg": "/myDiscord/static/media/home.dcc79073aafc3e368fa4.jpg",
     "static/media/headset-on.mp3": "/myDiscord/static/media/headset-on.56f2d6293bd2a5bd0f40.mp3",
     "static/media/headset-off.mp3": "/myDiscord/static/media/headset-off.7597288b432d29f7e4ad.mp3",
     "static/media/mic-on.mp3": "/myDiscord/static/media/mic-on.e96860aad2c4728827d5.mp3",
@@ -15,8 +15,8 @@
     "static/media/nitro-hover.svg": "/myDiscord/static/media/nitro-hover.1e6a5c870b5763e92de9071c55684539.svg",
     "static/media/upload-sticker.svg": "/myDiscord/static/media/upload-sticker.7edce03e9418c9b066eb7cf2a31e8533.svg",
     "static/media/threads.svg": "/myDiscord/static/media/threads.e2e02fde51e0be7336e75c43e0028545.svg",
-    "static/media/default-profile.svg": "/myDiscord/static/media/default-profile.fb21f02d5e9113ef4275fb0a81e9a32d.svg",
-    "static/media/members.svg": "/myDiscord/static/media/members.029ba8a8c062f6fc24d1a5a37d0109f1.svg",
+    "static/media/default-profile.svg": "/myDiscord/static/media/default-profile.a851664b97ffaeda0b5f92f753e496c2.svg",
+    "static/media/members.svg": "/myDiscord/static/media/members.d6aa3ae853286288316384d9f42704e7.svg",
     "static/media/chattingChannel.svg": "/myDiscord/static/media/chattingChannel.4b3a9753f7285f8dfa7be1ab578d610c.svg",
     "static/media/directmessage-header.svg": "/myDiscord/static/media/directmessage-header.c28a3653820d99879f06b0b5c3072106.svg",
     "static/media/mic.svg": "/myDiscord/static/media/mic.b5b302b6282a05ffbf692f9143bf44c1.svg",
@@ -34,24 +34,24 @@
     "static/media/headset.svg": "/myDiscord/static/media/headset.58b2ecbd9cf33ce04d0ca27def7a0081.svg",
     "index.html": "/myDiscord/index.html",
     "static/media/invite.svg": "/myDiscord/static/media/invite.1d38f4917ee41b04fc547c12813698ba.svg",
+    "static/media/more.svg": "/myDiscord/static/media/more.3fd84ec130e37174e9d7b953c5b6a3ef.svg",
     "static/media/camera.svg": "/myDiscord/static/media/camera.374f22bdab925c59db1e4412555b9f06.svg",
-    "static/media/more.svg": "/myDiscord/static/media/more.a3ddc43c108ae17b7ed51a167913197a.svg",
     "static/media/fixed-message.svg": "/myDiscord/static/media/fixed-message.3041cf20789eae7ac3cee1e2d467c917.svg",
     "static/media/add-friend.svg": "/myDiscord/static/media/add-friend.2a324809bc16700e2ffef2360350deb9.svg",
-    "static/media/directmessage.svg": "/myDiscord/static/media/directmessage.7bd7a3de8ff6e3430d651b7f01382f8f.svg",
+    "static/media/directmessage.svg": "/myDiscord/static/media/directmessage.c875bf776e3e64d01acadec7dfa71cfe.svg",
     "static/media/mail.svg": "/myDiscord/static/media/mail.3ea18e1e99a9145748eec118a8132a30.svg",
     "static/media/upload-button.svg": "/myDiscord/static/media/upload-button.871c94b20783642a300a3a7e17f0219a.svg",
+    "static/media/check.svg": "/myDiscord/static/media/check.38b959452c5dba1a09cdd8f95ad40ec2.svg",
     "static/media/returnico.svg": "/myDiscord/static/media/returnico.023ba8c6c2f0312529faa1ea4eec006f.svg",
-    "static/media/check.svg": "/myDiscord/static/media/check.35cc9d339cf5410a21652fdd520f6761.svg",
     "static/media/cancle.svg": "/myDiscord/static/media/cancle.1582de4364e8d2e644db989ee7ebe789.svg",
     "static/media/arrow_down.svg": "/myDiscord/static/media/arrow_down.6989c5eac951d71fc024e6bf5fe06981.svg",
     "static/media/offline.svg": "/myDiscord/static/media/offline.46a02122378e5dc3fe9fa9d95785d51e.svg",
     "static/media/online.svg": "/myDiscord/static/media/online.294b4328c1901ae95cc1ebf347a7e7e7.svg",
-    "main.12505259.js.map": "/myDiscord/static/js/main.12505259.js.map",
+    "main.1746e980.js.map": "/myDiscord/static/js/main.1746e980.js.map",
     "845.eacf0858.chunk.js.map": "/myDiscord/static/js/845.eacf0858.chunk.js.map",
     "787.6cb5784e.chunk.js.map": "/myDiscord/static/js/787.6cb5784e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.12505259.js"
+    "static/js/main.1746e980.js"
   ]
 }
