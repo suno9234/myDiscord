@@ -1,10 +1,11 @@
-gradle
-build
-bin
-.idea
 .gradle
-gradlew.bat
+.idea
+build
+gradle
+out
 gradlew
-package.json
+gradlew.bat
+HELP.md
 package-lock.json
+README.md
 settings.gradle
